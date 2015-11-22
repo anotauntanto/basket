@@ -46,6 +46,11 @@ public class Jugador extends Persona{
     public void setDorsal(int dorsal) {
         this.dorsal = dorsal;
     }
+
+    @Override
+    public String toString() {
+        return "Jugador{" + "altura=" + altura + ", dorsal=" + dorsal + '}';
+    }
     
     
 }

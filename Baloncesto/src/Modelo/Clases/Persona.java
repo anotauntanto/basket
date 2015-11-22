@@ -110,5 +110,12 @@ public class Persona {
     public void setRol(int rol) {
         this.rol = rol;
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", fechaN=" + fechaN + ", tlf=" + tlf + ", email=" + email + ", contrasena=" + contrasena + ", idPersona=" + idPersona + ", rol=" + rol + '}';
+    }
+    
+    
     
 }

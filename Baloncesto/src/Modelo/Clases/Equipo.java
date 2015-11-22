@@ -57,7 +57,11 @@ public class Equipo {
     public void setIdEquipo(int idEquipo) {
         this.idEquipo = idEquipo;
     }
+
+    @Override
+    public String toString() {
+        return "Equipo{" + "nombre=" + nombre + ", categoria=" + categoria + ", provincia=" + provincia + ", idEquipo=" + idEquipo + '}';
+    }
     
-    
-            
+             
 }

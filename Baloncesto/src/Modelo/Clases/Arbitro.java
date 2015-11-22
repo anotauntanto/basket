@@ -45,5 +45,11 @@ public class Arbitro extends Persona{
     public void setNumColegiado(int numColegiado) {
         this.numColegiado = numColegiado;
     }
+
+    @Override
+    public String toString() {
+        return "Arbitro{" + "Provincia=" + Provincia + ", numColegiado=" + numColegiado + '}';
+    }
+    
     
 }

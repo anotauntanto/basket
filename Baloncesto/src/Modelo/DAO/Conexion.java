@@ -39,8 +39,11 @@ public class Conexion {
     
     public static Connection conectar() {
         if (con==null){
+            
             try{
+                
                 Class.forName("oracle.jdbc.driver.OracleDriver");
+                System.out.println("Holaaaaa");
                 con = DriverManager.getConnection(url,null);
                 if (con!=null)
                     System.out.println("Conexión con la base de datos extablecida");

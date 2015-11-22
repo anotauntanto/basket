@@ -32,19 +32,22 @@ public class PersonaDAO {
     public static void insertarPersona(Persona per) {
         con = Conexion.conectar();
         //persona = per;
+        
         try{
             PreparedStatement ps =  con.prepareStatement("insert into Persona (Id_Persona,Nombre,Apellidos,DNI,Fecha_Nac,Email,Contrasena,Telefono,Rol)"
-                    + " values (?,?,?,?,?,?,?,?,?)");
-            ps.setInt(1, per.getIdPersona());
-            ps.setString(2, per.getNombre());
-            ps.setString(3, per.getApellidos());
-            ps.setString(4, per.getDni());
-            ps.setDate(5, new java.sql.Date(per.getFechaN().getTime()));
-            ps.setString(6,per.getEmail());
-            ps.setString(7,per.getContrasena());
-            ps.setString(8, per.getTlf());
-            ps.setInt(9, per.getRol());
+                    + " values (INC_ID_PERSONA.NextVal,?,?,?,?,?,?,?,?)");
+            //ps.setInt(1, per.getIdPersona());
+            ps.setString(1, per.getNombre());
+            ps.setString(2, per.getApellidos());
+            ps.setString(3, per.getDni());
+            ps.setDate(4, new java.sql.Date(per.getFechaN().getTime()));
+            ps.setString(5,per.getEmail());
+            ps.setString(6,per.getContrasena());
+            ps.setString(7, per.getTlf());
+            ps.setInt(8, per.getRol());
             ps.executeUpdate();
+            
+            
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
