@@ -15,8 +15,9 @@ public class Jugador extends Persona{
     private double altura;
     private int dorsal;
 
-    public Jugador(double altura, int dorsal, String nombre, String apellidos, String dni, Date fechaN, String tlf, String email, String contrasena, int idPersona) {
-        super(nombre, apellidos, dni, fechaN, tlf, email, contrasena, idPersona);
+    public Jugador(double altura, int dorsal, int idPersona,String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
+        //super(nombre, apellidos, dni, fechaN, tlf, email, contrasena, idPersona);
+        super(idPersona, nombre, apellidos, dni, fechaN, email, contrasena, tlf, rol);
         this.altura = altura;
         this.dorsal = dorsal;
     }

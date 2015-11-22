@@ -13,8 +13,8 @@ import java.util.Date;
  */
 public class Organizacion extends Persona{
 
-    public Organizacion(String nombre, String apellidos, String dni, Date fechaN, String tlf, String email, String contrasena, int idPersona) {
-        super(nombre, apellidos, dni, fechaN, tlf, email, contrasena, idPersona);
+    public Organizacion(int idPersona,String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
+        super(idPersona, nombre, apellidos, dni, fechaN, email, contrasena, tlf, rol);
     }
 
     public Organizacion() {

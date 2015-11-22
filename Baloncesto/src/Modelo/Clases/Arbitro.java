@@ -15,8 +15,8 @@ public class Arbitro extends Persona{
     private String Provincia;
     private int numColegiado;
 
-    public Arbitro(String Provincia, int numColegiado, String nombre, String apellidos, String dni, Date fechaN, String tlf, String email, String contrasena, int idPersona) {
-        super(nombre, apellidos, dni, fechaN, tlf, email, contrasena, idPersona);
+    public Arbitro(String Provincia, int numColegiado, int idPersona,String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
+        super(idPersona, nombre, apellidos, dni, fechaN, email, contrasena, tlf, rol);
         this.Provincia = Provincia;
         this.numColegiado = numColegiado;
     }

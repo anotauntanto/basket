@@ -21,8 +21,9 @@ public class Persona {
     private String email;
     private String contrasena;
     private int idPersona;
+    private int rol;
 
-    public Persona(String nombre, String apellidos, String dni, Date fechaN, String tlf, String email, String contrasena, int idPersona) {
+    public Persona(int idPersona, String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
@@ -31,6 +32,7 @@ public class Persona {
         this.email = email;
         this.contrasena = contrasena;
         this.idPersona = idPersona;
+        this.rol = rol;
     }
     
     public Persona(){
@@ -101,8 +103,12 @@ public class Persona {
         this.idPersona = idPersona;
     }
     
-    public void ver(){
-       
+    public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
     }
     
 }
