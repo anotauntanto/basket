@@ -80,7 +80,7 @@ public class PersonaDAO {
     
     public static Persona obtenerPersonaPorDni(String dni) {
         con=Conexion.conectar();
-        listaPersonas= new ArrayList<>();
+        //listaPersonas= new ArrayList<>();
         Persona persona=null;
         try{
             PreparedStatement ps = con.prepareStatement("select * from persona where DNI=?");

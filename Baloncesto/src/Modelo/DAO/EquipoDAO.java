@@ -87,7 +87,26 @@ public class EquipoDAO {
         return listaEquipos;
     }
     
-    
+    public static int obtenerIdEquipo(String nombre){
+        int id=0;
+        
+        con=Conexion.conectar();
+        try{
+            
+            PreparedStatement ps = con.prepareStatement("select id_equipo from Equipo where nombre=?");
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            //int number = rsmd.getColumnCount();
+            while (rs.next()) {
+                
+                id=rs.getInt(1);
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return id;
+    }
     
     
 }
