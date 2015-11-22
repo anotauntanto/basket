@@ -1,14 +1,9 @@
 package Modelo.DAO;
 
-import Modelo.Clases.FactoriaPersona;
-import Modelo.Clases.Jugador;
 import Modelo.Clases.Persona;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,50 +13,92 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author inftel06
+ * @author inftel07
  */
 public class PersonaDAO {
-
-    Conexion c;
-    Statement stmt = null;
+    private static Persona persona=null;
+    static Conexion con= null;
+    private static List <Persona> listaPersonas=null;
     
-   public boolean iniciarSesion (String dni, String contrasena) {
+    public PersonaDAO() {
+    }
+    
+    public static void insertarPersona(Persona per) {
+        con = Conexion.conectar();
+        persona = per;
+        try{
+            PreparedStatement ps =  con.prepareStatement("insert into Persona (Nombre,DNI,Fecha,Email,Contrasena,Rol)"
+                    + " values (?,?,?,?,?,?)");
+            ps.setString(1, per.getNombre());
+            ps.setString(2, per.getDNI());
+            ps.setDate(3, new java.sql.Date(per.getFecha().getTime()));
+            ps.setString(4,per.getEmail());
+            ps.setString(5,per.getContrasena());
+            ps.setInt(6, per.getRol());
+            ps.executeUpdate();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static List<Persona> ObtenerTodasPersonas(){
         
-        c = new Conexion ();  
-        
-        try { 
-            stmt = c.getConexion().createStatement();
-            String sentencia = "SELECT rol FROM PERSONA WHERE DNI = "+dni+"and contrasena=" + contrasena;
-            ResultSet resultado = stmt.executeQuery(sentencia);
-            
-            if (resultado.next()) { //si esto es verdadero es que existe una coincidencia, es decir, está en la base de datos.
-                String rol = resultado.getString("rol");
-                FactoriaPersona factoria = new FactoriaPersona();
-                Persona p = factoria.makePersona(rol);
- 
-                //recuperar rol
-                
-                
-            } else {
-                //mostrar mensaje por pantalla de inicion de sesión erróneo
-                
-                //te desconectas de la base de datos
-                c.desconexion();
+        con=Conexion.conectar();
+        listaPersonas= new ArrayList<>();
+        try{
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from persona");
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            //int number = rsmd.getColumnCount();
+
+            while (rs.next()) {
+                persona = new Persona(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getString(6), rs.getInt(7));
+                listaPersonas.add(persona);
             }
-           
-           
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
         }
         
-        return true;
-   }
+        return listaPersonas;
 
-   
+    }
     
+    public static Persona ObtenerPersonaPorDNI(String dni) {
+        con=Conexion.conectar();
+        listaPersonas= new ArrayList<>();
+        persona=null;
+        try{
+            PreparedStatement ps = con.prepareStatement("select * from persona where DNI=?");
+            ps.setString(1, dni);
+            ResultSet rs = ps.executeQuery();
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            //int number = rsmd.getColumnCount();
+            while (rs.next()) {
+                persona = new Persona(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getString(6), rs.getInt(7));                
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return persona;
+    }
     
-    
-    
+
+     public static void modificarPersona(Persona per) {
+        con = Conexion.conectar();
+        persona = per;
+        try{
+            PreparedStatement ps =  con.prepareStatement("update Persona set Nombre=?,DNI=?,Fecha=?,Email=?,Contrasena=?,Rol=? where idPersona=?");
+            ps.setString(1, per.getNombre());
+            ps.setString(2, per.getDNI());
+            ps.setDate(3, new java.sql.Date(per.getFecha().getTime()));
+            ps.setString(4,per.getEmail());
+            ps.setString(5,per.getContrasena());
+            ps.setInt(6, per.getRol());
+            ps.setInt(7, per.getIdPersona());
+            ps.executeUpdate();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 }
