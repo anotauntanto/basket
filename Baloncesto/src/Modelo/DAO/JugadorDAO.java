@@ -81,10 +81,11 @@ public class JugadorDAO {
         
         //jugador = jug;
         try{
-            PreparedStatement ps =  con.prepareStatement("update Jugador set Dorsal=?,Altura=? where id_Persona=?");
+            PreparedStatement ps =  con.prepareStatement("update Jugador set Dorsal=?,Altura=?,id_Equipo=? where id_Persona=?");
             ps.setInt(1, jug.getDorsal());
             ps.setDouble(2, jug.getAltura());
-            ps.setInt(3, jug.getIdPersona());
+            ps.setInt(3, jug.getIdEquipo());
+            ps.setInt(4, jug.getIdPersona());
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -93,11 +94,11 @@ public class JugadorDAO {
     
     public static Jugador obtenerJugadorPorDni (String dni) {
         con = Conexion.conectar();
-        Jugador jugador = (Jugador) PersonaDAO.obtenerPersonaPorDni(dni);
-        
+        Persona persona = PersonaDAO.obtenerPersonaPorDni(dni);
+        Jugador jugador = null;
         try{
             PreparedStatement ps = con.prepareStatement("select * from Jugador jug inner join Persona per where jug.id_Persona = per.id_Persona and jug.id_persona=?");
-            ps.setInt(1, jugador.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
+            ps.setInt(1, persona.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 jugador = new Jugador(rs.getDouble(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getDate(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getInt(13));//el 5 seria el mismo q el 4, pq listamos jugador y persona y tienen una columna igual q es la q las une
