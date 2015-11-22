@@ -5,9 +5,11 @@
  */
 package baloncesto;
 
+import Modelo.Clases.Arbitro;
 import Modelo.Clases.Equipo;
 import Modelo.Clases.Jugador;
 import Modelo.Clases.Persona;
+import Modelo.DAO.ArbitroDAO;
 import Modelo.DAO.Conexion;
 import Modelo.DAO.EquipoDAO;
 import Modelo.DAO.JugadorDAO;
@@ -37,15 +39,19 @@ public class Baloncesto {
         Persona p = new Persona (0, "miguel", "Fernandez", "11111111A", fecha, "miguel@gmail.com", "migue", "999999999", 0);
         
         
-        Equipo eq = new Equipo (1,"moscardo23","sevilla",1);
+       /* Equipo eq = new Equipo (1,"moscardo23","sevilla",1);
         EquipoDAO.insertarEquipo(eq);
         int id=EquipoDAO.obtenerIdEquipo(eq.getNombre());
         
         Jugador j= new Jugador (1.70, 15, id, 0, "Paloma", "Martin", "22222222A", fecha, "paloma@gmail.com", "palo", "88888888", 1);
-        //PersonaDAO.insertarPersona(p);
-        System.out.println (PersonaDAO.obtenerTodasPersonas());
+        //PersonaDAO.insertarPersona(p);*/
         
-        JugadorDAO.insertarJugador(j);
+        //System.out.println (PersonaDAO.obtenerTodasPersonas());
+        //Arbitro a1 = new Arbitro ("Malaga",0, "Paloma", "Martin", "22222222A", fecha, "paloma@gmail.com", "palo", "88888888", 1);
+        //ArbitroDAO.insertarArbitro(a1);
+        System.out.println(JugadorDAO.obtenerJugadorPorDni("22222222A"));
+        //System.out.println (PersonaDAO.obtenerTodasPersonas());
+//JugadorDAO.insertarJugador(j);
         
         
         

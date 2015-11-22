@@ -35,10 +35,10 @@ public class JugadorDAO {
         Persona per = PersonaDAO.obtenerPersonaPorDni(jug.getDni());
         con = Conexion.conectar();
         //jugador = jug;
+        
         try{
             PreparedStatement ps =  con.prepareStatement("insert into Jugador (id_Persona, Dorsal, Altura, id_equipo)"
                     + " values (?,?,?,?)");
-            System.out.println(jug.getIdEquipo());
             
             ps.setInt(1, per.getIdPersona());
             ps.setInt(2, jug.getDorsal());

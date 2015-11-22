@@ -13,17 +13,14 @@ import java.util.Date;
  */
 public class Arbitro extends Persona{
     private String Provincia;
-    private int numColegiado;
 
-    public Arbitro(String Provincia, int numColegiado, int idPersona,String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
+    public Arbitro(String Provincia, int idPersona,String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
         super(idPersona, nombre, apellidos, dni, fechaN, email, contrasena, tlf, rol);
         this.Provincia = Provincia;
-        this.numColegiado = numColegiado;
     }
 
     public Arbitro(String Provincia, int numColegiado) {
         this.Provincia = Provincia;
-        this.numColegiado = numColegiado;
     }
     
     public Arbitro(){
@@ -38,17 +35,11 @@ public class Arbitro extends Persona{
         this.Provincia = Provincia;
     }
 
-    public int getNumColegiado() {
-        return numColegiado;
-    }
 
-    public void setNumColegiado(int numColegiado) {
-        this.numColegiado = numColegiado;
-    }
 
     @Override
     public String toString() {
-        return "Arbitro{" + "Provincia=" + Provincia + ", numColegiado=" + numColegiado + '}';
+        return "Arbitro{" + "Provincia=" + Provincia + '}';
     }
     
     
