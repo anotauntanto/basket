@@ -1,6 +1,8 @@
 package Modelo.DAO;
 
 import Modelo.Clases.Persona;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 
@@ -17,7 +19,7 @@ import java.util.List;
  */
 public class PersonaDAO {
     private static Persona persona=null;
-    static Conexion con= null;
+    static Connection con= null;
     private static List <Persona> listaPersonas=null;
     
     public PersonaDAO() {

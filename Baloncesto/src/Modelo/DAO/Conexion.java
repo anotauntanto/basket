@@ -18,9 +18,9 @@ import java.util.logging.Logger;
  */
 public class Conexion {
 
-    private Connection con = null;
-    Statement stmt = null; 
-    String url = "jdbc:oracle:thin:INFTEL15_3/INFTEL@olimpia.lcc.uma.es:1521:edgar";
+    private static Connection con = null;
+    private static Statement stmt = null; 
+    private static String url = "jdbc:oracle:thin:INFTEL15_3/INFTEL@olimpia.lcc.uma.es:1521:edgar";
 
     public Conexion() {
         /*try {
@@ -37,7 +37,7 @@ public class Conexion {
         return this.con;
     }
     
-    public Connection conectar() throws InstantiationException, IllegalAccessException {
+    public static Connection conectar() {
         if (con==null){
             try{
                 Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -56,7 +56,7 @@ public class Conexion {
         return con;
     }
     
-    public void desconexion () {
+    public static void desconexion () {
         
         try {
             con.close();
