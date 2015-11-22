@@ -5,8 +5,10 @@
  */
 package baloncesto;
 
+import Modelo.Clases.Jugador;
 import Modelo.Clases.Persona;
 import Modelo.DAO.Conexion;
+import Modelo.DAO.JugadorDAO;
 import Modelo.DAO.PersonaDAO;
 import java.sql.Connection;
 import java.sql.Time;
@@ -30,9 +32,17 @@ public class Baloncesto {
         cal.set(1985,0,1);
         Date fecha = cal.getTime();
         
-        Persona p = new Persona (0, "nombre", "apellidos", "dni", fecha, "email", "contrasena", "tlf", 0);
+        Persona p = new Persona (0, "miguel", "Fernandez", "11111111A", fecha, "miguel@gmail.com", "migue", "999999999", 0);
+        
+        Jugador j= new Jugador (1.70, 15, 1, 0, "Paloma", "Martin", "22222222A", fecha, "paloma@gmail.com", "palo", "88888888", 1);
         PersonaDAO.insertarPersona(p);
-        System.out.println (PersonaDAO.ObtenerTodasPersonas());
+        System.out.println (PersonaDAO.obtenerTodasPersonas());
+        
+        JugadorDAO.insertarJugador(j);
+        
+        
+        
+        
   
         
         

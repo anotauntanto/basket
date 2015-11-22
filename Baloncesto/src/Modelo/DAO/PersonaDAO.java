@@ -53,7 +53,7 @@ public class PersonaDAO {
         }
     }
     
-    public static List<Persona> ObtenerTodasPersonas(){
+    public static List<Persona> obtenerTodasPersonas(){
         Persona persona=null;
         con=Conexion.conectar();
         listaPersonas= new ArrayList<>();
@@ -77,7 +77,7 @@ public class PersonaDAO {
 
     }
     
-    public static Persona ObtenerPersonaPorDNI(String dni) {
+    public static Persona obtenerPersonaPorDni(String dni) {
         con=Conexion.conectar();
         listaPersonas= new ArrayList<>();
         Persona persona=null;
