@@ -49,7 +49,7 @@ public class ArbitroDAO {
         Arbitro arbitro=null;
         try{
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from Arbitro ju inner join Persona per where ju.id_Persona = per.id_Persona");
+            ResultSet rs = st.executeQuery("select * from Arbitro ju inner join Persona per on ju.id_Persona = per.id_Persona");
             //ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
                 arbitro = new Arbitro(rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11));
@@ -83,10 +83,10 @@ public class ArbitroDAO {
         con = Conexion.conectar();
         Persona p =  PersonaDAO.obtenerPersonaPorDni(dni);
         Arbitro arbitro = null;
-        
+       
         
         try{
-            PreparedStatement ps = con.prepareStatement("select * from Arbitro jug inner join Persona per where jug.id_Persona = per.id_Persona and jug.id_persona=?");
+            PreparedStatement ps = con.prepareStatement("select * from Arbitro jug inner join Persona per on jug.id_Persona = per.id_Persona and jug.id_persona=?");
             ps.setInt(1, p.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
             ResultSet rs = ps.executeQuery();
             while (rs.next()){

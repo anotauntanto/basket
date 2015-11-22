@@ -65,11 +65,12 @@ public class EntrenadorDAO {
 
     public static Entrenador obtenerEntrenadorPorDni (String dni) {
         con = Conexion.conectar();
-        Entrenador entrenador = (Entrenador) PersonaDAO.obtenerPersonaPorDni(dni);
+        Persona persona = PersonaDAO.obtenerPersonaPorDni(dni);
+        Entrenador entrenador = null;
         
         try{
-            PreparedStatement ps = con.prepareStatement("select * from Entrenador ent inner join Persona per where ent.id_Persona = per.id_Persona and ent.id_persona=?");
-            ps.setInt(1, entrenador.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
+            PreparedStatement ps = con.prepareStatement("select * from Entrenador ent inner join Persona per on ent.id_Persona = per.id_Persona and ent.id_persona=?");
+            ps.setInt(1, persona.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 entrenador = new Entrenador(rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7),rs.getDate(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12));
