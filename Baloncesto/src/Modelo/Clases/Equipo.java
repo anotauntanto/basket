@@ -15,7 +15,7 @@ public class Equipo {
     private String provincia;
     private int idEquipo;
 
-    public Equipo(String nombre, int categoria, String provincia, int idEquipo) {
+    public Equipo(int idEquipo, String nombre, String provincia, int categoria) {
         this.nombre = nombre;
         this.categoria = categoria;
         this.provincia = provincia;

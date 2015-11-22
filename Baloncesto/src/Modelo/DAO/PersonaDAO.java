@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class PersonaDAO {
     //private static Persona persona=null;
-    static Connection con= null;
+    private static Connection con= null;
     private static List <Persona> listaPersonas=null;
     
     public PersonaDAO() {
@@ -51,6 +51,7 @@ public class PersonaDAO {
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
+        //Conexion.desconexion();
     }
     
     public static List<Persona> obtenerTodasPersonas(){

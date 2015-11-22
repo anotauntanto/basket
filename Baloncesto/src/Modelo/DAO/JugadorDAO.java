@@ -38,6 +38,8 @@ public class JugadorDAO {
         try{
             PreparedStatement ps =  con.prepareStatement("insert into Jugador (id_Persona, Dorsal, Altura, id_equipo)"
                     + " values (?,?,?,?)");
+            System.out.println(jug.getIdEquipo());
+            
             ps.setInt(1, per.getIdPersona());
             ps.setInt(2, jug.getDorsal());
             ps.setDouble(3, jug.getAltura());
