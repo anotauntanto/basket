@@ -67,5 +67,11 @@ public class Estadisticas {
     public void setRebotes(int rebotes) {
         this.rebotes = rebotes;
     }
+
+    @Override
+    public String toString() {
+        return "Estadisticas{" + "idJugador=" + idJugador + ", idPartido=" + idPartido + ", puntos=" + puntos + ", asistencias=" + asistencias + ", rebotes=" + rebotes + '}';
+    }
+    
     
 }
