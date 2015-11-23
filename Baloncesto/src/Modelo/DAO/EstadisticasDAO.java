@@ -31,14 +31,14 @@ public class EstadisticasDAO {
        con = Conexion.conectar();
         
         try{
-            PreparedStatement ps =  con.prepareStatement("insert into Jugador_partido (id_persona, id_Partido, rebotes, puntos, asistencias)"
+            PreparedStatement ps =  con.prepareStatement("insert into Jugador_partido (id_jugador, id_Partido, rebotes, puntos, asistencias)"
                     + " values (?,?,?,?,?)");
-            //ps.setInt(1, es.);
+            
+            ps.setInt(1, es.getIdPartido());
             ps.setInt(2, es.getIdPartido());
-            ps.setInt(3, es.getIdPartido());
-            ps.setInt(4, es.getRebotes());
-            ps.setInt(5, es.getPuntos());
-            ps.setInt(6, es.getAsistencias());
+            ps.setInt(3, es.getRebotes());
+            ps.setInt(4, es.getPuntos());
+            ps.setInt(5, es.getAsistencias());
             ps.executeUpdate();
             
             
@@ -57,45 +57,27 @@ public class EstadisticasDAO {
         con = Conexion.conectar();
         
         try{
-            PreparedStatement ps =  con.prepareStatement("update Estadisticas set id_partido=?, rebotes=?, puntos=?, asistencias=? where id_Persona=?");
-            ps.setInt(1, es.getIdPartido());
-            ps.setInt(2, es.getRebotes());
-            ps.setInt(3, es.getPuntos());
-            ps.setInt(4, es.getAsistencias());
-            ps.setInt(5, id);
+            PreparedStatement ps =  con.prepareStatement("update jugador_partido set rebotes=?, puntos=?, asistencias=? where id_jugador=?");
+            
+            ps.setInt(1, es.getRebotes());
+            ps.setInt(2, es.getPuntos());
+            ps.setInt(3, es.getAsistencias());
+            ps.setInt(4, id);
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
     }
     
-    public static Estadisticas obtenerEstadisticasPorId ( int id) {
-        con = Conexion.conectar();
-        //Persona persona = PersonaDAO.obtenerPersonaPorDni(dni);
-        Estadisticas estadisticas = null;
-        
-        try{
-            Statement st = con.createStatement();
-            ResultSet rs  = st.executeQuery("select * from Estadisticas es where es.id_Persona =" + id);
-            
-            
-            while (rs.next()){
-                estadisticas = new Estadisticas(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
-            }
-        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-        return estadisticas;
-    }
     
     
-    public static List<Estadisticas> obtenerTodasEstadisticasJugador(){
+    public static List<Estadisticas> obtenerTodasEstadisticasJugador(int id){
         con = Conexion.conectar();
         listaEstadisticas= new ArrayList<>();
         Estadisticas estadisticas=null;
         try{
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from Estadisticas es inner join Persona per on es.id_Persona = per.id_Persona");
+            ResultSet rs  = st.executeQuery("select * from jugador_partido es where es.id_jugador =" + id);
             //ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
                 estadisticas = new Estadisticas(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
@@ -108,4 +90,7 @@ public class EstadisticasDAO {
         
         return listaEstadisticas;
     }
+    
+    //si tenemos tiempo hacer un obtener estadisticas de un equipo.
+    
 }
