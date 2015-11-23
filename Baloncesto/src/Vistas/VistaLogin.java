@@ -5,12 +5,16 @@
  */
 package Vistas;
 
+import Controlador.ControladorLogin;
+
 /**
  *
  * @author usuario
  */
 public class VistaLogin extends javax.swing.JFrame {
     private String contrasena;
+    private ControladorLogin miControlador;
+    private String dni;
     /**
      * Creates new form VistaLogin
      */
@@ -61,17 +65,15 @@ public class VistaLogin extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(18, 18, 18)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(20, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(183, 183, 183)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
+                .addGap(56, 56, 56)
+                .addComponent(jLabel2)
+                .addGap(28, 28, 28)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -101,9 +103,12 @@ public class VistaLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+       dni=jTextField1.getText(); 
        char pswd[] = jPasswordField1.getPassword();
        contrasena = new String(pswd);
-        if (contrasena.equals("jugador")){
+       miControlador = new ControladorLogin();
+       miControlador.confirmarPassword(dni,contrasena,this);
+        /*if (contrasena.equals("jugador")){
             final VistaJugador nuevaVista=new VistaJugador();
             this.setVisible(false);
             nuevaVista.setVisible(true);
@@ -126,7 +131,8 @@ public class VistaLogin extends javax.swing.JFrame {
         else {
             new VistaNoEntra(this,true).setVisible(true);
             //this.setVisible(false);
-        }
+        }*/
+       //this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
