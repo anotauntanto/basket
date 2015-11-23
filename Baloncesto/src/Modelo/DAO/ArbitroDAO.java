@@ -49,7 +49,7 @@ public class ArbitroDAO {
         Arbitro arbitro=null;
         try{
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from Arbitro ju inner join Persona per on ju.id_Persona = per.id_Persona");
+            ResultSet rs = st.executeQuery("select * from Arbitro ar inner join Persona per on ar.id_Persona = per.id_Persona");
             //ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
                 arbitro = new Arbitro(rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11));
@@ -63,16 +63,18 @@ public class ArbitroDAO {
     }
     
     public static void modificarArbitro (Arbitro ar) {
+        int id=PersonaDAO.obtenerIdPersona(ar.getDni());
+        ar.setIdPersona(id);        
         
-        //Persona per = new Persona(jug.getIdPersona(), jug.getNombre(), jug.getDNI(), jug.getFecha(), jug.getEmail(), jug.getContrasena(), jug.getRol());
         PersonaDAO.modificarPersona(ar);
         con = Conexion.conectar();
         
         //jugador = jug;
         try{
-            PreparedStatement ps =  con.prepareStatement("update Arbitro set Numcolegiado=?,Provincia=? where id_Persona=?");
+            PreparedStatement ps =  con.prepareStatement("update Arbitro set Provincia=? where id_Persona=?");
             ps.setString(1, ar.getProvincia());
             ps.setInt(2, ar.getIdPersona());
+            
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -86,7 +88,7 @@ public class ArbitroDAO {
        
         
         try{
-            PreparedStatement ps = con.prepareStatement("select * from Arbitro jug inner join Persona per on jug.id_Persona = per.id_Persona and jug.id_persona=?");
+            PreparedStatement ps = con.prepareStatement("select * from Arbitro ar inner join Persona per on ar.id_Persona = per.id_Persona and ar.id_persona=?");
             ps.setInt(1, p.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
             ResultSet rs = ps.executeQuery();
             while (rs.next()){

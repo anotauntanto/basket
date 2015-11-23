@@ -74,8 +74,9 @@ public class JugadorDAO {
 
     
     public static void modificarJugador (Jugador jug) {
+        int id=PersonaDAO.obtenerIdPersona(jug.getDni());
+        jug.setIdPersona(id);         
         
-        //Persona per = new Persona(jug.getIdPersona(), jug.getNombre(), jug.getDNI(), jug.getFecha(), jug.getEmail(), jug.getContrasena(), jug.getRol());
         PersonaDAO.modificarPersona(jug);
         con = Conexion.conectar();
         

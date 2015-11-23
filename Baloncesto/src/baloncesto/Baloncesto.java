@@ -49,22 +49,29 @@ public class Baloncesto {
         //PersonaDAO.insertarPersona(p);*/
         
         //System.out.println (PersonaDAO.obtenerTodasPersonas());
-        //Arbitro a1 = new Arbitro ("Malaga",0, "Jesus", "Jaldo", "98989898H", fecha, "jesus@gmail.com", "jesu", "33333333", 3);
+        Arbitro a1 = new Arbitro ("Malag",0, "Jes", "Jaldo", "98989898H", fecha, "jesus@gmail.com", "jesu", "33333333", 3);
         //ArbitroDAO.insertarArbitro(a1);
-        //int id=EquipoDAO.obtenerIdEquipo("moscardo22");
-        //Jugador j= new Jugador (1.70, 15, id, 0, "Paloma", "Martin", "22222222A", fecha, "paloma@gmail.com", "palo", "88888888", 1);
+        ArbitroDAO.modificarArbitro(a1);
+        int id=EquipoDAO.obtenerIdEquipo("moscardo22");
+        Jugador j= new Jugador (1.90, 15, id, 0, "Paloma", "tin", "22222222A", fecha, "paloma@gmail.com", "palo", "88888888", 1);
         //JugadorDAO.insertarJugador(j);
-        
+        JugadorDAO.modificarJugador(j);
         //System.out.println(ArbitroDAO.obtenerArbitroPorDni("98989898H"));
         //System.out.println(JugadorDAO.obtenerJugadorPorDni("22222222A"));
         //System.out.println(ArbitroDAO.obtenerTodosArbitros());
         //System.out.println(JugadorDAO.obtenerTodosJugadores());
         //System.out.println (PersonaDAO.obtenerTodasPersonas());
-        int id=EquipoDAO.obtenerIdEquipo("moscardo22");
-        Entrenador e = new Entrenador(id, 2, 0, "Anna", "Herrera", "76674642a", fecha, "ana@gmail.com", "an", "7777777", 2);
+        //int id=EquipoDAO.obtenerIdEquipo("moscardo22");
+        Entrenador e = new Entrenador(id, 3, 0, "Ana", "Herr", "76674642a", fecha, "ana@gmail.com", "an", "7777777", 2);
         //EntrenadorDAO.insertarEntrenador(e);
         //System.out.println(EntrenadorDAO.obtenerEntrenadorPorDni("76674642a"));
+        
+        //int id2=PersonaDAO.obtenerIdPersona(e.getDni());
+        //e.setIdPersona(id2);
+        //System.out.println(id2);
         EntrenadorDAO.modificarEntrenador(e);
+        
+        
         
 //JugadorDAO.insertarJugador(j);
         

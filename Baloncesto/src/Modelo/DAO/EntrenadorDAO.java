@@ -47,6 +47,8 @@ public class EntrenadorDAO {
     }
 
     public static void modificarEntrenador (Entrenador ent) {
+        int id=PersonaDAO.obtenerIdPersona(ent.getDni());
+        ent.setIdPersona(id);
         
         //Persona per = new Persona(jug.getIdPersona(), jug.getNombre(), jug.getDNI(), jug.getFecha(), jug.getEmail(), jug.getContrasena(), jug.getRol());
         PersonaDAO.modificarPersona(ent);
@@ -56,6 +58,7 @@ public class EntrenadorDAO {
             PreparedStatement ps =  con.prepareStatement("update Entrenador set id_equipo=?, Nivel=? where id_Persona=?");
             ps.setInt(1, ent.getIdEquipo());
             ps.setInt(2, ent.getNivel());
+            
             ps.setInt(3, ent.getIdPersona());
             ps.executeUpdate();
         }catch(SQLException ex){

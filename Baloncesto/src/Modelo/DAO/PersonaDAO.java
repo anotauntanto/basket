@@ -100,7 +100,9 @@ public class PersonaDAO {
     
 
      public static void modificarPersona(Persona per) {
-        con = Conexion.conectar();
+        //int id=PersonaDAO.obtenerIdPersona(per.getDni());
+        //per.setIdPersona(id);
+         con = Conexion.conectar();
         //Persona persona = per;
         try{
             PreparedStatement ps =  con.prepareStatement("update Persona set Nombre=?,Apellidos=?,DNI=?,Fecha_Nac=?,Email=?,Contrasena=?,Telefono=?,Rol=? where id_Persona=?");
@@ -118,5 +120,26 @@ public class PersonaDAO {
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
+    }
+     
+    public static int obtenerIdPersona(String dni){
+        int id=0;
+        
+        con=Conexion.conectar();
+        try{
+            
+            PreparedStatement ps = con.prepareStatement("select id_persona from Persona where dni=?");
+            ps.setString(1, dni);
+            ResultSet rs = ps.executeQuery();
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            //int number = rsmd.getColumnCount();
+            while (rs.next()) {
+                
+                id=rs.getInt(1);
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return id;
     }
 }
