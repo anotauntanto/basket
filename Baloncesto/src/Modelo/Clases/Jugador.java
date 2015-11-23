@@ -19,7 +19,13 @@ public class Jugador extends Persona{
     public Jugador() {
     }
 
-    
+    public Jugador(Persona per, double altura, int dorsal, int idEquipo) {
+        super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
+        this.altura = altura;
+        this.dorsal = dorsal;
+        this.idEquipo = idEquipo;
+    }
+        
     public Jugador(double altura, int dorsal, int idEquipo,int idPersona,String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
         //super(nombre, apellidos, dni, fechaN, tlf, email, contrasena, idPersona);
         super(idPersona, nombre, apellidos, dni, fechaN, email, contrasena, tlf, rol);

@@ -96,6 +96,7 @@ public class JugadorDAO {
     public static Jugador obtenerJugadorPorDni (String dni) {
         con = Conexion.conectar();
         Persona persona = PersonaDAO.obtenerPersonaPorDni(dni);
+        //
         
         Jugador jugador = null;
         try{
@@ -107,6 +108,27 @@ public class JugadorDAO {
             while (rs.next()){
                 
                 jugador = new Jugador(rs.getDouble(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getDate(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getInt(13));//el 5 seria el mismo q el 4, pq listamos jugador y persona y tienen una columna igual q es la q las une
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return jugador;
+    }
+    
+    
+    public static Jugador obtenerJugadorPorID (Persona persona) {
+        con = Conexion.conectar();
+      
+        Jugador jugador = null;
+        try{
+            PreparedStatement ps = con.prepareStatement("select * from Jugador jug inner join Persona per on jug.id_Persona = per.id_Persona and jug.id_persona=?");
+            ps.setInt(1, persona.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                
+                jugador = new Jugador(persona, rs.getDouble(2), rs.getInt(3), rs.getInt(4));
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
