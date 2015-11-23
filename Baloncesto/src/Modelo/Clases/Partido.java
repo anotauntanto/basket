@@ -19,7 +19,7 @@ public class Partido {
     private int idPartido;
     private int idArbitro;
 
-    public Partido(Date fecha, String localizacion, int numJornada, String resultado, int idPartido, int idArbitro) {
+    public Partido(int idPartido, String resultado, int numJornada, int idArbitro, Date fecha, String localizacion) {
         this.fecha = fecha;
         this.localizacion = localizacion;
         this.numJornada = numJornada;

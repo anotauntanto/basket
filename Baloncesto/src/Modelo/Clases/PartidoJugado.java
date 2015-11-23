@@ -10,11 +10,11 @@ package Modelo.Clases;
  * @author inftel06
  */
 public class PartidoJugado {
-    private boolean heGanado;
+    private int heGanado;
     private int idEquipo;
     private int idPartido;
 
-    public PartidoJugado(boolean heGanado, int idEquipo, int idPartido) {
+    public PartidoJugado(int heGanado, int idEquipo, int idPartido) {
         this.heGanado = heGanado;
         this.idEquipo = idEquipo;
         this.idPartido = idPartido;
@@ -24,11 +24,11 @@ public class PartidoJugado {
         
     }
 
-    public boolean isHeGanado() {
+    public int getHeGanado() {
         return heGanado;
     }
 
-    public void setHeGanado(boolean heGanado) {
+    public void setHeGanado(int heGanado) {
         this.heGanado = heGanado;
     }
 
