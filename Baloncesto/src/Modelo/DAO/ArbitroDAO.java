@@ -20,6 +20,7 @@ import java.util.List;
  * @author inftel08
  */
 public class ArbitroDAO {
+    
     private static Connection con = null;
     private static List <Arbitro> listaArbitros=null;
     

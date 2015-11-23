@@ -21,11 +21,15 @@ import java.util.List;
  *
  * @author inftel07
  */
+
+
 public class PersonaDAO {
     //private static Persona persona=null;
     private static Connection con= null;
     private static List <Persona> listaPersonas=null;
-    
+    /**
+     * Constructor por edef
+     */
     public PersonaDAO() {
     }
     
