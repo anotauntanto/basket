@@ -8,14 +8,19 @@ package Modelo.DAO;
 import Modelo.Clases.Partido;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author inftel07
  */
 public class PartidoDAO {
-    private static Connection con;
+    private static List <Partido> listaPartidos=null;
+    static Connection con=null;
     
     
     public static void crearPartido (Partido par) {
@@ -40,6 +45,30 @@ public class PartidoDAO {
         //Conexion.desconexion();
     }
     
+    public static List<Partido> listarPartidosJornada (int num_jornada) { //para emparejamientos
+        con = Conexion.conectar();
+        listaPartidos= new ArrayList<>();
+        Partido partido = null; 
+        
+        try{
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from Partido par where par.Jornada = "+num_jornada);
+  
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            while (rs.next()) {
+                partido = new Partido (rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4) ,rs.getDate(5), rs.getString(6));
+                
+                listaPartidos.add(partido);
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return listaPartidos;
+        
+    }
+    
+ 
     public static void modificarResultado(Partido par) {
         con = Conexion.conectar();
         
