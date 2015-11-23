@@ -36,12 +36,15 @@ public class ControladorLogin {
     
     public void confirmarPassword(String dni, String password, VistaLogin miLogin){
         //miPersonaDAO = new PersonaDAO();
-        if (PersonaDAO.obtenerPersonaPorDni(dni)!=null){
-            miPersona=PersonaDAO.obtenerPersonaPorDni(dni);
+        miPersona=PersonaDAO.obtenerPersonaPorDni(dni);
+        
+        if (miPersona!=null){
+            
             if (miPersona.getContrasena().equals(password)){
+                
                 switch (miPersona.getRol()){
                     case 1:
-                        VistaJugador nuevaVista=new VistaJugador(miPersona.getIdPersona());
+                        VistaJugador nuevaVista=new VistaJugador(miPersona);
                         miLogin.setVisible(false);
                         nuevaVista.setVisible(true);
                         //System.out.println("holii: "+miPersona.getIdPersona());

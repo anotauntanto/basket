@@ -5,17 +5,20 @@
  */
 package Vistas;
 
+import Modelo.Clases.Persona;
+
 /**
  *
  * @author usuario
  */
 public class VistaEntrenador extends javax.swing.JFrame {
-
+    private Persona persona;
     /**
      * Creates new form VistaEntrenador
      */
     public VistaEntrenador() {
         initComponents();
+        this.persona = persona;
     }
 
     /**
@@ -107,7 +110,7 @@ public class VistaEntrenador extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        final VistaDatosPersonales nuevaVista=new VistaDatosPersonales();
+        final VistaDatosPersonales nuevaVista=new VistaDatosPersonales(persona);
         //this.setVisible(false);
         nuevaVista.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

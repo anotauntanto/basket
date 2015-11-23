@@ -7,14 +7,8 @@ package Controlador;
 
 /**
  *
- * @author inftel06
+ * @author inftel08
  */
-public class ControladorJugador {
-    private int idJugador;
-    
-    public ControladorJugador() {
-    }
-    
-    
+public class ControladorEstadisticas {
     
 }

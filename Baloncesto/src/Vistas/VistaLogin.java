@@ -20,6 +20,7 @@ public class VistaLogin extends javax.swing.JFrame {
      */
     public VistaLogin() {
         initComponents();
+        miControlador = new ControladorLogin();
     }
 
     /**
@@ -106,7 +107,6 @@ public class VistaLogin extends javax.swing.JFrame {
        dni=jTextField1.getText(); 
        char pswd[] = jPasswordField1.getPassword();
        contrasena = new String(pswd);
-       miControlador = new ControladorLogin();
        miControlador.confirmarPassword(dni,contrasena,this);
         /*if (contrasena.equals("jugador")){
             final VistaJugador nuevaVista=new VistaJugador();
