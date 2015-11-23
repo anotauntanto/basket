@@ -72,7 +72,6 @@ public class PartidoDAO {
     public static void modificarResultado(Partido par) {
         con = Conexion.conectar();
         
-        
         try{
             PreparedStatement ps =  con.prepareStatement("update Partido set Resultado=? where id_Partido = ?");
             

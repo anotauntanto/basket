@@ -34,7 +34,7 @@ public class EstadisticasDAO {
             PreparedStatement ps =  con.prepareStatement("insert into Jugador_partido (id_jugador, id_Partido, rebotes, puntos, asistencias)"
                     + " values (?,?,?,?,?)");
             
-            ps.setInt(1, es.getIdPartido());
+            ps.setInt(1, es.getIdJugador());
             ps.setInt(2, es.getIdPartido());
             ps.setInt(3, es.getRebotes());
             ps.setInt(4, es.getPuntos());
@@ -48,7 +48,7 @@ public class EstadisticasDAO {
     }
     
     public static void modificarEstadisticasJugador (Estadisticas es) {
-        int id=es.getIdJugador();
+        //int id=es.getIdJugador();
         //int id=PersonaDAO.modificarPersona(es.getIdJugador());
         //es.setIdPersona(id);
         
@@ -57,12 +57,13 @@ public class EstadisticasDAO {
         con = Conexion.conectar();
         
         try{
-            PreparedStatement ps =  con.prepareStatement("update jugador_partido set rebotes=?, puntos=?, asistencias=? where id_jugador=?");
+            PreparedStatement ps =  con.prepareStatement("update jugador_partido set rebotes=?, puntos=?, asistencias=? where id_jugador=? and id_partido=?");
             
             ps.setInt(1, es.getRebotes());
             ps.setInt(2, es.getPuntos());
             ps.setInt(3, es.getAsistencias());
-            ps.setInt(4, id);
+            ps.setInt(4, es.getIdJugador());
+            ps.setInt(5, es.getIdPartido());
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());

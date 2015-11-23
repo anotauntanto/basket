@@ -154,9 +154,9 @@ public class VistaOrganizacion extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        final VistaEstadisticas nuevaVista=new VistaEstadisticas();
+        //final VistaEstadisticas nuevaVista=new VistaEstadisticas();
          //this.setVisible(false);
-         nuevaVista.setVisible(true);
+        //nuevaVista.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

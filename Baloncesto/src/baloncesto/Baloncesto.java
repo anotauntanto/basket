@@ -8,13 +8,17 @@ package baloncesto;
 import Modelo.Clases.Arbitro;
 import Modelo.Clases.Entrenador;
 import Modelo.Clases.Equipo;
+import Modelo.Clases.Estadisticas;
 import Modelo.Clases.Jugador;
+import Modelo.Clases.Partido;
 import Modelo.Clases.Persona;
 import Modelo.DAO.ArbitroDAO;
 import Modelo.DAO.Conexion;
 import Modelo.DAO.EntrenadorDAO;
 import Modelo.DAO.EquipoDAO;
+import Modelo.DAO.EstadisticasDAO;
 import Modelo.DAO.JugadorDAO;
+import Modelo.DAO.PartidoDAO;
 import Modelo.DAO.PersonaDAO;
 import java.sql.Connection;
 import java.sql.Time;
@@ -38,15 +42,16 @@ public class Baloncesto {
         cal.set(1985,0,1);
         Date fecha = cal.getTime();
         
+        /*
         //Persona p = new Persona (0, "miguel", "Fernandez", "11111111A", fecha, "miguel@gmail.com", "migue", "999999999", 0);
         
         
-       /* Equipo eq = new Equipo (1,"moscardo23","sevilla",1);
+        Equipo eq = new Equipo (1,"moscardo23","sevilla",1);
         EquipoDAO.insertarEquipo(eq);
         int id=EquipoDAO.obtenerIdEquipo(eq.getNombre());
         
         Jugador j= new Jugador (1.70, 15, id, 0, "Paloma", "Martin", "22222222A", fecha, "paloma@gmail.com", "palo", "88888888", 1);
-        //PersonaDAO.insertarPersona(p);*/
+        //PersonaDAO.insertarPersona(p);
         
         //System.out.println (PersonaDAO.obtenerTodasPersonas());
         Arbitro a1 = new Arbitro ("Malag",0, "Jes", "Jaldo", "98989898H", fecha, "jesus@gmail.com", "jesu", "33333333", 3);
@@ -70,17 +75,22 @@ public class Baloncesto {
         //e.setIdPersona(id2);
         //System.out.println(id2);
         EntrenadorDAO.modificarEntrenador(e);
+        */
         
+        //Partido partido = new Partido(3, "120-120", 1, 33, fecha, "Pabellon US");
+        //PartidoDAO.crearPartido(partido);
+       
+        //PartidoDAO.modificarResultado(partido);
         
-        
-//JugadorDAO.insertarJugador(j);
-        
-        
-        
-        
+        /*Estadisticas c1 = new Estadisticas (34, 2, 89, 89, 89);
+        EstadisticasDAO.insertarEstadisticasJugador(c1);
+        Estadisticas c2 = new Estadisticas (34, 3, 120, 120, 120);
+        EstadisticasDAO.insertarEstadisticasJugador(c2);
+        Estadisticas c3 = new Estadisticas (34, 4, 10, 10, 10);
+        EstadisticasDAO.insertarEstadisticasJugador(c3);*/
+        Estadisticas c3 = new Estadisticas (34, 4, 2, 1, 1);        
+        EstadisticasDAO.modificarEstadisticasJugador(c3);
   
-        
-        
     }
     
 }

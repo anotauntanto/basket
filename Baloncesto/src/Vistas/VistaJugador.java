@@ -5,7 +5,9 @@
  */
 package Vistas;
 
+import Modelo.Clases.Jugador;
 import Modelo.Clases.Persona;
+import Modelo.DAO.JugadorDAO;
 
 /**
  *
@@ -15,11 +17,13 @@ public class VistaJugador extends javax.swing.JFrame {
     /**
      * Creates new form VistaJugador
      */
-    private Persona persona;
+    private Jugador jugador;
     
     public VistaJugador(Persona persona) {
         initComponents();
-        this.persona = persona;
+        
+        Jugador jug = JugadorDAO.obtenerJugadorPorID(persona);
+        this.jugador = jug;
         
         /*this.idJugador=idJugador;
         System.out.println("Adiosito"+ idJugador);*/
@@ -122,14 +126,14 @@ public class VistaJugador extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        final VistaDatosPersonales nuevaVista=new VistaDatosPersonales(persona);
+        final VistaDatosPersonales nuevaVista=new VistaDatosPersonales((Persona) jugador); //ESTO ES SOLO PROVISIONAL PORUQE SINO FALLA
         //this.setVisible(false);
         nuevaVista.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        final VistaEstadisticas nuevaVista=new VistaEstadisticas();
+        final VistaEstadisticas nuevaVista=new VistaEstadisticas(jugador);
         //this.setVisible(false);
         nuevaVista.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
