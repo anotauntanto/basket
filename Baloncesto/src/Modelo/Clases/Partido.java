@@ -17,13 +17,15 @@ public class Partido {
     private int numJornada;
     private String resultado;
     private int idPartido;
+    private int idArbitro;
 
-    public Partido(Date fecha, String localizacion, int numJornada, String resultado, int idPartido) {
+    public Partido(Date fecha, String localizacion, int numJornada, String resultado, int idPartido, int idArbitro) {
         this.fecha = fecha;
         this.localizacion = localizacion;
         this.numJornada = numJornada;
         this.resultado = resultado;
         this.idPartido = idPartido;
+        this.idArbitro = idArbitro;
     }
     
     public Partido(){
@@ -69,5 +71,20 @@ public class Partido {
     public void setIdPartido(int idPartido) {
         this.idPartido = idPartido;
     }
+
+    public int getIdArbitro() {
+        return idArbitro;
+    }
+
+    public void setIdArbitro(int idArbitro) {
+        this.idArbitro = idArbitro;
+    }
+
+    @Override
+    public String toString() {
+        return "Partido{" + "fecha=" + fecha + ", localizacion=" + localizacion + ", numJornada=" + numJornada + ", resultado=" + resultado + ", idPartido=" + idPartido + ", idArbitro=" + idArbitro + '}';
+    }
+    
+    
     
 }
