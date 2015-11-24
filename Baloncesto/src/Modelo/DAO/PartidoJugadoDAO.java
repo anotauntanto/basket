@@ -81,5 +81,27 @@ public class PartidoJugadoDAO {
     }
     
     
-    
+     public static void modificarResultado(PartidoJugado parJug) {
+        con = Conexion.conectar();
+
+        try {
+            PreparedStatement ps = con.prepareStatement("update Equipo_Partido set he_ganado=? where id_partido = ? and id_equipo= ?");
+
+           
+            /*if (ganado){
+                ps.setInt(1, 1);
+            }
+            else {
+                ps.setInt(1, 0);
+            }*/
+            ps.setInt(1, parJug.getHeGanado());
+            ps.setInt(2, parJug.getIdPartido());
+            ps.setInt(3, parJug.getIdEquipo());
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        //Conexion.desconexion();
+    }
 }

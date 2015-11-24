@@ -206,7 +206,26 @@ public class Generar {
     }
     //CUIDADODODODODODO
     public int generarLiga(){
+        int sigJ=sigJornadaN();
+        if (sigJ==-1){ //NO hago nada porque no ha finalizado
+            return -1;
+        }
+        ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
+        if (todosEquipos.size()%2==0){
+            generarLigaPar();
+        }
+        else {
+            generarLigaImpar();
+        }    
         return 0;
+    }
+    
+    public void generarLigaPar(){
+        
+    }
+    
+    public void generarLigaImpar(){
+        
     }
     
     //FIN CUIDADIDDODODDODO
