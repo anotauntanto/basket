@@ -108,5 +108,25 @@ public class EquipoDAO {
         return id;
     }
     
+    public static String obtenerNombreEquipo(int id){
+        String res = null;
+        con=Conexion.conectar();
+        try{
+            
+            PreparedStatement ps = con.prepareStatement("select nombre from Equipo where id_equipo=?");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            //int number = rsmd.getColumnCount();
+            while (rs.next()) {
+                
+                res=rs.getString(1);
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return res;
+    }
+    
     
 }

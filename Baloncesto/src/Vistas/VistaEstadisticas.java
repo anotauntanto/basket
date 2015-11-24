@@ -8,6 +8,7 @@ package Vistas;
 import Controlador.ControladorEstadisticas;
 import Modelo.Clases.Jugador;
 import Modelo.Clases.Persona;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -15,13 +16,14 @@ import javax.swing.JTextField;
  * @author usuario
  */
 public class VistaEstadisticas extends javax.swing.JFrame {
-    ControladorEstadisticas miControlador;
+    private ControladorEstadisticas miControlador;
     /**
      * Creates new form VistaEstadisticas
      */
     public VistaEstadisticas(Jugador jugador) {
+
+       initComponents();
         miControlador = new ControladorEstadisticas(jugador, this);
-        initComponents();
     }
 
     /**
@@ -84,10 +86,7 @@ public class VistaEstadisticas extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Jornada", "Rival", "Fecha", "Resultado", "Puntos", "Rebotes", "Asistencias"
@@ -186,23 +185,28 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         //nuevaVista.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    public JTextField getjTextField1() {
+    public JTextField getCampoNombre() {
         return jTextField1;
     }
 
-    public JTextField getjTextField2() {
+    public JTextField getCampoApellidos() {
         return jTextField2;
     }
 
-    public JTextField getjTextField3() {
+    public JTextField getCampoEquipo() {
         return jTextField3;
     }
 
-    public JTextField getjTextField4() {
+    public JTextField getCampoDorsal() {
         return jTextField4;
     }
 
     //es la table2
+
+    public JTable getTabla() {
+        return jTable2;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton4;
