@@ -102,6 +102,7 @@ public class PartidoDAO {
                 jornadaAct = rs.getInt(1);
             }
         } catch (SQLException ex) {
+            //return 0;
             System.out.println(ex.getMessage());
         }
 
@@ -123,5 +124,28 @@ public class PartidoDAO {
         }
         //Conexion.desconexion();
     }
+    
+    public static int obtenerIdActual() {
+            con = Conexion.conectar();
+            //listaPersonas= new ArrayList<>();
+            int IdAct = 0;
+            try {
+                PreparedStatement ps = con.prepareStatement("select max(id_partido) from partido");
+
+                ResultSet rs = ps.executeQuery();
+                //ResultSetMetaData rsmd = rs.getMetaData();
+                //int number = rsmd.getColumnCount();
+                while (rs.next()) {
+                    IdAct = rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                //return 0;
+                System.out.println(ex.getMessage());
+            }
+
+            return IdAct;
+        }
+
+
 
 }

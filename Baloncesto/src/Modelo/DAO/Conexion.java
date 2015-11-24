@@ -21,6 +21,7 @@ public class Conexion {
     private static Connection con = null;
     private static Statement stmt = null; 
     private static String url = "jdbc:oracle:thin:INFTEL15_3/INFTEL@olimpia.lcc.uma.es:1521:edgar";
+    //private static String url = "jdbc:oracle:thin:INFTEL15_2/INFTEL@olimpia.lcc.uma.es:1521:edgar";
 
     public Conexion() {
         /*try {
