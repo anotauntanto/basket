@@ -57,11 +57,6 @@ public class Arbitro extends Persona{
         
     }
     
-    public Arbitro (Persona per) {
-        super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
-        this.Provincia="";
-        
-    }
     
     /**
      * 
