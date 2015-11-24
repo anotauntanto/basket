@@ -57,7 +57,7 @@ public class Generar {
             }
         }
         
-        
+        return 0;
     }
     
 }
