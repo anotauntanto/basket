@@ -6,6 +6,7 @@
 package Modelo.Clases;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -25,6 +26,8 @@ public class Persona {
     private String contrasena;
     private int idPersona;
     private int rol;
+    
+    SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 
     /**
      * Constructor de Persona
@@ -205,10 +208,9 @@ public class Persona {
      * 
      * @return Persona
      */
-
     @Override
     public String toString() {
-        return "Persona{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", fechaN=" + fechaN + ", tlf=" + tlf + ", email=" + email + ", contrasena=" + contrasena + ", idPersona=" + idPersona + ", rol=" + rol + "}\n";
+        return "Persona{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", fechaN=" + formatter.format(fechaN) + ", tlf=" + tlf + ", email=" + email + ", contrasena=" + contrasena + ", idPersona=" + idPersona + ", rol=" + rol + "}\n";
     }
     
     
