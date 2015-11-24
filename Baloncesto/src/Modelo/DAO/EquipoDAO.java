@@ -128,14 +128,14 @@ public class EquipoDAO {
         return res;
     }
     
-     public static List<Integer> listarEquiposGanadoresJornadaN(int num_jornada) { //para emparejamientos
+     public static List<Equipo> listarEquiposGanadoresJornadaN(int num_jornada) { //para emparejamientos
         con = Conexion.conectar();
-        //listaIdEquiposGanados = new ArrayList<>();
-        List<Integer> listaIdEquiposGanados = new ArrayList<>();
+        listaEquipos = new ArrayList<>();
         
+        Equipo equipo=null;
 
         try {
-            PreparedStatement ps = con.prepareStatement("select id_equipo from Partido P, Equipo_partido P where P.jornada=? and P.id_partido=E.id_partido and"
+            PreparedStatement ps = con.prepareStatement("select * from Partido P, Equipo_partido E where P.jornada=? and P.id_partido=E.id_partido and"
                     + " E.he_ganado=1");
             ps.setInt(1, num_jornada);
             ResultSet rs = ps.executeQuery();
@@ -144,15 +144,45 @@ public class EquipoDAO {
 
             //ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
-                
+                System.out.println("Entero"+rs.getInt(8));
+                equipo = new Equipo(rs.getInt(8), "", "", 1);  //Insertamos solo el id_equipo porque no necesitamos nada mas
 
-                listaIdEquiposGanados.add(rs.getInt(1));
+                listaEquipos.add(equipo);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
-        return listaIdEquiposGanados;
+        return listaEquipos;
+
+    }
+     
+    public static List<Equipo> listarEquiposPerdidosJornadaN(int num_jornada) { //para emparejamientos
+        con = Conexion.conectar();
+        listaEquipos = new ArrayList<>();
+        
+        Equipo equipo=null;
+
+        try {
+            PreparedStatement ps = con.prepareStatement("select * from Partido P, Equipo_partido E, Equipo EQ where P.jornada=? and P.id_partido=E.id_partido "
+                    + "and E.he_ganado=0 and EQ.id_equipo=E.id_equipo");
+            ps.setInt(1, num_jornada);
+            ResultSet rs = ps.executeQuery();
+            //Statement st = con.createStatement();
+            //ResultSet rs = st.executeQuery("select * from Partido P, Equipo_Partido E where p.Jornada = " + num_jornada+" and ");
+
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            while (rs.next()) {
+                System.out.println("Entero"+rs.getInt(8));
+                equipo = new Equipo(rs.getInt(8),rs.getString(11) , rs.getString(12), rs.getInt(13));  //Insertamos solo el id_equipo porque no necesitamos nada mas
+
+                listaEquipos.add(equipo);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return listaEquipos;
 
     }
 }

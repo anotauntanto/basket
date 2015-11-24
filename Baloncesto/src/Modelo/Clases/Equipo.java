@@ -5,6 +5,8 @@
  */
 package Modelo.Clases;
 
+import java.util.Objects;
+
 /**
  *Esta clase representa la entidad Equipo
  * @author grupo_baloncesto 
@@ -110,6 +112,36 @@ public class Equipo {
     @Override
     public String toString() {
         return "Equipo{" + "nombre=" + nombre + ", categoria=" + categoria + ", provincia=" + provincia + ", idEquipo=" + idEquipo + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Equipo other = (Equipo) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (this.categoria != other.categoria) {
+            return false;
+        }
+        if (!Objects.equals(this.provincia, other.provincia)) {
+            return false;
+        }
+        if (this.idEquipo != other.idEquipo) {
+            return false;
+        }
+        return true;
     }
     
              

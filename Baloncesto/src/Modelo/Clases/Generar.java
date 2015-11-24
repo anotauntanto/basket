@@ -54,7 +54,7 @@ public class Generar {
                     //j++;
                 }
             }
-            else {
+            else {//Si categoria copio
                 
                 //arrayUno[i]=elem.getIdEquipo();
                 arrayUno.add(elem.getIdEquipo());
@@ -138,15 +138,15 @@ public class Generar {
         Collections.shuffle(arrayEquipos);
         Iterator it=arrayEquipos.iterator();
         while (it.hasNext() && numSacados<equiposFuera){
-            Partido elem=(Partido) it.next();
+            Equipo elem=(Equipo) it.next();
             numSacados++;
             arrayEquiposPrevia.add(elem);
         }
         if (equiposFuera!=0){
-            sigJornada((ArrayList) arrayEquiposPrevia,true);
+            sigJornada((ArrayList) arrayEquiposPrevia,false);
             return 1;
         }
-        else {
+        else { //Supongo Mismo numero de Cat 1 y Cat 2
             sigJornada((ArrayList) arrayEquipos,true);
             return 0;
         }
@@ -156,8 +156,33 @@ public class Generar {
     }
     
     //Genera la jornada N-esima
-    public int generarJornadaN(){
+    public int generarJornadaN(int jornada_ant){
         
+        ArrayList idEquiposGanados=(ArrayList) EquipoDAO.listarEquiposGanadoresJornadaN(jornada_ant);
+        
+       
+        if (jornada_ant==1 && numEquiposCopaPrevia()!=0){
+            ArrayList idEquiposPerdidos=(ArrayList) EquipoDAO.listarEquiposPerdidosJornadaN(jornada_ant);
+            ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
+            todosEquipos.removeAll(idEquiposPerdidos);
+            
+             for (Iterator it=todosEquipos.iterator();it.hasNext();){
+                Equipo elem=(Equipo) it.next();
+                System.out.println("Mi elem: "+elem);
+             }
+            sigJornada(todosEquipos,false);
+            
+        } else{
+             if (idEquiposGanados.size()!=1){
+                 sigJornada(idEquiposGanados,false);
+             }
+             else {
+                 return -1;
+             }
+            //System.out.println("IDssss "+idEquiposGanados.get(1));
+        }
+        
+       
         
         return 0;
     }
@@ -169,17 +194,22 @@ public class Generar {
             return -1;
         }
         //Si ha terminado
-        else if (sigJ==0){
+        else if (sigJ==0){ 
             return primeraJornada();
             
-        } else{
-            
+        } else{ //A partir de jornada 1
+            generarJornadaN(sigJ);
         }
         
         
         return 0;
     }
+    //CUIDADODODODODODO
+    public int generarLiga(){
+        return 0;
+    }
     
+    //FIN CUIDADIDDODODDODO
     //Darme una lista con los equipos que han ganado la jornadaN
     
     public static void main(String[] args) {
@@ -190,6 +220,7 @@ public class Generar {
         int n=miGen.numEquiposCopaPrevia();
         System.out.println("Salida: "+sigJornada);
         //miGen.primeraJornada();
+        miGen.generarSigJornada();
         
         /*Calendar cal = Calendar.getInstance();
         cal.clear();
