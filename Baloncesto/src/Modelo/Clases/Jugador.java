@@ -28,7 +28,7 @@ public class Jugador extends Persona{
 
     /**
      * Contructor de la clase Jugador con sus atributos
-     * @param per 
+     * @param per Persona objeto persona
      * @param altura double altura del jugador
      * @param dorsal int dorsal del jugador
      * @param idEquipo int identificador del quipo
