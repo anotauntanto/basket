@@ -9,9 +9,13 @@ import java.util.Date;
 
 /**
  *
- * @author inftel06
+ * @author grupo_baloncesto, esta clase representa la entidad Partido
  */
 public class Partido {
+    
+    /**
+     * Atributos de la clase Partido
+     */
     private Date fecha;
     private String localizacion;
     private int numJornada;
@@ -19,6 +23,16 @@ public class Partido {
     private int idPartido;
     private int idArbitro;
 
+    
+    /**
+     * 
+     * @param idPartido int identificador de partido
+     * @param resultado String resultado de un partido
+     * @param numJornada int numero de jornada del partido
+     * @param idArbitro int identificador de arbitro
+     * @param fecha Date fecha del partido
+     * @param localizacion String localización de partido
+     */
     public Partido(int idPartido, String resultado, int numJornada, int idArbitro, Date fecha, String localizacion) {
         this.fecha = fecha;
         this.localizacion = localizacion;
@@ -28,9 +42,13 @@ public class Partido {
         this.idArbitro = idArbitro;
     }
     
+    /**
+     * 
+     */
     public Partido(){
         
     }
+    
 
     public Date getFecha() {
         return fecha;

@@ -8,7 +8,7 @@ package Modelo.Clases;
 import java.util.Date;
 
 /**
- *Esta es la clase representa una entidad árbitro
+ *Esta clase representa la entidad Árbitro
  * @author grupo_baloncesto
  * 
  */
@@ -21,16 +21,17 @@ public class Arbitro extends Persona{
 
     /**
      * Constructor de la clase árbitro
-     * @param Provincia
-     * @param idPersona
-     * @param nombre
-     * @param apellidos
-     * @param dni
-     * @param fechaN
-     * @param email
-     * @param contrasena
-     * @param tlf
-     * @param rol 
+     * 
+     * @param Provincia String provincia a la que pertenece el árbitro
+     * @param idPersona int identidicador del árbitro que deriva de persona
+     * @param nombre String nombre del árbitro
+     * @param apellidos String apellidos del árbitro
+     * @param dni String dni del árbitro
+     * @param fechaN Date, fecha de nacimiento del árbitro
+     * @param email String email del árbitro
+     * @param contrasena String contraseña que identifica al árbitro
+     * @param tlf String telefono
+     * @param rol int rol, identifica al árbitro 
      */
     public Arbitro(String Provincia, int idPersona,String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
         super(idPersona, nombre, apellidos, dni, fechaN, email, contrasena, tlf, rol);
@@ -38,11 +39,10 @@ public class Arbitro extends Persona{
     }
 
     /**
-     * 
-     * @param Provincia
-     * @param numColegiado 
+     * Constructor de Arbitro con su provincia sólamente
+     * @param Provincia 
      */
-    public Arbitro(String Provincia, int numColegiado) {
+    public Arbitro(String Provincia) {
         this.Provincia = Provincia;
     }
     
@@ -55,7 +55,7 @@ public class Arbitro extends Persona{
 
     /**
      * 
-     * @return 
+     * @return devuelve la provincia 
      */
     public String getProvincia() {
         return Provincia;
@@ -63,7 +63,7 @@ public class Arbitro extends Persona{
 
     /**
      * 
-     * @param Provincia 
+     * @param Provincia definimos el parametro provincia del arbitro para que pueda ser usado por todos los métodos
      */
     public void setProvincia(String Provincia) {
         this.Provincia = Provincia;
