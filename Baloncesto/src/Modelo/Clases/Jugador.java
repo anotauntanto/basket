@@ -29,9 +29,9 @@ public class Jugador extends Persona{
     /**
      * Contructor de la clase Jugador con sus atributos
      * @param per 
-     * @param altura
-     * @param dorsal
-     * @param idEquipo 
+     * @param altura double altura del jugador
+     * @param dorsal int dorsal del jugador
+     * @param idEquipo int identificador del quipo
      */
     public Jugador(Persona per, double altura, int dorsal, int idEquipo) {
         super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
@@ -41,19 +41,19 @@ public class Jugador extends Persona{
     }
         
     /**
-     * 
-     * @param altura Constructor de la clase Jugador con sus aributos y con los que deriva de Persona
-     * @param dorsal
-     * @param idEquipo
-     * @param idPersona
-     * @param nombre
-     * @param apellidos
-     * @param dni
-     * @param fechaN
-     * @param email
-     * @param contrasena
-     * @param tlf
-     * @param rol 
+     * Constructor de la clase Jugador con sus aributos y con los que deriva de Persona
+     * @param altura double altura del jugador
+     * @param dorsal int dorsal del jugador
+     * @param idEquipo int identificador del equipo
+     * @param idPersona int identificador del jugador derivado de persona
+     * @param nombre String nombre del jugador
+     * @param apellidos String apellidos del jugador
+     * @param dni String dni del jugador
+     * @param fechaN Date fecha de nacimiento
+     * @param email String email del jugador
+     * @param contrasena String contraseña del jugador
+     * @param tlf String telefono del jugador
+     * @param rol int rol identificador del jugador
      */
     public Jugador(double altura, int dorsal, int idEquipo,int idPersona,String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
         //super(nombre, apellidos, dni, fechaN, tlf, email, contrasena, idPersona);
@@ -75,15 +75,15 @@ public class Jugador extends Persona{
 
     /**
      * 
-     * @return A partir de aqui tenemos los get and setter de todos los atributos
+     * @return double altura del jugador
      */
     public double getAltura() {
         return altura;
     }
 
     /**
-     * 
-     * @param altura definimos el parametro altura de jugador para que pueda ser usado por todos los métodos
+     * definimos el parametro altura de jugador para que pueda ser usado por todos los métodos
+     * @param altura double altura del jugador
      */
     public void setAltura(double altura) {
         this.altura = altura;
@@ -91,14 +91,14 @@ public class Jugador extends Persona{
 
     /**
      * 
-     * @return devuelve el dorsal
+     * @return int dorsal
      */
     public int getDorsal() {
         return dorsal;
     }
     /**
-     * 
-     * @param dorsal definimos el parametro dorsal de jugador para que pueda ser usado por todos los métodos
+     * definimos el parametro dorsal de jugador para que pueda ser usado por todos los métodos
+     * @param dorsal int dorsal del jugador
      */
 
     public void setDorsal(int dorsal) {
@@ -106,7 +106,7 @@ public class Jugador extends Persona{
     }
     /**
      * 
-     * @return devuelve el id del equipo al que pertenece el jugador
+     * @return int id, devuelve el id del equipo al que pertenece el jugador
      */
 
     public int getIdEquipo() {
@@ -114,15 +114,15 @@ public class Jugador extends Persona{
     }
 
     /**
-     * 
-     * @param idEquipo definimos el parametro id del equipo de jugador para que pueda ser usado por todos los métodos
+     * definimos el parametro id del equipo de jugador para que pueda ser usado por todos los métodos
+     * @param idEquipo int identificador del equipo
      */
     public void setIdEquipo(int idEquipo) {
         this.idEquipo = idEquipo;
     }
     /**
      * 
-     * @return 
+     * @return Jugador
      */
     
     @Override
