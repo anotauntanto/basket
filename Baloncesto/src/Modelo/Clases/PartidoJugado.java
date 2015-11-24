@@ -14,7 +14,7 @@ public class PartidoJugado {
     private int idEquipo;
     private int idPartido;
 
-    public PartidoJugado(int heGanado, int idEquipo, int idPartido) {
+    public PartidoJugado(int idPartido, int idEquipo, int heGanado) {
         this.heGanado = heGanado;
         this.idEquipo = idEquipo;
         this.idPartido = idPartido;
