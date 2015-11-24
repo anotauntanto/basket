@@ -68,6 +68,27 @@ public class PartidoDAO {
         
     }
     
+    public static Partido obtenerDatosPartido (int id_partido) { 
+        con = Conexion.conectar();
+        Partido partido = null; 
+        
+        try{
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from Partido par where par.Id_Partido = "+id_partido);
+  
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            while (rs.next()) {
+                partido = new Partido (rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4) ,rs.getDate(5), rs.getString(6));
+
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return partido;
+        
+    }
+    
  
     public static void modificarResultado(Partido par) {
         con = Conexion.conectar();
