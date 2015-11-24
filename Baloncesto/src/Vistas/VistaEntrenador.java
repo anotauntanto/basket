@@ -5,14 +5,17 @@
  */
 package Vistas;
 
+import Modelo.Clases.Entrenador;
 import Modelo.Clases.Persona;
 
+
+        
 /**
  *
  * @author usuario
  */
 public class VistaEntrenador extends javax.swing.JFrame {
-    private Persona persona;
+    private Entrenador entrenador;
     /**
      * Creates new form VistaEntrenador
      */
