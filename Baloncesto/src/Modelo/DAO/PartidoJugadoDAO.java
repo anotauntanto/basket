@@ -53,7 +53,6 @@ public class PartidoJugadoDAO {
             //ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
                 partido = new PartidoJugado (rs.getInt(1), rs.getInt(2), rs.getInt(3));
-                System.out.println("Holaaa id "+rs.getInt(1));
                 listaPartidosJugados.add(partido);
             }
         }catch(SQLException ex){
