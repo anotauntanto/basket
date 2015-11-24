@@ -40,10 +40,16 @@ public class Arbitro extends Persona{
 
     /**
      * Constructor de Arbitro con su provincia sólamente
-     * @param Provincia 
+     * @param Provincia String Provincia del árbitro
      */
     public Arbitro(String Provincia) {
         this.Provincia = Provincia;
+    }
+    
+    public Arbitro (Persona per, String provincia) {
+        super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
+        this.Provincia= provincia;
+        
     }
     
     /**
@@ -55,15 +61,15 @@ public class Arbitro extends Persona{
 
     /**
      * 
-     * @return devuelve la provincia 
+     * @return provincia, devuelve la provincia 
      */
     public String getProvincia() {
         return Provincia;
     }
 
     /**
-     * 
-     * @param Provincia definimos el parametro provincia del arbitro para que pueda ser usado por todos los métodos
+     * definimos el parametro provincia del arbitro para que pueda ser usado por todos los métodos
+     * @param Provincia String Provincia
      */
     public void setProvincia(String Provincia) {
         this.Provincia = Provincia;
@@ -72,7 +78,7 @@ public class Arbitro extends Persona{
 
     /**
      * 
-     * @return 
+     * @return clase Arbitro
      */
     @Override
     public String toString() {

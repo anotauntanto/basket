@@ -6,8 +6,8 @@
 package Modelo.Clases;
 
 /**
- *
- * @author grupo_baloncesto, esta clase representa la relación juega, que relaciona jugador con partido
+ *Esta clase representa la relación juega, que relaciona jugador con partido
+ * @author grupo_baloncesto
  */
 public class Estadisticas {
     /**
@@ -20,12 +20,12 @@ public class Estadisticas {
     private int rebotes;
     
     /**
-     * 
-     * @param idJugador Constructor de la clase Estadisticas con todos sus parámetros incluidos los derivados
-     * @param idPartido
-     * @param puntos
-     * @param asistencias
-     * @param rebotes 
+     * Constructor de la clase Estadisticas con todos sus parámetros incluidos los derivados
+     * @param idJugador int identificador de jugador
+     * @param idPartido int identificador de partido
+     * @param puntos int puntos que anota un jugador por partido
+     * @param asistencias int asistencias de un jugador en un partido
+     * @param rebotes int rebotes de un jugador en un partido
      */
 
     public Estadisticas(int idJugador, int idPartido, int puntos, int asistencias, int rebotes) {
@@ -44,15 +44,15 @@ public class Estadisticas {
     }
     /**
      * 
-     * @return Me devuelve el id del jugador
+     * @return int id, me devuelve el id del jugador
      */
 
     public int getIdJugador() {
         return idJugador;
     }
     /**
-     * 
-     * @param idJugador definimos el parametro id del jugador para que pueda ser usado por todos los métodos
+     * definimos el parametro id del jugador para que pueda ser usado por todos los métodos
+     * @param idJugador int identificador de jugador
      */
 
     public void setIdJugador(int idJugador) {
@@ -61,15 +61,15 @@ public class Estadisticas {
     
     /**
      * 
-     * @return devuelve el id del partido
+     * @return int id, devuelve el id del partido
      */
 
     public int getIdPartido() {
         return idPartido;
     }
     /**
-     * 
-     * @param idPartido definimos el parametro id del partido para que pueda ser usado por todos los métodos
+     * definimos el parametro id del partido para que pueda ser usado por todos los métodos
+     * @param idPartido int identificador de partido
      */
 
     public void setIdPartido(int idPartido) {
@@ -78,15 +78,15 @@ public class Estadisticas {
     
     /**
      * 
-     * @return devuelve los puntos
+     * @return int puntos, devuelve los puntos
      */
 
     public int getPuntos() {
         return puntos;
     }
     /**
-     * 
-     * @param puntos definimos el parametro ipuntos para que pueda ser usado por todos los método
+     * definimos el parametro ipuntos para que pueda ser usado por todos los método
+     * @param puntos int puntos anotados por un jugador
      */
 
     public void setPuntos(int puntos) {
@@ -94,15 +94,15 @@ public class Estadisticas {
     }
     /**
      * 
-     * @return devuelve las asistencias
+     * @return int asistencias de un jugador
      */
 
     public int getAsistencias() {
         return asistencias;
     }
     /**
-     * 
-     * @param asistencias definimos el parametro asistencias para que pueda ser usado por todos los método
+     * definimos el parametro asistencias para que pueda ser usado por todos los método
+     * @param asistencias int asistencias de un jugador
      */
 
     public void setAsistencias(int asistencias) {
@@ -110,15 +110,15 @@ public class Estadisticas {
     }
     /**
      * 
-     * @return devuelve los rebotes
+     * @return int rebotes de un jugador
      */
 
     public int getRebotes() {
         return rebotes;
     }
     /**
-     * 
-     * @param rebotes definimos el parametro rebotes para que pueda ser usado por todos los método
+     * definimos el parametro rebotes para que pueda ser usado por todos los método
+     * @param rebotes int rebotes de un jugador
      */
 
     public void setRebotes(int rebotes) {
@@ -126,7 +126,7 @@ public class Estadisticas {
     }
     /**
      * 
-     * @return 
+     * @return Estadisticas de un jugador
      */
 
     @Override

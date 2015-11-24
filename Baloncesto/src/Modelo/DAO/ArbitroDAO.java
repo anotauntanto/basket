@@ -101,4 +101,24 @@ public class ArbitroDAO {
         
         return arbitro;
     }
+    
+    public static Arbitro obtenerEntrenadorPorID (Persona persona) {
+        con = Conexion.conectar();
+      
+        Arbitro arbitro = null;
+        try{
+            PreparedStatement ps = con.prepareStatement("select * from Arbitro jug inner join Persona per on jug.id_Persona = per.id_Persona and jug.id_persona=?");
+            ps.setInt(1, persona.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                
+                arbitro = new Arbitro(persona, rs.getString(2));
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return arbitro;
+    }
 }

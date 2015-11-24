@@ -50,12 +50,12 @@ public class ControladorLogin {
                         //System.out.println("holii: "+miPersona.getIdPersona());
                         break;
                     case 2:
-                        VistaEntrenador nuevaVista2=new VistaEntrenador();
+                        VistaEntrenador nuevaVista2=new VistaEntrenador(miPersona);
                         miLogin.setVisible(false);
                         nuevaVista2.setVisible(true);
                         break;
                     case 3:
-                        VistaArbitro nuevaVist3=new VistaArbitro();
+                        VistaArbitro nuevaVist3=new VistaArbitro(miPersona);
                         miLogin.setVisible(false);
                         nuevaVist3.setVisible(true);
                         break;
