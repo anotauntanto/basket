@@ -107,7 +107,7 @@ public class Entrenador extends Persona{
      */
     @Override
     public String toString() {
-        return "Entrenador{" + "nivel=" + nivel + '}';
+        return "Entrenador{" + "nivel=" + nivel + "idEquipo=" + idEquipo + '}';
     }
     
     

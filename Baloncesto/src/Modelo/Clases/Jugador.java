@@ -132,7 +132,7 @@ public class Jugador extends Persona{
     
     @Override
     public String toString() {
-        return "Jugador{" + "altura=" + altura + ", dorsal=" + dorsal + "}\n";
+        return "Jugador{" + "altura=" + altura + ", dorsal=" + dorsal + ", id_equipo=" + idEquipo + "}\n";
     }
     
     
