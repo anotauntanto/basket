@@ -48,12 +48,12 @@ public class PartidoJugadoDAO {
         
         try{
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from Equipo_Partido par where par.Id_equipo="+id_equipo);
+            ResultSet rs = st.executeQuery("select * from Equipo_partido where Equipo_partido.Id_equipo = "+id_equipo);
   
             //ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
                 partido = new PartidoJugado (rs.getInt(1), rs.getInt(2), rs.getInt(3));
-                
+                System.out.println("Holaaa id "+rs.getInt(1));
                 listaPartidosJugados.add(partido);
             }
         }catch(SQLException ex){
@@ -63,6 +63,8 @@ public class PartidoJugadoDAO {
         return listaPartidosJugados;
         
     }
+     
+     
     
     
     

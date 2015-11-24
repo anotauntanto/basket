@@ -56,11 +56,11 @@ public class ControladorEstadisticas {
         for (Estadisticas e : listaEstadisticas) {
             for (PartidoJugado p : listaPartidosJugados) {
                 Partido par = PartidoDAO.obtenerDatosPartido(p.getIdPartido());
-                
-                //if (p.getIdPartido() == e.getIdPartido()) {
-                    modelo.addRow(new Object[]{par.getNumJornada(), "Rival", par.getFecha(), par.getResultado(), e.getPuntos(), e.getRebotes(), e.getAsistencias()});
+                System.out.println("desde el controlador" + p.getIdPartido() + p.getIdEquipo());
+                /*if (par.getIdPartido() == e.getIdPartido()) {
+                    modelo.addRow(new Object[]{par.getNumJornada(), "Rival", par.getFecha(), "par.getResultado()", e.getPuntos(), e.getRebotes(), e.getAsistencias()});
 
-                //}
+                }*/
 
             }
 
