@@ -8,8 +8,8 @@ package Modelo.Clases;
 import java.util.Date;
 
 /**
- *
- * @author grupo_baloncesto, esta clase representa la entidad Jugador
+ *,Esta clase representa la entidad Jugador
+ * @author grupo_baloncesto
  */
 public class Jugador extends Persona{
     
@@ -27,8 +27,8 @@ public class Jugador extends Persona{
     }
 
     /**
-     * 
-     * @param per Contructor de la clase Jugador con sus atributos
+     * Contructor de la clase Jugador con sus atributos
+     * @param per 
      * @param altura
      * @param dorsal
      * @param idEquipo 

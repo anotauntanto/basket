@@ -6,8 +6,8 @@
 package Modelo.Clases;
 
 /**
- *
- * @author grupo_baloncesto, esta clase representa la entidad Equipo
+ *Esta clase representa la entidad Equipo
+ * @author grupo_baloncesto 
  */
 public class Equipo {
     /**
@@ -19,11 +19,11 @@ public class Equipo {
     private int idEquipo;
     
     /**
-     * 
-     * @param idEquipo Constructor de la clase Equipo con todos sus atributos
-     * @param nombre
-     * @param provincia
-     * @param categoria 
+     * Constructor de la clase Equipo con todos sus atributos
+     * @param idEquipo int identificador del equipo
+     * @param nombre String nombre del equipo
+     * @param provincia String provincia del equipo
+     * @param categoria int categoria a la que pertenece el equipo
      */
 
     public Equipo(int idEquipo, String nombre, String provincia, int categoria) {
@@ -41,15 +41,15 @@ public class Equipo {
     }
     /**
      * 
-     * @return devuelve el nombre
+     * @return String nombre, devuelve el nombre
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * 
-     * @param nombre definimos el parametro nombre del equipo para que pueda ser usado por todos los métodos
+     * definimos el parametro nombre del equipo para que pueda ser usado por todos los métodos
+     * @param nombre String nombre del equipo
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -57,15 +57,15 @@ public class Equipo {
 
     /**
      * 
-     * @return devuelve la categoría del equipo
+     * @return int categoria, devuelve la categoría del equipo
      */
     public int getCategoria() {
         return categoria;
     }
 
     /**
-     * 
-     * @param categoria definimos el parametro categoria del equipo para que pueda ser usado por todos los métodos
+     * definimos el parametro categoria del equipo para que pueda ser usado por todos los métodos
+     * @param categoria int categoria del equipo
      */
     public void setCategoria(int categoria) {
         this.categoria = categoria;
@@ -73,14 +73,14 @@ public class Equipo {
 
     /**
      * 
-     * @return devuelve la provincia de donde es el equipo
+     * @return String provincia, devuelve la provincia de donde es el equipo
      */
     public String getProvincia() {
         return provincia;
     }
     /**
-     * 
-     * @param provincia definimos el parametro provincia del equipo para que pueda ser usado por todos los métodos
+     * definimos el parametro provincia del equipo para que pueda ser usado por todos los métodos
+     * @param provincia String provincia
      */
 
     public void setProvincia(String provincia) {
@@ -88,15 +88,15 @@ public class Equipo {
     }
     /**
      * 
-     * @return devuelve el id del equipo
+     * @return int, devuelve el id del equipo
      */
 
     public int getIdEquipo() {
         return idEquipo;
     }
     /**
-     * 
-     * @param idEquipo definimos el parametro id del equipo para que pueda ser usado por todos los métodos
+     * definimos el parametro id del equipo para que pueda ser usado por todos los métodos
+     * @param idEquipo int identificador del equipo
      */
 
     public void setIdEquipo(int idEquipo) {
@@ -104,7 +104,7 @@ public class Equipo {
     }
     /**
      * 
-     * @return 
+     * @return Equipo
      */
 
     @Override

@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *Esta clase representa la entidad Entrenador
- * @author grupo baloncesto, esta clase representa la entidad Entrenador
+ * @author grupo_baloncesto
  */
 public class Entrenador extends Persona{
     
@@ -20,18 +20,18 @@ public class Entrenador extends Persona{
     private int idEquipo;
     
     /**
-     * 
-     * @param idEquipo Constructor de la clase Entrenador con todos sus parámetros, incluidos los derivados de persona
-     * @param nivel
-     * @param idPersona
-     * @param nombre
-     * @param apellidos
-     * @param dni
-     * @param fechaN
-     * @param email
-     * @param contrasena
-     * @param tlf
-     * @param rol 
+     * Constructor de la clase Entrenador con todos sus parámetros, incluidos los derivados de persona
+     * @param idEquipo  int identificador del equipo
+     * @param nivel int nivel del entrenador
+     * @param idPersona int identificador del entrenador que deriva de persona
+     * @param nombre String nombre del entrenador
+     * @param apellidos String apellidos del entrenador
+     * @param dni String dni
+     * @param fechaN Date fecha de nacimiento
+     * @param email String email del entrenador
+     * @param contrasena String contraseña que identifica al entrenador
+     * @param tlf String telefono del entrenador
+     * @param rol int rol, que identificará al entrenador
      */
 
     public Entrenador(int idEquipo ,int nivel, int idPersona, String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
@@ -41,9 +41,9 @@ public class Entrenador extends Persona{
     }
 
     /**
-     * 
-     * @param nivel Constructor de la clase entrenador con los atributos nivel e idEquipo
-     * @param idEquipo 
+     * Constructor de la clase entrenador
+     * @param nivel int nivel del entrenador
+     * @param idEquipo int identificador del equipo
      */
     public Entrenador(int nivel, int idEquipo) {
         this.nivel = nivel;
@@ -59,15 +59,15 @@ public class Entrenador extends Persona{
     
     /**
      * 
-     * @return devuelve el nivel del entrenador
+     * @return int nivel, devuelve el nivel del entrenador
      */
     public int getNivel() {
         return nivel;
     }
 
     /**
-     * 
-     * @param nivel definimos el parametro nivel del entrenador para que pueda ser usado por todos los métodos
+     * definimos el parametro nivel del entrenador para que pueda ser usado por todos los métodos
+     * @param nivel int nivel
      */
     public void setNivel(int nivel) {
         this.nivel = nivel;
@@ -75,15 +75,15 @@ public class Entrenador extends Persona{
 
     /**
      * 
-     * @return devuelve el id del equipo
+     * @return int idEquipo, devuelve el id del equipo
      */
     public int getIdEquipo() {
         return idEquipo;
     }
 
     /**
-     * 
-     * @param idEquipo definimos el parametro id del quipo para que pueda ser usado por todos los métodos
+     * definimos el parametro id del quipo para que pueda ser usado por todos los métodos
+     * @param idEquipo int id del equipo
      */
     public void setIdEquipo(int idEquipo) {
         this.idEquipo = idEquipo;
@@ -92,7 +92,7 @@ public class Entrenador extends Persona{
 
     /**
      * 
-     * @return 
+     * @return la clase Entrenador
      */
     @Override
     public String toString() {
