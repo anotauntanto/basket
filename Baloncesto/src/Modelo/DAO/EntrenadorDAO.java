@@ -83,4 +83,24 @@ public class EntrenadorDAO {
         }
         return entrenador;
     }
+    
+    public static Entrenador obtenerEntrenadorPorID (Persona persona) {
+        con = Conexion.conectar();
+      
+        Entrenador entrenador= null;
+        try{
+            PreparedStatement ps = con.prepareStatement("select * from Entrenador jug inner join Persona per on jug.id_Persona = per.id_Persona and jug.id_persona=?");
+            ps.setInt(1, persona.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                
+                entrenador = new Entrenador(persona, rs.getInt(2), rs.getInt(3));
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return entrenador;
+    }
 }

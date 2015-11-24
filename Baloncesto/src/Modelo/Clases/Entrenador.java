@@ -34,6 +34,12 @@ public class Entrenador extends Persona{
      * @param rol int rol, que identificará al entrenador
      */
 
+    public Entrenador (Persona per, int nivel, int idEquipo) {
+        super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
+        this.nivel= nivel;
+        this.idEquipo = idEquipo;
+    }
+    
     public Entrenador(int idEquipo ,int nivel, int idPersona, String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
         super(idPersona, nombre, apellidos, dni, fechaN, email, contrasena, tlf, rol);
         this.nivel = nivel;
