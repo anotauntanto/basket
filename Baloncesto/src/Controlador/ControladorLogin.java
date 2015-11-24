@@ -59,7 +59,8 @@ public class ControladorLogin {
                         miLogin.setVisible(false);
                         nuevaVist3.setVisible(true);
                         break;
-                    case 4:
+                    case 0:
+                        System.out.println("HOliiiiii");
                         VistaOrganizacion nuevaVist4=new VistaOrganizacion();
                         miLogin.setVisible(false);
                         nuevaVist4.setVisible(true);    

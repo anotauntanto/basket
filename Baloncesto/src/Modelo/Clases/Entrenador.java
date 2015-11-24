@@ -44,6 +44,11 @@ public class Entrenador extends Persona{
         this.nivel= nivel;
         this.idEquipo = idEquipo;
     }
+    public Entrenador (Persona per) {
+        super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
+        this.nivel= 0;
+        this.idEquipo = 0;
+    }
 
     /**
      * Constructor de la clase entrenador

@@ -39,7 +39,12 @@ public class Jugador extends Persona{
         this.dorsal = dorsal;
         this.idEquipo = idEquipo;
     }
-        
+        public Jugador(Persona per) {
+        super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
+        this.altura = 0;
+        this.dorsal = 0;
+        this.idEquipo = 0;
+    }
     /**
      * Constructor de la clase Jugador con sus aributos y con los que deriva de Persona
      * @param altura double altura del jugador
