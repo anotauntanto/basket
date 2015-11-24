@@ -54,13 +54,15 @@ public class ControladorEstadisticas {
         DefaultTableModel modelo = (DefaultTableModel) tablita.getModel();
         
         for (Estadisticas e : listaEstadisticas) {
+            
             for (PartidoJugado p : listaPartidosJugados) {
+                
                 Partido par = PartidoDAO.obtenerDatosPartido(p.getIdPartido());
                 
-                //if (par.getIdPartido() == e.getIdPartido()) {
-                    modelo.addRow(new Object[]{par.getNumJornada(), "Rival", par.getFecha(), par.getResultado(), e.getPuntos(), e.getRebotes(), e.getAsistencias()});
+                if (p.getIdPartido() == e.getIdPartido()) {
+                    modelo.addRow(new Object[]{par.getNumJornada(), par.getIdPartido(), par.getFecha(), par.getResultado(), e.getPuntos(), e.getRebotes(), e.getAsistencias()});
                    
-                //}
+                }
 
             }
 
