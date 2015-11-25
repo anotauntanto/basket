@@ -114,6 +114,7 @@ public class ControladorOrganizacion {
                 
             }catch (NumberFormatException e) {
                 insertar=false;
+                
                 //mostrar mensaje
             }
 
@@ -122,9 +123,11 @@ public class ControladorOrganizacion {
             try {
                 double altura = Double.parseDouble(campo.getText());
                 this.jug.setAltura(altura);
+                miVista.getCampoErrorAltura().setVisible(false);
                 
             }catch (NumberFormatException e) {
                 insertar=false;
+                miVista.getCampoErrorAltura().setVisible(true);
                 //mostrar mensaje
             } 
             
