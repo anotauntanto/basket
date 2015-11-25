@@ -297,7 +297,7 @@ public class Generar {
         //int n=miGen.numEquiposCopaPrevia();
         System.out.println("Salida: "+sigJornada);
         //miGen.primeraJornada();
-       // miGen.generarSigJornada();
+       //miGen.generarSigJornada();
         //miGen.generarLiga();
         //miGen.clasificacionLiga(3);
         

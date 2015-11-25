@@ -10,7 +10,9 @@ import Modelo.Clases.Partido;
 import Modelo.Clases.PartidoJugado;
 import Modelo.DAO.EquipoDAO;
 import Modelo.DAO.PartidoDAO;
+import static Modelo.DAO.PartidoDAO.listarPartidosJornada;
 import Modelo.DAO.PartidoJugadoDAO;
+import static Modelo.DAO.PartidoJugadoDAO.listarEquiposporPartido;
 import Vistas.VistaOrganizacionOK;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +69,8 @@ public class ControladorCampeonato {
         Generar miGen=new Generar();
         int miJornada=0; //Valor para ver la primera jornada generada
         
+        
+        
         tipoLiga=miVista.getCampoLiga();
         tipoCopa=miVista.getCampoCopa();
         tipoMixto=miVista.getCampoMixto();
@@ -76,6 +80,12 @@ public class ControladorCampeonato {
         grupo_botones.add(tipoCopa);
         grupo_botones.add(tipoMixto);
         
+        int campeonatoVacio=PartidoDAO.obtenerIdActual();
+        if (campeonatoVacio!=0){
+            miVista.getCampoErrorGenerar().setVisible(true);
+            //System.out.println("TOY AQUI: "+campeonatoVacio );
+            return -1;
+        }
         if (tipoLiga.isSelected()){
             miGen.generarLiga();
             tipoCompeticion=1;
@@ -99,10 +109,18 @@ public class ControladorCampeonato {
         
         //ArrayList<Partido> listaPartidos=(ArrayList<Partido>) PartidoDAO.listarPartidosJornada(miJornada);
         //System.out.println(numEquipo+3);
-        String nombreA;
-        String nombreB;
+        String nombreJ="Liga";
+        //String nombreB;
+      
         for (Partido e : listaPartidos) {
-           // List<PartidoJugado> ListaEquipo=PartidoJugadoDAO.listarEquiposporPartido(listarPartidosJornada.get(i).getIdPartido());
+                      List<PartidoJugado> listaPJ=PartidoJugadoDAO.listarEquiposporPartido(e.getIdPartido());
+                        int equipoA = listaPJ.get(0).getIdEquipo();
+                        int equipoB = listaPJ.get(1).getIdEquipo();
+                        if (tipoCompeticion==2){
+                            nombreJ="Copa";
+                        }
+                       modelo.addRow(new Object[]{nombreJ,EquipoDAO.obtenerNombreEquipo(equipoA), EquipoDAO.obtenerNombreEquipo(equipoB)});  
+
                     //EquipoDAO.obtenerNombreEquipo(miJornada);
         }
         return tipoCompeticion;
