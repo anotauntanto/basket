@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Internacionalizacion.I18N;
 import Modelo.Clases.Persona;
 import Vistas.VistaLogin;
 import Modelo.DAO.JugadorDAO;
@@ -14,6 +15,9 @@ import Vistas.VistaEntrenador;
 import Vistas.VistaJugador;
 import Vistas.VistaNoEntra;
 import Vistas.VistaOrganizacion;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
 
 /**
  *
@@ -27,6 +31,7 @@ public class ControladorLogin {
     private Persona miPersona;
     private VistaLogin miVista;
     private JugadorDAO miJugador;
+    private I18N bundleName;
     
    
     
@@ -37,6 +42,13 @@ public class ControladorLogin {
     public void confirmarPassword(String dni, String password, VistaLogin miLogin){
         //miPersonaDAO = new PersonaDAO();
         miPersona=PersonaDAO.obtenerPersonaPorDni(dni);
+        
+        JLabel error=new JLabel();
+        JButton botonAcceder=new JButton();
+        JButton botonIngles=new JButton();
+        JButton botonEspañol=new JButton();
+        
+        
         
         if (miPersona!=null){
             
@@ -75,7 +87,9 @@ public class ControladorLogin {
             //final VistaNoEntra nuevaVista=new VistaNoEntra();
                         //this.setVisible(false);
                         //nuevaVista.setVisible(true);
-                        new VistaNoEntra(miLogin,true).setVisible(true);
+                        //new VistaNoEntra(miLogin,true).setVisible(true);
+                        error=miLogin.getjLabel4();
+                        error.setVisible(true);
         }
     }
         

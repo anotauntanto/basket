@@ -154,10 +154,10 @@ public class Equipo implements Comparable<Equipo> {
             return 0;
         }
         if (victoriasMias>victoriasOtro){
-            return 1;
+            return -1;
         }
         else {
-            return -1;
+            return 1;
         }
     
     }

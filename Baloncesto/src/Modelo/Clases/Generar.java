@@ -9,6 +9,7 @@ import Modelo.DAO.EquipoDAO;
 import Modelo.DAO.PartidoDAO;
 import Modelo.DAO.PartidoJugadoDAO;
 import java.sql.Array;
+import static java.sql.Types.INTEGER;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -210,6 +211,7 @@ public class Generar {
         int sigJ=sigJornadaN();
         if (sigJ==-1){ //NO hago nada porque no ha finalizado
             return -1;
+            
         }
         //ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
         //int tamano=todosEquipos.size();
@@ -262,12 +264,25 @@ public class Generar {
     public void clasificacionLiga(int numEquiposCopa){
         ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
         Collections.sort(todosEquipos);
+        //PAra ver
         Iterator it=todosEquipos.iterator();
         while (it.hasNext()){
             Equipo elem=(Equipo) it.next();
             System.out.println("Equipos "+elem);
         }
+        for (i=numEquiposCopa-1;i<todosEquipos.size();i++){
+            
+        }
         
+        //List equiposClasificados=(List) todosEquipos.subList(0, numEquiposCopa);
+        ArrayList<Equipo> equiposClasificados= new ArrayList<>(todosEquipos.subList(0, numEquiposCopa));
+        Iterator iter=equiposClasificados.iterator();
+        while (iter.hasNext()){
+            Equipo elem=(Equipo) iter.next();
+            System.out.println("Equipos Clasif "+elem);
+        }
+        //Añadir categorias
+        //sigJornada(equiposClasificados);
     }
     
     //FIN CUIDADIDDODODDODO
@@ -283,7 +298,18 @@ public class Generar {
         //miGen.primeraJornada();
        // miGen.generarSigJornada();
         //miGen.generarLiga();
-        miGen.clasificacionLiga(3);
+        //miGen.clasificacionLiga(3);
+        
+        String micad="100-20";
+        int idpartido=0;
+        String nombre1;
+        String nombre2;
+        String[] parts = micad.split("-");
+        int num1=Integer.parseInt(parts[0]);
+        int num2=Integer.parseInt(parts[1]);
+        if (num1<num2){
+        System.out.println("fa");//cambio el heganado
+        }
         
         /*Calendar cal = Calendar.getInstance();
         cal.clear();
