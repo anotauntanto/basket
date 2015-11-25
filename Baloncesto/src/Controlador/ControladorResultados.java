@@ -30,10 +30,11 @@ public class ControladorResultados {
         campoTabla = miVista.getTablaResultados();
         modelo = (DefaultTableModel) campoTabla.getModel();
 
-        listarPartidosJornada = PartidoDAO.listarPartidosJornada(0); //compruebo si estoy en liga
-        if (listarPartidosJornada.size() == 0) { //no hay liga
 
-        } else { //hay liga
+        listarPartidosJornada = PartidoDAO.listarPartidosJornada(PartidoDAO.obtenerJornadaActual()); //compruebo si estoy en liga-->jornada 0 determina que se trata de una liga
+        //if (listarPartidosJornada.size() == 0) { //no hay liga
+
+        //} else { //hay liga
 
             for (Partido p : listarPartidosJornada) {
                 List<PartidoJugado> listarEquiposporPartido = PartidoJugadoDAO.listarEquiposporPartido(p.getIdPartido());
@@ -44,7 +45,7 @@ public class ControladorResultados {
                 modelo.addRow(new Object[]{EquipoDAO.obtenerNombreEquipo(equipoA), EquipoDAO.obtenerNombreEquipo(equipoB), p.getResultado()});
             }
 
-        }
+        //}
 
     }
 
@@ -64,6 +65,18 @@ public class ControladorResultados {
             listarEquiposporPartido.get(1).*/
             listarPartidosJornada.get(i).setResultado(micad);
             PartidoDAO.modificarResultado(listarPartidosJornada.get(i));
+
+            if(resA>resB){//ha ganado equipoA
+                listarEquiposporPartido.get(0).setHeGanado(1);
+                listarEquiposporPartido.get(1).setHeGanado(0);
+            } else {
+                listarEquiposporPartido.get(0).setHeGanado(0);
+                listarEquiposporPartido.get(1).setHeGanado(1);
+            }
+            
+            PartidoJugadoDAO.modificarResultado(listarEquiposporPartido.get(0));
+            PartidoJugadoDAO.modificarResultado(listarEquiposporPartido.get(1));
+            
             /*        
             int equipoA = listarEquiposporPartido.get(0).getIdEquipo();
             int equipoB = listarEquiposporPartido.get(1).getIdEquipo();*/
