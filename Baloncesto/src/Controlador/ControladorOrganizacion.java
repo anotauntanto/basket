@@ -209,16 +209,21 @@ public class ControladorOrganizacion {
             } 
            
 
-            //Equipo entrenador
+            //Equipo entrenador            
             campo = miVista.getCampoEquipoEntrenador();
-            int id_equipo = EquipoDAO.obtenerIdEquipo(campo.getText());
-            if (id_equipo == 0) {
-                insertar = false;
-                miVista.getCampoErrorEquipoEntrenador().setVisible(true);
+            int id_equipo = 0;
+            try {
+            
+                EquipoDAO.comprobarEquipo(campo.getText());
+                id_equipo = EquipoDAO.obtenerIdEquipo(campo.getText());
+                this.entrenador.setIdEquipo(id_equipo);
                 
-            } else {
-                this.jug.setIdEquipo(id_equipo);
+            } catch (EquipoException ex){
+                
+               insertar = false;
+                miVista.getCampoErrorEquipoEntrenador().setVisible(true);
             }
+            
             
             //INSERCIONES
             if (insertar) {
