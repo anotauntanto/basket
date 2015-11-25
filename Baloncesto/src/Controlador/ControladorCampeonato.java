@@ -102,7 +102,7 @@ public class ControladorCampeonato {
         String nombreA;
         String nombreB;
         for (Partido e : listaPartidos) {
-            //List<PartidoJugado> ListaEquipo=PartidoJugadoDAO.listarEquiposporPartido(e.getIdPartido());
+           // List<PartidoJugado> ListaEquipo=PartidoJugadoDAO.listarEquiposporPartido(listarPartidosJornada.get(i).getIdPartido());
                     //EquipoDAO.obtenerNombreEquipo(miJornada);
         }
         return tipoCompeticion;
