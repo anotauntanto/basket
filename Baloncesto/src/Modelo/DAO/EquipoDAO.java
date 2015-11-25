@@ -50,11 +50,12 @@ public class EquipoDAO {
         
         
         try{
-            PreparedStatement ps =  con.prepareStatement("update Equipo set Nombre=?, Provincia=?, Categoria=?");
+            PreparedStatement ps =  con.prepareStatement("update Equipo set Nombre=?, Provincia=?, Categoria=? where id_equipo=?");
             
             ps.setString(1, eq.getNombre());
             ps.setString(2, eq.getProvincia());
             ps.setInt(3, eq.getCategoria());
+            ps.setInt(4, eq.getIdEquipo());
             ps.executeUpdate();
             
             
@@ -173,7 +174,7 @@ public class EquipoDAO {
 
             //ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
-                System.out.println("Entero"+rs.getInt(8));
+                //System.out.println("Entero"+rs.getInt(8));
                 equipo = new Equipo(rs.getInt(8),rs.getString(11) , rs.getString(12), rs.getInt(13));  //Insertamos solo el id_equipo porque no necesitamos nada mas
 
                 listaEquipos.add(equipo);
@@ -185,4 +186,6 @@ public class EquipoDAO {
         return listaEquipos;
 
     }
+    
+    
 }
