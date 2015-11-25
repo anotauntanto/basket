@@ -34,8 +34,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         jLabel20.setVisible(false);
         jLabel21.setVisible(false);
         jLabel22.setVisible(false);
-        
-        
+         
         miControlador = new ControladorOrganizacion(this);
         
     }
@@ -124,20 +123,40 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
 
         jTextField4.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jTextField4.setText("XXXXXXXXA");
+        jTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField4FocusGained(evt);
+            }
+        });
 
         jLabel4.setText("Fecha de nacimiento");
 
         jTextField5.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jTextField5.setText("xx/xx/xxxx");
+        jTextField5.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField5FocusGained(evt);
+            }
+        });
 
         jLabel5.setText("Email");
 
         jTextField6.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jTextField6.setText("ejemplo@gmail.com");
+        jTextField6.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField6FocusGained(evt);
+            }
+        });
 
         jLabel6.setText("Contraseña");
 
         jTextField7.setText("*");
+        jTextField7.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField7FocusGained(evt);
+            }
+        });
 
         jLabel7.setText("Tipo de persona:");
 
@@ -171,16 +190,31 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
 
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jTextField1.setText("x.x");
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+        });
 
         jLabel9.setText("Dorsal");
 
         jTextField8.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jTextField8.setText("X");
+        jTextField8.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField8FocusGained(evt);
+            }
+        });
 
         jLabel10.setText("Nombre del equipo");
 
         jTextField9.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jTextField9.setText("Nombre del equipo");
+        jTextField9.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField9FocusGained(evt);
+            }
+        });
 
         jButton2.setText("Guardar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -262,11 +296,21 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
 
         jTextField10.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jTextField10.setText("X");
+        jTextField10.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField10FocusGained(evt);
+            }
+        });
 
         jLabel12.setText("Nombre del equipo");
 
         jTextField11.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jTextField11.setText("Nombre del equipo");
+        jTextField11.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField11FocusGained(evt);
+            }
+        });
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -378,6 +422,11 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
 
         jTextField12.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jTextField12.setText("XXX XXX XXX");
+        jTextField12.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField12FocusGained(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Lucida Grande", 2, 10)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 0, 0));
@@ -556,11 +605,67 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         // TODO add your handling code here:
         jTextField3.setText("");
     }//GEN-LAST:event_jTextField3FocusGained
-    
-    private void jTextField4FocusGained(java.awt.event.FocusEvent evt) {                                        
+
+    private void jTextField4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusGained
         // TODO add your handling code here:
         jTextField4.setText("");
-    }
+        jLabel22.setVisible(false);   
+    }//GEN-LAST:event_jTextField4FocusGained
+
+    private void jTextField5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusGained
+        // TODO add your handling code here:
+        jTextField5.setText("");
+        jLabel16.setVisible(false);
+    }//GEN-LAST:event_jTextField5FocusGained
+
+    private void jTextField6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField6FocusGained
+        // TODO add your handling code here:
+        jTextField6.setText("");
+    }//GEN-LAST:event_jTextField6FocusGained
+
+    private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
+        // TODO add your handling code here:
+        jTextField7.setText("");
+    }//GEN-LAST:event_jTextField7FocusGained
+
+    private void jTextField12FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField12FocusGained
+        // TODO add your handling code here:
+        jTextField12.setText("");
+        jLabel15.setVisible(false);
+    }//GEN-LAST:event_jTextField12FocusGained
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        // TODO add your handling code here:
+        jTextField1.setText("");
+        jLabel17.setVisible(false);
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField8FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField8FocusGained
+        // TODO add your handling code here:
+        jTextField8.setText("");
+        jLabel18.setVisible(false);
+    }//GEN-LAST:event_jTextField8FocusGained
+
+    private void jTextField9FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField9FocusGained
+        // TODO add your handling code here:
+        jTextField9.setText("");
+        jLabel19.setVisible(false);
+    }//GEN-LAST:event_jTextField9FocusGained
+
+    private void jTextField10FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField10FocusGained
+        // TODO add your handling code here:
+        jTextField10.setText("");
+        jLabel21.setVisible(false);
+    }//GEN-LAST:event_jTextField10FocusGained
+
+    private void jTextField11FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField11FocusGained
+        // TODO add your handling code here:
+        jTextField11.setText("");
+        jLabel20.setVisible(false);
+    }//GEN-LAST:event_jTextField11FocusGained
+
+    
+    
     public JTextField getCampoAltura() {
         return jTextField1;
     }
@@ -627,6 +732,34 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
 
     public JLabel getCampoErrorAltura() {
         return jLabel17;
+    }
+
+    public JLabel getCampoErrorTelefono() {
+        return jLabel15;
+    }
+
+    public JLabel getCampoErrorFecha() {
+        return jLabel16;
+    }
+
+    public JLabel getCampoErrorDorsal() {
+        return jLabel18;
+    }
+
+    public JLabel getCampoErrorEquipoJugador() {
+        return jLabel19;
+    }
+
+    public JLabel getCampoErrorEquipoEntrenador() {
+        return jLabel20;
+    }
+
+    public JLabel getCampoErrorNivel() {
+        return jLabel21;
+    }
+
+    public JLabel getCampoErroDNI() {
+        return jLabel22;
     }
     
     

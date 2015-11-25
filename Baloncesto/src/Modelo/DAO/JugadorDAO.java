@@ -5,6 +5,7 @@
  */
 package Modelo.DAO;
 
+import Excepciones.DorsalException;
 import Modelo.Clases.Jugador;
 import Modelo.Clases.Persona;
 import java.sql.Connection;
@@ -134,5 +135,33 @@ public class JugadorDAO {
             System.out.println(ex.getMessage());
         }
         return jugador;
+    }
+    
+    public static void comprobarDorsal (int dorsal, int id_equipo) throws DorsalException {
+        con = Conexion.conectar();
+        boolean existe = false;
+        int cont = 0;
+      
+        Jugador jugador = null;
+        try{
+            PreparedStatement ps = con.prepareStatement("select count(dorsal) from Jugador where dorsal=? and id_equipo = ?");
+            ps.setInt(1, dorsal);
+            ps.setInt(2, id_equipo);
+                    
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                
+                cont = rs.getInt(1);
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        
+        if (cont != 0) {
+            throw new DorsalException();
+        }
+        
     }
 }
