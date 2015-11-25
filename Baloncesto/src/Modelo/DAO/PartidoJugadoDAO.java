@@ -5,6 +5,7 @@
  */
 package Modelo.DAO;
 
+import Modelo.Clases.Equipo;
 import Modelo.Clases.PartidoJugado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -104,4 +105,25 @@ public class PartidoJugadoDAO {
         }
         //Conexion.desconexion();
     }
+     
+    //Numero de partidos ganados
+     public static int numeroPartidosGanados(Equipo equipo){
+         con = Conexion.conectar();
+         int numVictorias=0;
+
+        try {
+            PreparedStatement ps = con.prepareStatement("select count(*) from Equipo_Partido where id_equipo= ? and he_ganado=1");
+
+            ps.setInt(1, equipo.getIdEquipo());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                
+                numVictorias=rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+         return numVictorias;
+     }
 }

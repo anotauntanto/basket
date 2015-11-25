@@ -5,13 +5,14 @@
  */
 package Modelo.Clases;
 
+import Modelo.DAO.PartidoJugadoDAO;
 import java.util.Objects;
 
 /**
  *Esta clase representa la entidad Equipo
  * @author grupo_baloncesto 
  */
-public class Equipo {
+public class Equipo implements Comparable<Equipo> {
     /**
      * Atributos de Equipo
      */
@@ -144,5 +145,21 @@ public class Equipo {
         return true;
     }
     
+   
+    @Override
+    public int compareTo(Equipo otroEquipo){
+        int victoriasOtro=PartidoJugadoDAO.numeroPartidosGanados(otroEquipo);
+        int victoriasMias=PartidoJugadoDAO.numeroPartidosGanados(this);
+        if (victoriasMias==victoriasOtro){
+            return 0;
+        }
+        if (victoriasMias>victoriasOtro){
+            return 1;
+        }
+        else {
+            return -1;
+        }
+    
+    }
              
 }

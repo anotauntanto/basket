@@ -71,6 +71,7 @@ public class Generar {
         cal.clear();
         cal.set(1985,10,1);
         Date fecha = cal.getTime();
+        //Date fecha=null;
         
         Partido nuevoPartido=new Partido();
         PartidoJugado nuevoPartidoJugado = new PartidoJugado();
@@ -210,21 +211,62 @@ public class Generar {
         if (sigJ==-1){ //NO hago nada porque no ha finalizado
             return -1;
         }
-        ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
-        if (todosEquipos.size()%2==0){
-            generarLigaPar();
-        }
-        else {
-            generarLigaImpar();
-        }    
+        //ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
+        //int tamano=todosEquipos.size();
+        //if (todosEquipos.size()%2==0){
+            generarLigaTotal();
+        //}
+        //else {
+        //    generarLigaImpar();
+        //}    
         return 0;
     }
     
-    public void generarLigaPar(){
+    public void generarLigaTotal(){//ArrayList miArray, int tamano){
+        ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
+        int tamano=todosEquipos.size();
+        if (tamano%2!=0){ //Creo equipo VAcio si puedo distinguie jornadas
+            
+        }
+        Partido nuevoPartido=new Partido();
+        PartidoJugado nuevoPartidoJugado = new PartidoJugado();
+        Calendar cal = Calendar.getInstance();
+        cal.clear();
+        cal.set(1985,10,1);
+        Date fecha = cal.getTime();
+        //i=0;
+        j=0;
+        for (i=0;i<tamano-1;i++){
+            for (j=i+1;j<tamano;j++){  //Creo la combinacion de todos los partidos
+                nuevoPartido.setFecha(fecha);
+                nuevoPartido.setLocalizacion("Malaga");
+                nuevoPartido.setNumJornada(1); //Fijo solo una jornada para la liga
+                nuevoPartido.setIdArbitro(33);
+                nuevoPartido.setResultado("0");
+                //nuevoPartido.setIdPartido(1);
+                PartidoDAO.crearPartido(nuevoPartido);
+                nuevoPartidoJugado.setHeGanado(2);
+                nuevoPartidoJugado.setIdPartido(PartidoDAO.obtenerIdActual());
+                Equipo miEquipo=(Equipo) todosEquipos.get(i);
+                nuevoPartidoJugado.setIdEquipo(miEquipo.getIdEquipo());
+                PartidoJugadoDAO.crearPartidoJugado(nuevoPartidoJugado);
+                //Segundo PartidoJugado
+                miEquipo=(Equipo) todosEquipos.get(j);
+                nuevoPartidoJugado.setIdEquipo(miEquipo.getIdEquipo());
+                PartidoJugadoDAO.crearPartidoJugado(nuevoPartidoJugado);
+            }
+        }
         
     }
     
-    public void generarLigaImpar(){
+    public void clasificacionLiga(int numEquiposCopa){
+        ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
+        Collections.sort(todosEquipos);
+        Iterator it=todosEquipos.iterator();
+        while (it.hasNext()){
+            Equipo elem=(Equipo) it.next();
+            System.out.println("Equipos "+elem);
+        }
         
     }
     
@@ -236,10 +278,12 @@ public class Generar {
         Generar miGen=new Generar();
         //int sigJornada=PartidoDAO.obtenerJornadaActual()+1;
         int sigJornada=miGen.sigJornadaN();
-        int n=miGen.numEquiposCopaPrevia();
+        //int n=miGen.numEquiposCopaPrevia();
         System.out.println("Salida: "+sigJornada);
         //miGen.primeraJornada();
-        miGen.generarSigJornada();
+       // miGen.generarSigJornada();
+        //miGen.generarLiga();
+        miGen.clasificacionLiga(3);
         
         /*Calendar cal = Calendar.getInstance();
         cal.clear();
@@ -255,7 +299,15 @@ public class Generar {
             nuevoPartido.setResultado("0");
             nuevoPartido.setIdPartido(1);
             PartidoDAO.crearPartido(nuevoPartido);
-        */
+        
+        int i=0;
+        int j=0;
+        int tamano=7;
+        for (i=0;i<tamano-1;i++){
+            for (j=i+1;j<tamano;j++){
+                System.out.println("Orden :"+i+" : "+j);
+            }
+        }*/
     }
 }
 
