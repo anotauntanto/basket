@@ -52,7 +52,7 @@ public class EquipoDAO {
         
         try{
             PreparedStatement ps =  con.prepareStatement("update Equipo set Nombre=?, Provincia=?, Categoria=? where id_equipo = ?");
-            PreparedStatement ps =  con.prepareStatement("update Equipo set Nombre=?, Provincia=?, Categoria=? where id_equipo=?");
+        
             
             ps.setString(1, eq.getNombre());
             ps.setString(2, eq.getProvincia());
