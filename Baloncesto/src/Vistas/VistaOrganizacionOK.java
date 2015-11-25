@@ -960,6 +960,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         // TODO add your handling code here:
         miControladorCampeonato.tipoCampeonato(this);
     }//GEN-LAST:event_jButton5ActionPerformed
+
     private void jButton7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MousePressed
         // TODO add your handling code here:
         miControladorResultados.recogerResultados();
