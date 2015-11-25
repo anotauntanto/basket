@@ -14,7 +14,14 @@ import java.util.ResourceBundle;
  */
 public class I18N {
      private static final String BUNDLE_NAME=I18N.class.getPackage().getName()+".messages";
+
+    public static String getBUNDLE_NAME() {
+        return BUNDLE_NAME;
+    }
      
-      Locale locale=new Locale("en","GB");
-      ResourceBundle rs=ResourceBundle.getBundle(BUNDLE_NAME,locale);
+      
+    // Locale locale=new Locale("en","GB");
+    //  ResourceBundle rs=ResourceBundle.getBundle(BUNDLE_NAME,locale);
+      
+
 }
