@@ -5,6 +5,7 @@
  */
 package Modelo.DAO;
 
+import Excepciones.EquipoException;
 import Modelo.Clases.Equipo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,6 +51,7 @@ public class EquipoDAO {
         
         
         try{
+            PreparedStatement ps =  con.prepareStatement("update Equipo set Nombre=?, Provincia=?, Categoria=? where id_equipo = ?");
             PreparedStatement ps =  con.prepareStatement("update Equipo set Nombre=?, Provincia=?, Categoria=? where id_equipo=?");
             
             ps.setString(1, eq.getNombre());
@@ -107,6 +109,31 @@ public class EquipoDAO {
             System.out.println(ex.getMessage());
         }
         return id;
+    }
+    
+    public static void comprobarEquipo(String nombre) throws EquipoException{
+        int cont = 0;
+        con=Conexion.conectar();
+        try{
+            
+            PreparedStatement ps = con.prepareStatement("select count(id_equipo) from Equipo where nombre=?");
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            //int number = rsmd.getColumnCount();
+            while (rs.next()) {
+                
+                cont=rs.getInt(1);
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        if (cont == 0) { //el equipo no existe
+            throw new EquipoException();
+        }
+        
+       
     }
     
     public static String obtenerNombreEquipo(int id){

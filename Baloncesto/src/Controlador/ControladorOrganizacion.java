@@ -5,6 +5,8 @@
  */
 package Controlador;
 
+import Excepciones.DorsalException;
+import Excepciones.EquipoException;
 import Modelo.Clases.Arbitro;
 import Modelo.Clases.Comprobaciones;
 import Modelo.Clases.Entrenador;
@@ -65,7 +67,8 @@ public class ControladorOrganizacion {
         }
         if (!Comprobaciones.esDNIbueno(campo.getText())) {
             insertar=false;
-            //queda imprimir mensaje 
+            miVista.getCampoErroDNI().setVisible(true);
+            
         } else {
             persona.setDni(campo.getText());
         }
@@ -78,15 +81,17 @@ public class ControladorOrganizacion {
             persona.setFechaN(date);
         } catch (ParseException ex) {
             insertar=false;
-            //mostrar mensaje
-            //Logger.getLogger(ControladorOrganizacion.class.getName()).log(Level.SEVERE, null, ex);
+            miVista.getCampoErrorFecha().setVisible(true);
+
         }
  
         //Telefono
         campo = miVista.getCampoTelefono();
         if (!Comprobaciones.esTlfbueno(campo.getText())) {
-            //mostrar mensaje
+            
             insertar=false;
+            miVista.getCampoErrorTelefono().setVisible(true);
+            
         } else {
             persona.setTlf(campo.getText());
         }
@@ -105,45 +110,61 @@ public class ControladorOrganizacion {
         if (rol == miVista.getRol_jugador()) {
 
             this.jug = new Jugador(persona);
-
-            //Dorsal
-            campo = miVista.getCampoDorsal();
-            try {
-                int dorsal = Integer.parseInt(campo.getText());
-                this.jug.setDorsal(dorsal);
-                
-            }catch (NumberFormatException e) {
-                insertar=false;
-                //mostrar mensaje
-            }
-
+           
             //Altura
             campo = miVista.getCampoAltura();
             try {
                 double altura = Double.parseDouble(campo.getText());
                 this.jug.setAltura(altura);
                 
+                
             }catch (NumberFormatException e) {
                 insertar=false;
-                //mostrar mensaje
+                miVista.getCampoErrorAltura().setVisible(true);
+                
             } 
             
             //Nombre equipo
             campo = miVista.getCampoNombreEquipoJugador();
-            int id_equipo = EquipoDAO.obtenerIdEquipo(campo.getText());
-            if (id_equipo == 0) {
-                insertar = false;
-                //mostrar mensaje de que el equipo no existe
-            } else {
+            int id_equipo = 0;
+            try {
+                EquipoDAO.comprobarEquipo(campo.getText());
+                id_equipo = EquipoDAO.obtenerIdEquipo(campo.getText());
                 this.jug.setIdEquipo(id_equipo);
+                
+            } catch (EquipoException ex) {
+                insertar = false;
+                miVista.getCampoErrorEquipoJugador().setVisible(true);
             }
+            
+            
+            
+            //Dorsal
+            int dorsal = 0;
+            campo = miVista.getCampoDorsal();
+            boolean cont;
+            try {
+                dorsal = Integer.parseInt(campo.getText());
+                this.jug.setDorsal(dorsal);
+                JugadorDAO.comprobarDorsal(dorsal, id_equipo);
+                
+            }catch (NumberFormatException e) {
+                insertar=false;
+                miVista.getCampoErrorDorsal().setVisible(true);
+                
+            } catch (DorsalException ex) {
+                insertar=false;
+                miVista.getCampoErrorDorsal().setVisible(true);
+            } 
+            
+            
             
             //INSERCIONES
             if (insertar) {
                 System.out.println("LocuraaaaaJ");
                 //mostrar Etiqueta de todo bien
                 //vaciar campos
-                JugadorDAO.insertarJugador(jug);
+                //JugadorDAO.insertarJugador(jug);
             } else {
                 System.out.println("Fallo de campos");
             }
@@ -163,7 +184,7 @@ public class ControladorOrganizacion {
             if (insertar) {
                 System.out.println("LocuraaaaaA");
                 //mostrar Etiqueta de todo bien
-                ArbitroDAO.insertarArbitro(arbitro);
+                //ArbitroDAO.insertarArbitro(arbitro);
             } else {
                 System.out.println("Fallo de campos");
             }
@@ -175,22 +196,33 @@ public class ControladorOrganizacion {
 
             //Nivel
             campo = miVista.getCampoNivel();
-            int nivel = Integer.parseInt(campo.getText());
-            this.entrenador.setNivel(nivel);
+            
+            try {
+                int nivel = Integer.parseInt(campo.getText());
+                this.entrenador.setNivel(nivel);
+                
+                
+            }catch (NumberFormatException e) {
+                insertar=false;
+                miVista.getCampoErrorNivel().setVisible(true);
+                
+            } 
+           
 
             //Equipo entrenador
             campo = miVista.getCampoEquipoEntrenador();
             int id_equipo = EquipoDAO.obtenerIdEquipo(campo.getText());
             if (id_equipo == 0) {
                 insertar = false;
-                //mostrar mensaje de que el equipo no existe
+                miVista.getCampoErrorEquipoEntrenador().setVisible(true);
+                
             } else {
                 this.jug.setIdEquipo(id_equipo);
             }
             
             //INSERCIONES
             if (insertar) {
-                EntrenadorDAO.insertarEntrenador(entrenador);
+                //EntrenadorDAO.insertarEntrenador(entrenador);
                 System.out.println("LocuraaaaaE");
                 //mostrar Etiqueta de todo bien
                 
@@ -204,7 +236,7 @@ public class ControladorOrganizacion {
             
             //INSERCIONES
             if (insertar) {
-                PersonaDAO.insertarPersona(persona);
+                //PersonaDAO.insertarPersona(persona);
                 System.out.println("LocuraaaaaP");
                 //mostrar Etiqueta de todo bien
                 
