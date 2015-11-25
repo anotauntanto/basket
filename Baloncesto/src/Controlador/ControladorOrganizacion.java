@@ -37,7 +37,7 @@ public class ControladorOrganizacion {
     private Arbitro arbitro;
     private Entrenador entrenador;
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-    boolean insertar;
+    boolean ok;
     boolean actualizar;
 
     public ControladorOrganizacion(VistaOrganizacionOK miVista) {
@@ -46,7 +46,7 @@ public class ControladorOrganizacion {
 
     public void insertarPersona(int rol) {
 
-        insertar = true;
+        ok = true;
         actualizar = false;
         this.persona = new Persona();
 
@@ -62,11 +62,17 @@ public class ControladorOrganizacion {
 
         //DNI
         campo = miVista.getCampoDNI(); 
-        if (PersonaDAO.obtenerPersonaPorDni(campo.getText()) != null) {
+        Persona temp = PersonaDAO.obtenerPersonaPorDni(campo.getText());
+        if (temp != null) {
+            persona.setIdPersona(temp.getIdPersona());
             actualizar=true;
         }
+        if (temp != null && rol != temp.getRol()) {
+            
+            ok=false;
+        }
         if (!Comprobaciones.esDNIbueno(campo.getText())) {
-            insertar=false;
+            ok=false;
             miVista.getCampoErroDNI().setVisible(true);
             
         } else {
@@ -80,7 +86,7 @@ public class ControladorOrganizacion {
             date = formatter.parse(campo.getText());
             persona.setFechaN(date);
         } catch (ParseException ex) {
-            insertar=false;
+            ok=false;
             miVista.getCampoErrorFecha().setVisible(true);
 
         }
@@ -89,7 +95,7 @@ public class ControladorOrganizacion {
         campo = miVista.getCampoTelefono();
         if (!Comprobaciones.esTlfbueno(campo.getText())) {
             
-            insertar=false;
+            ok=false;
             miVista.getCampoErrorTelefono().setVisible(true);
             
         } else {
@@ -119,7 +125,7 @@ public class ControladorOrganizacion {
                 
                 
             }catch (NumberFormatException e) {
-                insertar=false;
+                ok=false;
                 miVista.getCampoErrorAltura().setVisible(true);
                 
             } 
@@ -133,7 +139,7 @@ public class ControladorOrganizacion {
                 this.jug.setIdEquipo(id_equipo);
                 
             } catch (EquipoException ex) {
-                insertar = false;
+                ok = false;
                 miVista.getCampoErrorEquipoJugador().setVisible(true);
             }
             
@@ -149,50 +155,56 @@ public class ControladorOrganizacion {
                 JugadorDAO.comprobarDorsal(dorsal, id_equipo);
                 
             }catch (NumberFormatException e) {
-                insertar=false;
+                ok=false;
                 miVista.getCampoErrorDorsal().setVisible(true);
                 
             } catch (DorsalException ex) {
-                insertar=false;
+                ok=false;
                 miVista.getCampoErrorDorsal().setVisible(true);
             } 
             
             
-            
             //INSERCIONES
-            if (insertar) {
-                System.out.println("LocuraaaaaJ");
-                //mostrar Etiqueta de todo bien
+            if (ok) {
+                miVista.getCampoExito().setVisible(true);
+                
+                if (actualizar) {
+                    System.out.println ("Jugador " + jug.getIdPersona());
+                    JugadorDAO.modificarJugador(jug);
+                } else {
+                    JugadorDAO.insertarJugador(jug);
+                }
                 //vaciar campos
-                //JugadorDAO.insertarJugador(jug);
-            } else {
-                System.out.println("Fallo de campos");
-            }
+            } 
             
             
              System.out.println(jug);
             
         } else if (rol == miVista.getRol_arbitro()) {
-            this.arbitro = new Arbitro();
+            this.arbitro = new Arbitro(persona);
 
             //Provincia
             javax.swing.JComboBox combo;
             combo = miVista.getCampoProvincia();
             this.arbitro.setProvincia(combo.getSelectedItem().toString());
 
+
             //INSERCIONES
-            if (insertar) {
-                System.out.println("LocuraaaaaA");
-                //mostrar Etiqueta de todo bien
-                //ArbitroDAO.insertarArbitro(arbitro);
-            } else {
-                System.out.println("Fallo de campos");
-            }
+            if (ok) {
+                miVista.getCampoExito().setVisible(true);
+                
+                if (actualizar) {
+                    ArbitroDAO.modificarArbitro(arbitro);
+                } else {
+                    ArbitroDAO.modificarArbitro(arbitro);
+                }
+
+            } 
             
             System.out.println(arbitro);
 
         } else if (rol == miVista.getRol_entrenador()) {
-            this.entrenador = new Entrenador();
+            this.entrenador = new Entrenador(persona);
 
             //Nivel
             campo = miVista.getCampoNivel();
@@ -203,7 +215,7 @@ public class ControladorOrganizacion {
                 
                 
             }catch (NumberFormatException e) {
-                insertar=false;
+                ok=false;
                 miVista.getCampoErrorNivel().setVisible(true);
                 
             } 
@@ -220,34 +232,35 @@ public class ControladorOrganizacion {
                 
             } catch (EquipoException ex){
                 
-               insertar = false;
+               ok = false;
                 miVista.getCampoErrorEquipoEntrenador().setVisible(true);
             }
             
-            
             //INSERCIONES
-            if (insertar) {
-                //EntrenadorDAO.insertarEntrenador(entrenador);
-                System.out.println("LocuraaaaaE");
-                //mostrar Etiqueta de todo bien
-                
-            } else {
-                System.out.println("Fallo de campos");
-            }
+            if (ok) {
+                miVista.getCampoExito().setVisible(true);
+                if (actualizar) {
+                    System.out.println ("Entrenador " + entrenador.getIdPersona());
+                    EntrenadorDAO.modificarEntrenador(entrenador);
+                } else {
+                    EntrenadorDAO.insertarEntrenador(entrenador);
+                }  
+            } 
             
             System.out.println(entrenador);
             
         } else {
             
             //INSERCIONES
-            if (insertar) {
-                //PersonaDAO.insertarPersona(persona);
-                System.out.println("LocuraaaaaP");
-                //mostrar Etiqueta de todo bien
+            if (ok) {
+                miVista.getCampoExito().setVisible(true);
                 
-            } else {
-                System.out.println("Fallo de campos");
-            }
+                if (actualizar) {
+                    PersonaDAO.modificarPersona(persona);
+                } else {
+                    PersonaDAO.insertarPersona(persona);
+                }
+            } 
             
         }
 

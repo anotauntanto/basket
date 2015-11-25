@@ -26,7 +26,7 @@ public class EntrenadorDAO {
     
     public static void insertarEntrenador (Entrenador ent){
         
-        
+        System.out.println("otroo" + ent.getIdPersona());
         PersonaDAO.insertarPersona(ent);
         
         Persona per = PersonaDAO.obtenerPersonaPorDni(ent.getDni());

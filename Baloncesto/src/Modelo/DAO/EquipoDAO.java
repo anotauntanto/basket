@@ -90,6 +90,28 @@ public class EquipoDAO {
         return listaEquipos;
     }
     
+    public static int contarEquipos(){
+        int contador = 0;
+        con=Conexion.conectar();
+
+        try{
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select count(*) from Equipo");
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            //int number = rsmd.getColumnCount();
+            
+            //hacer un switch cmo el q hizo la profe para distinguir q tipo de datos hay en la bbdd todo esto dentro de un for de number
+
+            while (rs.next()) {
+                contador = rs.getInt(1);
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return contador;
+    }
+    
     public static int obtenerIdEquipo(String nombre){
         int id=0;
         

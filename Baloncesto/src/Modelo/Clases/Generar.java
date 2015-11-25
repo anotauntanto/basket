@@ -120,6 +120,7 @@ public class Generar {
     public int numEquiposCopaPrevia(){
         ArrayList arrayEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
         int tamano=arrayEquipos.size();
+
        
         int num;
         int n=0;
