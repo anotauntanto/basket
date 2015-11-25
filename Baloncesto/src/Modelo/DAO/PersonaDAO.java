@@ -110,7 +110,7 @@ public class PersonaDAO {
         //Persona persona = per;
         try{
             PreparedStatement ps =  con.prepareStatement("update Persona set Nombre=?,Apellidos=?,DNI=?,Fecha_Nac=?,Email=?,Contrasena=?,Telefono=?,Rol=? where id_Persona=?");
-
+            System.out.println("Id persona" + per.getIdPersona());
             ps.setString(1, per.getNombre());
             ps.setString(2, per.getApellidos());
             ps.setString(3, per.getDni());
