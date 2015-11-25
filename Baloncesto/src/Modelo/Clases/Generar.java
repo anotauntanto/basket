@@ -99,7 +99,7 @@ public class Generar {
         
              
     }
-    //Delvuelve la jornada a crear o cero si no ha terminado
+    //Delvuelve la jornada a crear o -1 si no ha terminado
     public int sigJornadaN(){
         int jornada=PartidoDAO.obtenerJornadaActual();
         System.out.println("JorActu: "+jornada);
@@ -243,7 +243,7 @@ public class Generar {
             for (j=i+1;j<tamano;j++){  //Creo la combinacion de todos los partidos
                 nuevoPartido.setFecha(fecha);
                 nuevoPartido.setLocalizacion("Malaga");
-                nuevoPartido.setNumJornada(1); //Fijo solo una jornada para la liga
+                nuevoPartido.setNumJornada(0); //Fijo solo una jornada para la liga num=0
                 nuevoPartido.setIdArbitro(33);
                 nuevoPartido.setResultado("0");
                 //nuevoPartido.setIdPartido(1);
