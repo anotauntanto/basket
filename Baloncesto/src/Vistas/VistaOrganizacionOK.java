@@ -7,6 +7,7 @@ package Vistas;
 
 import Controlador.ControladorCampeonato;
 import Controlador.ControladorOrganizacion;
+import Controlador.ControladorResultados;
 import java.awt.Component;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -22,6 +23,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
 
     private ControladorOrganizacion miControladorInsercion;
     private ControladorCampeonato miControladorCampeonato;
+    private ControladorResultados miControladorResultados;
     private final int rol_jugador = 1;
     private final int rol_entrenador = 2;
     private final int rol_arbitro = 3;
@@ -46,6 +48,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         
         miControladorInsercion = new ControladorOrganizacion(this);
         miControladorCampeonato = new ControladorCampeonato(this);
+        miControladorResultados = new ControladorResultados(this);
 
     }
 
@@ -121,6 +124,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton7 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jComboBox3 = new javax.swing.JComboBox();
         jComboBox4 = new javax.swing.JComboBox();
@@ -650,10 +654,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Equipo A", "Equipo B", "Resultado"
@@ -676,21 +677,35 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton7.setText("Actualizar");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton7MousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(384, 384, 384)
+                        .addComponent(jButton7)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(jButton7)
+                .addGap(68, 68, 68))
         );
 
         jTabbedPane2.addTab("Actualizar resultados", jPanel9);
@@ -896,6 +911,11 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         jLabel23.setVisible(false);
     }//GEN-LAST:event_jTextField2FocusGained
 
+    private void jButton7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MousePressed
+        // TODO add your handling code here:
+        miControladorResultados.recogerResultados();
+    }//GEN-LAST:event_jButton7MousePressed
+
     public JTextField getCampoAltura() {
         return jTextField1;
     }
@@ -1053,6 +1073,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;

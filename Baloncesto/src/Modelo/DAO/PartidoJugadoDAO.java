@@ -64,6 +64,28 @@ public class PartidoJugadoDAO {
         
     }
      
+     public static List<PartidoJugado> listarEquiposporPartido (int id_partido) {
+        con = Conexion.conectar();
+        listaPartidosJugados= new ArrayList<>();
+        PartidoJugado partido = null; 
+        
+        try{
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from Equipo_partido where Id_partido = "+id_partido);
+  
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            while (rs.next()) {
+                partido = new PartidoJugado (rs.getInt(1), rs.getInt(2), rs.getInt(3));
+                listaPartidosJugados.add(partido);
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return listaPartidosJugados;
+        
+    }
+     
     public static List<PartidoJugado> obtenerTodosPartidosJugados(){
          PartidoJugado partidoJug=null;
          con=Conexion.conectar();
