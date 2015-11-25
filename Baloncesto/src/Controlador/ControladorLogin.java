@@ -15,6 +15,7 @@ import Vistas.VistaEntrenador;
 import Vistas.VistaJugador;
 import Vistas.VistaNoEntra;
 import Vistas.VistaOrganizacion;
+import Vistas.VistaOrganizacionOK;
 import java.io.InputStream;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -126,8 +127,7 @@ public class ControladorLogin {
                         nuevaVist3.setVisible(true);
                         break;
                     case 0:
-                        System.out.println("HOliiiiii");
-                        VistaOrganizacion nuevaVist4=new VistaOrganizacion();
+                        VistaOrganizacionOK nuevaVist4=new VistaOrganizacionOK();
                         miLogin.setVisible(false);
                         nuevaVist4.setVisible(true);    
                         break;
