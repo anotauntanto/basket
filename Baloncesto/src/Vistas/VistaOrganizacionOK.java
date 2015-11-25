@@ -6,6 +6,7 @@
 package Vistas;
 
 import Controlador.ControladorCampeonato;
+import Controlador.ControladorEquipo;
 import Controlador.ControladorOrganizacion;
 import Controlador.ControladorResultados;
 import java.awt.Component;
@@ -27,6 +28,8 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
     private ControladorOrganizacion miControladorInsercion;
     private ControladorCampeonato miControladorCampeonato;
     private ControladorResultados miControladorResultados;
+    private ControladorEquipo miControladorEquipo;
+    private String equipo;
     private final int rol_jugador = 1;
     private final int rol_entrenador = 2;
     private final int rol_arbitro = 3;
@@ -46,6 +49,8 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         jLabel22.setVisible(false);
         jLabel23.setVisible(false);
         jLabel29.setVisible(false);
+        jLabel33.setVisible(false);
+        jLabel34.setVisible(false);
         jRadioButton2.setSelected(true);
         grupo_botones.add(jRadioButton1);
         grupo_botones.add(jRadioButton2);
@@ -54,6 +59,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         miControladorInsercion = new ControladorOrganizacion(this);
         miControladorCampeonato = new ControladorCampeonato(this);
         miControladorResultados = new ControladorResultados(this);
+        miControladorEquipo = new ControladorEquipo(this);
 
     }
 
@@ -153,6 +159,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         jTextField15 = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -879,6 +886,11 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
                 jTextField13FocusGained(evt);
             }
         });
+        jTextField13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField13ActionPerformed(evt);
+            }
+        });
 
         jLabel31.setText("Provincia");
 
@@ -892,6 +904,11 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         jLabel32.setText("Categoria");
 
         jTextField15.setText("Categoria");
+        jTextField15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField15ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Ingresar Equipo");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -903,6 +920,10 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Lucida Grande", 2, 14)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(0, 153, 51));
         jLabel33.setText("El equipo ha  sido ingresado correctamente");
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel34.setText("El equipo ya existe");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -921,14 +942,17 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel30)
-                                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel11Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel34)))
                                 .addGap(229, 229, 229)
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel31)
                                     .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(262, 262, 262)
-                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(238, 238, 238)
+                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(242, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -939,19 +963,21 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
                     .addComponent(jLabel30)
                     .addComponent(jLabel31))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel34)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel32)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton8))
-                .addGap(62, 62, 62)
+                .addGap(54, 54, 54)
                 .addComponent(jLabel33)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Ingresar un equipo", jPanel11);
@@ -1103,11 +1129,27 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
 
     private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
         // TODO add your handling code here:
+        jTextField14.setText("");
+        jLabel33.setVisible(false);
     }//GEN-LAST:event_jTextField14ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        //miControladorEquipo.insertarEquipo(equipo);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
+        // TODO add your handling code here:
+        jTextField13.setText("");
+        jLabel33.setVisible(false);
+        
+    }//GEN-LAST:event_jTextField13ActionPerformed
+
+    private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
+        // TODO add your handling code here:
+        jTextField15.setText("");
+        jLabel33.setVisible(false);
+    }//GEN-LAST:event_jTextField15ActionPerformed
 
     public JTextField getCampoAltura() {
         return jTextField1;
@@ -1245,17 +1287,28 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         return jLabel29;
     }
 
-    public JLabel getCampoNombreEquipo() {
-        return jLabel13;
+    public JTextField getCampoNombreEquipo() {
+        return jTextField13;
     }
 
-    public JLabel getCampoProvinciaEquipo() {
-        return jLabel14;
+    public JTextField getCampoProvinciaEquipo() {
+        return jTextField14;
     }
 
-    public JLabel getCampoCategoriaEquipo() {
-        return jLabel15;
+    public JTextField getCampoCategoriaEquipo() {
+        return jTextField15;
     }
+
+    public JLabel getCampoExitoEquipo() {
+        return jLabel33;
+    }
+
+    public JLabel getCampoErrorNombreEquipo() {
+        return jLabel34;
+    }
+
+    
+
 
   
 
@@ -1338,6 +1391,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

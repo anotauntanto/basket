@@ -5,24 +5,80 @@
  */
 package Controlador;
 
+import Excepciones.EquipoException;
 import Modelo.Clases.Equipo;
+import Modelo.DAO.EquipoDAO;
 import Vistas.VistaIngresarEquipo;
+
 import Vistas.VistaOrganizacionOK;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author inftel08
  */
 public class ControladorEquipo {
+
     private VistaOrganizacionOK miVista;
+
     private Equipo equipo;
-    
+
     public ControladorEquipo(VistaOrganizacionOK miVista) {
         this.miVista = miVista;
-        }
-    
-    public void ingresarEquipo(Equipo equipo) {
-        //javax.swing.JTextField campo = miVista.;
         
     }
+
+    public void insertarEquipo(Equipo equipo) {
+
+        boolean ok = true;
+        boolean actualizar = false;
+        this.equipo = new Equipo(); //vamos a crear un nuevo equipo
+
+        javax.swing.JTextField insequipo;
+
+        //Nombre del equipo
+        insequipo = miVista.getCampoNombreEquipo();
+        
+        try {
+            EquipoDAO.comprobarEquipo(insequipo.getText());
+            equipo.setNombre(insequipo.getText());
+        } catch (EquipoException ex) {
+            ok=false;
+            miVista.getCampoErrorNombreEquipo().setVisible(true);
+        }
+        //equipo.setNombre(insequipo.getText());
+        /**
+        try {
+            EquipoDAO.comprobarEquipo(insequipo.getText());
+            
+            
+        } catch (EquipoException ex) {
+            Logger.getLogger(ControladorEquipo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        * */
+
+        //Provincia del equipo
+        insequipo = miVista.getCampoProvinciaEquipo();
+        equipo.setProvincia(insequipo.getText());
+
+        //Categoria del equipo
+        insequipo = miVista.getCampoCategoriaEquipo();
+        int categoria = Integer.parseInt(insequipo.getText());
+        equipo.setCategoria(categoria);
+
+        //INSERCIONES
+        if (ok) {
+            miVista.getCampoExitoEquipo().setVisible(true);
+            if (actualizar) {
+                EquipoDAO.modificarEquipo(equipo);
+            } else {
+                EquipoDAO.insertarEquipo(equipo);
+            }
+        }
+
+        System.out.println(equipo);
+
+
+}
 }

@@ -112,7 +112,8 @@ public class ControladorOrganizacion {
 
         //Rol
         persona.setRol(rol);
-
+        
+        //COMPROBACIONES DE ROL
         if (rol == miVista.getRol_jugador()) {
 
             this.jug = new Jugador(persona);
@@ -196,7 +197,7 @@ public class ControladorOrganizacion {
                 if (actualizar) {
                     ArbitroDAO.modificarArbitro(arbitro);
                 } else {
-                    ArbitroDAO.modificarArbitro(arbitro);
+                    ArbitroDAO.modificarArbitro(arbitro); //AQUI LLAMARIA A INSERTAR NO?
                 }
 
             } 
