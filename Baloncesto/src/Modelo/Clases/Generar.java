@@ -199,14 +199,14 @@ public class Generar {
              else {
                  return -1;
              }
-            //System.out.println("IDssss "+idEquiposGanados.get(1));
+            System.out.println("IDssss "+idEquiposGanados.get(1));
         }
         
        
         
         return 0;
     }
-    
+ 
     //Metodo a llamar por el controlador, boton GRANDE, GORDO
     public int generarSigJornada(){
         int sigJ=sigJornadaN();
@@ -324,8 +324,27 @@ public class Generar {
         //Generar playoff
         
        
-        sigJornada(equiposClasificados,false);
+        sigJornada(equiposClasificados,true);
     }
+       //Metodo Genera Copa Playoff
+        public int generarJornadaPlayoffN(int jornada_ant){
+        
+        ArrayList idEquiposGanados=(ArrayList) EquipoDAO.listarEquiposGanadoresJornadaN(jornada_ant);
+        
+            if (idEquiposGanados.size()!=1){
+                 sigJornada(idEquiposGanados,false);
+             }
+             else {
+                 return -1;
+             }
+            System.out.println("IDssss "+idEquiposGanados.get(1));
+          
+        
+       
+        
+            return 0;
+        }
+    
     
         public List<Equipo> clasificacionLiga(){
         ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();

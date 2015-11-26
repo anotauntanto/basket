@@ -28,6 +28,7 @@ public class ControladorResultados {
 
     public ControladorResultados(VistaOrganizacionOK miVista) {
         this.miVista = miVista;
+        this.listarUltimaJornada();
         /*campoTabla = miVista.getTablaResultados();
         modelo = (DefaultTableModel) campoTabla.getModel();
 

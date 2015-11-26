@@ -8,8 +8,6 @@ package Controlador;
 import Excepciones.EquipoException;
 import Modelo.Clases.Equipo;
 import Modelo.DAO.EquipoDAO;
-import Vistas.VistaIngresarEquipo;
-
 import Vistas.VistaOrganizacionOK;
 import java.util.logging.Level;
 import java.util.logging.Logger;

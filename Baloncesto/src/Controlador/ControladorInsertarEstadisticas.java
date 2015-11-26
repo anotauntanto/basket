@@ -38,6 +38,7 @@ public class ControladorInsertarEstadisticas {
 
     public ControladorInsertarEstadisticas(VistaOrganizacionOK miVista) {
         this.miVista = miVista;
+        this.GenerarListaEquipos();
     }
 
     public void GenerarListaEquipos() {
