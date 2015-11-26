@@ -44,6 +44,8 @@ public class EstadisticasDAO {
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
     }
     
@@ -67,6 +69,8 @@ public class EstadisticasDAO {
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
     }
     
@@ -87,6 +91,8 @@ public class EstadisticasDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         return listaEstadisticas;
@@ -107,6 +113,8 @@ public class EstadisticasDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         return estadisticas;

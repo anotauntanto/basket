@@ -41,6 +41,8 @@ public class EquipoDAO {
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         //Conexion.desconexion();
     }
@@ -63,6 +65,8 @@ public class EquipoDAO {
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         //Conexion.desconexion();
     }
@@ -85,6 +89,8 @@ public class EquipoDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         return listaEquipos;
@@ -107,6 +113,8 @@ public class EquipoDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         return contador;
@@ -129,6 +137,8 @@ public class EquipoDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         return id;
     }
@@ -149,6 +159,8 @@ public class EquipoDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         if (cont == 0) { //el equipo no existe
@@ -174,6 +186,8 @@ public class EquipoDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         if (cont != 0) { //el equipo no existe
@@ -198,6 +212,8 @@ public class EquipoDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         return res;
     }
@@ -225,6 +241,8 @@ public class EquipoDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
 
         return listaEquipos;
@@ -254,6 +272,8 @@ public class EquipoDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
 
         return listaEquipos;

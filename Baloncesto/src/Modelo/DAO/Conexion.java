@@ -17,9 +17,7 @@ import java.util.logging.Logger;
  * @author inftel08
  */
 public class Conexion {
-
-    private static Connection con = null;
-    private static Statement stmt = null; 
+ 
     private static String url = "jdbc:oracle:thin:INFTEL15_3/INFTEL@olimpia.lcc.uma.es:1521:edgar";
     //private static String url = "jdbc:oracle:thin:INFTEL15_2/INFTEL@olimpia.lcc.uma.es:1521:edgar";
 
@@ -34,11 +32,10 @@ public class Conexion {
         }*/
     }
     
-    public Connection getConexion() { 
-        return this.con;
-    }
-    
+
     public static Connection conectar() {
+        Connection con = null;
+        
         if (con==null){
             
             try{
@@ -46,8 +43,8 @@ public class Conexion {
                 Class.forName("oracle.jdbc.driver.OracleDriver");
                 
                 con = DriverManager.getConnection(url,null);
-                if (con!=null)
-                    System.out.println("Conexión con la base de datos extablecida");
+                //if (con!=null)
+                    //System.out.println("Conexión con la base de datos establecida");
             }
             catch (SQLException ex){
                 System.out.println("Problema al conectar con la base de datos");
@@ -60,7 +57,7 @@ public class Conexion {
         return con;
     }
     
-    public static void desconexion () {
+    public static void desconexion (Connection con) {
         
         try {
             con.close();

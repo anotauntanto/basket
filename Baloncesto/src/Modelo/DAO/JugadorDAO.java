@@ -49,6 +49,8 @@ public class JugadorDAO {
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
     }    
  
@@ -67,6 +69,8 @@ public class JugadorDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         return listaJugadores;
@@ -89,6 +93,8 @@ public class JugadorDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         return listaJugadores;
@@ -113,6 +119,8 @@ public class JugadorDAO {
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
     }
     
@@ -134,6 +142,8 @@ public class JugadorDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         return jugador;
     }
@@ -157,6 +167,8 @@ public class JugadorDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         return jugador;
     }
@@ -178,6 +190,8 @@ public class JugadorDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         return jugador;
     }
@@ -201,6 +215,8 @@ public class JugadorDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         

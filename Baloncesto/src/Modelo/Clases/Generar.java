@@ -5,9 +5,11 @@
  */
 package Modelo.Clases;
 
+import Modelo.DAO.ArbitroDAO;
 import Modelo.DAO.EquipoDAO;
 import Modelo.DAO.PartidoDAO;
 import Modelo.DAO.PartidoJugadoDAO;
+import java.io.IOException;
 import java.sql.Array;
 import static java.sql.Types.INTEGER;
 import java.util.ArrayList;
@@ -54,6 +56,7 @@ public class Generar {
                     //arrayDos[j]=elem.getIdEquipo();
                     //j++;
                 }
+                
             }
             else {//Si categoria copio
                 
@@ -66,6 +69,9 @@ public class Generar {
             }
             j++;
         }
+        if (arrayUno.size()!=arrayDos.size()){ //Si distinto tamaño de categoria 1 y 2
+                    return;
+        }
         int sigJornada=PartidoDAO.obtenerJornadaActual()+1;
         //MiFecha
         Calendar cal = Calendar.getInstance();
@@ -73,14 +79,25 @@ public class Generar {
         cal.set(1985,10,1);
         Date fecha = cal.getTime();
         //Date fecha=null;
+        //Asignar Arbitros
         
+        ArrayList <Arbitro> misArbitros = (ArrayList <Arbitro>) ArbitroDAO.obtenerTodosArbitros();
+        //Collections.shuffle(misArbitros);
+        
+        //System.out.println("Coap");
         Partido nuevoPartido=new Partido();
         PartidoJugado nuevoPartidoJugado = new PartidoJugado();
         for (i=0;i<arrayUno.size();i++){
             nuevoPartido.setFecha(fecha);
             nuevoPartido.setLocalizacion("Malaga");
             nuevoPartido.setNumJornada(sigJornada);
-            nuevoPartido.setIdArbitro(33);
+            //Asiganr Arbitros Azar
+            int azar= (int) (Math.random() * misArbitros.size());
+            System.out.println("tam: "+misArbitros.size()+ "num"+azar);
+            nuevoPartido.setIdArbitro(misArbitros.get(azar).getIdPersona());
+            //nuevoPartido.setIdArbitro(30);
+            
+            //Fin arbitros
             nuevoPartido.setResultado("0");
             //nuevoPartido.setIdPartido(1);
             PartidoDAO.crearPartido(nuevoPartido);
@@ -132,7 +149,7 @@ public class Generar {
         return num;
         
     }
-    //Para saber si necesito una ronda previa
+    //Para saber si necesito una ronda previa, genera la ronda previa o la primera ronda si hay potencia de dos equipos
     public int primeraJornada(){
         int equiposFuera=numEquiposCopaPrevia();
         int numSacados=0;
@@ -225,6 +242,8 @@ public class Generar {
         return 0;
     }
     
+    
+    
     public void generarLigaTotal(){//ArrayList miArray, int tamano){
         ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
         int tamano=todosEquipos.size();
@@ -239,12 +258,20 @@ public class Generar {
         Date fecha = cal.getTime();
         //i=0;
         j=0;
+        ArrayList <Arbitro> misArbitros = (ArrayList <Arbitro>) ArbitroDAO.obtenerTodosArbitros();
         for (i=0;i<tamano-1;i++){
             for (j=i+1;j<tamano;j++){  //Creo la combinacion de todos los partidos
                 nuevoPartido.setFecha(fecha);
                 nuevoPartido.setLocalizacion("Malaga");
                 nuevoPartido.setNumJornada(0); //Fijo solo una jornada para la liga num=0
-                nuevoPartido.setIdArbitro(33);
+                //Asiganr Arbitros Azar
+                int azar= (int) (Math.random() * misArbitros.size());
+                System.out.println("tam: "+misArbitros.size()+ "num"+azar);
+                nuevoPartido.setIdArbitro(misArbitros.get(azar).getIdPersona());
+                //nuevoPartido.setIdArbitro(30);
+            
+                //Fin arbitros
+                
                 nuevoPartido.setResultado("0");
                 //nuevoPartido.setIdPartido(1);
                 PartidoDAO.crearPartido(nuevoPartido);
@@ -262,7 +289,7 @@ public class Generar {
         
     }
     
-    public void clasificacionLiga(int numEquiposCopa){
+    public void generarPlayoff(int numEquiposCopa){
         ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
         Collections.sort(todosEquipos);
         //PAra ver
@@ -271,9 +298,47 @@ public class Generar {
             Equipo elem=(Equipo) it.next();
             System.out.println("Equipos "+elem);
         }
-        for (i=numEquiposCopa-1;i<todosEquipos.size();i++){
+        //for (i=numEquiposCopa-1;i<todosEquipos.size();i++){
             
+        //}
+        
+        //List equiposClasificados=(List) todosEquipos.subList(0, numEquiposCopa);
+        ArrayList<Equipo> equiposClasificados= new ArrayList<>(todosEquipos.subList(0, numEquiposCopa));
+        Iterator iter=equiposClasificados.iterator();
+        i=0;
+        while (iter.hasNext()){
+            Equipo elem=(Equipo) iter.next();
+            System.out.println("Equipos Clasif "+elem);
+            if (i<numEquiposCopa/2){
+                elem.setCategoria(1);
+            }
+            else {
+                elem.setCategoria(2);
+            }
+            EquipoDAO.modificarEquipo(elem);
+            i++;
         }
+        //Añadir categorias
+        
+        
+        //Generar playoff
+        
+       
+        sigJornada(equiposClasificados,false);
+    }
+    
+        public List<Equipo> clasificacionLiga(){
+        ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
+        Collections.sort(todosEquipos);
+        //PAra ver
+        /*Iterator it=todosEquipos.iterator();
+        while (it.hasNext()){
+            Equipo elem=(Equipo) it.next();
+            System.out.println("Equipos "+elem);
+        }
+        //for (i=numEquiposCopa-1;i<todosEquipos.size();i++){
+            
+        //}
         
         //List equiposClasificados=(List) todosEquipos.subList(0, numEquiposCopa);
         ArrayList<Equipo> equiposClasificados= new ArrayList<>(todosEquipos.subList(0, numEquiposCopa));
@@ -283,13 +348,15 @@ public class Generar {
             System.out.println("Equipos Clasif "+elem);
         }
         //Añadir categorias
-        //sigJornada(equiposClasificados);
+        //Generar playoff
+       
+        sigJornada(equiposClasificados,false);*/
+        return todosEquipos;
     }
-    
     //FIN CUIDADIDDODODDODO
     //Darme una lista con los equipos que han ganado la jornadaN
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
         Generar miGen=new Generar();
         //int sigJornada=PartidoDAO.obtenerJornadaActual()+1;
@@ -305,12 +372,37 @@ public class Generar {
         int idpartido=0;
         String nombre1;
         String nombre2;
-        String[] parts = micad.split("-");
-        int num1=Integer.parseInt(parts[0]);
-        int num2=Integer.parseInt(parts[1]);
-        if (num1<num2){
-        System.out.println("fa");//cambio el heganado
+        //String[] parts = micad.split("-");
+        //int num1=Integer.parseInt(parts[0]);
+        //int num2=Integer.parseInt(parts[1]);
+        //if (num1<num2){
+        //System.out.println("fa");//cambio el heganado
+        //}
+        int i;
+        int azar;
+        for (i=0;i<5;i++){
+             azar = (int) (Math.random() * 2);
+             System.out.println("AZARR: "+azar);
         }
+      
+        
+        FicherosTipo miFich =new FicherosTipo();
+        FicherosTipo.escribirFichero(3, 4);
+        String salida=FicherosTipo.leerFichero();
+        
+        
+        String[] parts = salida.split(":");
+        if (parts[0].equals("Liga")) {System.out.println("Liga");}
+        if (parts[0].equals("Copa")) {System.out.println("Copa");}
+        if (parts[0].equals("Mixto")) {
+            System.out.println("Mixto"+parts[1]);
+            
+        }
+        //int num1=Integer.parseInt(parts[0]);
+        //int num2=Integer.parseInt(parts[1]);
+        //if (num1<num2){
+        System.out.println("fa");//cambio el heganado
+        //}
         
         /*Calendar cal = Calendar.getInstance();
         cal.clear();

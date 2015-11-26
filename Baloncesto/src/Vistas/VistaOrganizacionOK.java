@@ -11,6 +11,9 @@ import Controlador.ControladorInsertarEstadisticas;
 import Controlador.ControladorOrganizacion;
 import Controlador.ControladorResultados;
 import java.awt.Component;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -816,6 +819,11 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         jTabbedPane2.addTab("Campeonato", jPanel6);
 
         jButton6.setText("Generar jornada siguiente");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -867,6 +875,12 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Jornada", jPanel8);
 
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -916,7 +930,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(89, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
                 .addComponent(jButton7)
@@ -1150,8 +1164,13 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2FocusGained
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        miControladorCampeonato.tipoCampeonato(this);
+
+        try {
+            // TODO add your handling code here:
+            miControladorCampeonato.tipoCampeonato(this);
+        } catch (IOException ex) {
+            Logger.getLogger(VistaOrganizacionOK.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MousePressed
@@ -1169,12 +1188,6 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         // TODO add your handling code here:
         miControladorEquipo.insertarEquipo();
     }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jTabbedPane2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MousePressed
-        // TODO add your handling code here:+
-        miControladorResultados.listarUltimaJornada();
-        miControladorInsertarEstadisticas.GenerarListaEquipos();
-    }//GEN-LAST:event_jTabbedPane2MousePressed
 
     private void jTextField14FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField14FocusGained
         // TODO add your handling code here:
@@ -1205,6 +1218,23 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
     private void jLabel26FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLabel26FocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel26FocusGained
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        miControladorCampeonato.generarSigJornada(this);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        // TODO add your handling code here:
+        System.out.println("holaaaaa");
+        miControladorResultados.listarUltimaJornada();
+    }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void jTabbedPane2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MousePressed
+        // TODO add your handling code here:
+        miControladorResultados.listarUltimaJornada();
+        miControladorInsertarEstadisticas.GenerarListaEquipos();
+    }//GEN-LAST:event_jTabbedPane2MousePressed
 
     
     public JTextField getCampoAltura() {
@@ -1383,6 +1413,10 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
         return jLabel26;
     }
 
+    public JTable getTablaSigJornada() {
+        return jTable4;
+    }
+
     
       
     /**
@@ -1420,6 +1454,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup grupo_botones;

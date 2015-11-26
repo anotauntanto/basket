@@ -54,8 +54,10 @@ public class PersonaDAO {
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
-        //Conexion.desconexion();
+        //
     }
     
     public static List<Persona> obtenerTodasPersonas(){
@@ -76,6 +78,8 @@ public class PersonaDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        } finally {
+            Conexion.desconexion(con);
         }
         
         return listaPersonas;
@@ -97,6 +101,8 @@ public class PersonaDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         return persona;
@@ -123,6 +129,8 @@ public class PersonaDAO {
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
     }
      
@@ -143,6 +151,8 @@ public class PersonaDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         return id;
     }

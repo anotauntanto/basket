@@ -43,6 +43,8 @@ public class EntrenadorDAO {
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
     }
 
@@ -63,6 +65,8 @@ public class EntrenadorDAO {
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
     }
 
@@ -80,6 +84,8 @@ public class EntrenadorDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         return entrenador;
     }
@@ -100,6 +106,8 @@ public class EntrenadorDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         return entrenador;
     }

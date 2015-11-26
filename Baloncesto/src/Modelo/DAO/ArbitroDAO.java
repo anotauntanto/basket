@@ -41,6 +41,8 @@ public class ArbitroDAO {
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
     } 
     
@@ -59,7 +61,9 @@ public class ArbitroDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
-        } 
+        } finally {
+            Conexion.desconexion(con);
+        }
         return listaArbitros;
     }
     
@@ -79,6 +83,8 @@ public class ArbitroDAO {
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
     }
     
@@ -97,6 +103,8 @@ public class ArbitroDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         return arbitro;
@@ -118,6 +126,8 @@ public class ArbitroDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         return arbitro;
     }

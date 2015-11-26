@@ -38,6 +38,8 @@ public class PartidoJugadoDAO {
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         //Conexion.desconexion();
     }
@@ -58,6 +60,8 @@ public class PartidoJugadoDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         return listaPartidosJugados;
@@ -80,6 +84,8 @@ public class PartidoJugadoDAO {
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         
         return listaPartidosJugados;
@@ -99,7 +105,9 @@ public class PartidoJugadoDAO {
              }
          }catch(SQLException ex){
              System.out.println(ex.getMessage());
-         }
+         }finally {
+            Conexion.desconexion(con);
+        }
          return listaPartidosJugados;
     }
     
@@ -124,6 +132,8 @@ public class PartidoJugadoDAO {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
         //Conexion.desconexion();
     }
@@ -145,6 +155,8 @@ public class PartidoJugadoDAO {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        }finally {
+            Conexion.desconexion(con);
         }
          return numVictorias;
      }

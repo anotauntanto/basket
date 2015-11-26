@@ -40,6 +40,8 @@ public class PartidoDAO {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            Conexion.desconexion(con);
         }
         //Conexion.desconexion();
     }
@@ -61,6 +63,8 @@ public class PartidoDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            Conexion.desconexion(con);
         }
 
         return listaPartidos;
@@ -82,6 +86,8 @@ public class PartidoDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            Conexion.desconexion(con);
         }
 
         return partido;
@@ -104,6 +110,8 @@ public class PartidoDAO {
         } catch (SQLException ex) {
             //return 0;
             System.out.println(ex.getMessage());
+        } finally {
+            Conexion.desconexion(con);
         }
 
         return jornadaAct;
@@ -121,31 +129,33 @@ public class PartidoDAO {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            Conexion.desconexion(con);
         }
         //Conexion.desconexion();
     }
-    
+
     public static int obtenerIdActual() {
-            con = Conexion.conectar();
-            //listaPersonas= new ArrayList<>();
-            int IdAct = 0;
-            try {
-                PreparedStatement ps = con.prepareStatement("select max(id_partido) from partido");
+        con = Conexion.conectar();
+        //listaPersonas= new ArrayList<>();
+        int IdAct = 0;
+        try {
+            PreparedStatement ps = con.prepareStatement("select max(id_partido) from partido");
 
-                ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
                 //ResultSetMetaData rsmd = rs.getMetaData();
-                //int number = rsmd.getColumnCount();
-                while (rs.next()) {
-                    IdAct = rs.getInt(1);
-                }
-            } catch (SQLException ex) {
-                //return 0;
-                System.out.println(ex.getMessage());
+            //int number = rsmd.getColumnCount();
+            while (rs.next()) {
+                IdAct = rs.getInt(1);
             }
-
-            return IdAct;
+        } catch (SQLException ex) {
+            //return 0;
+            System.out.println(ex.getMessage());
+        } finally {
+            Conexion.desconexion(con);
         }
 
-
+        return IdAct;
+    }
 
 }
