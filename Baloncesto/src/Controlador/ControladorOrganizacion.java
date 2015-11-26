@@ -197,7 +197,7 @@ public class ControladorOrganizacion {
                 if (actualizar) {
                     ArbitroDAO.modificarArbitro(arbitro);
                 } else {
-                    ArbitroDAO.modificarArbitro(arbitro); //AQUI LLAMARIA A INSERTAR NO?
+                    ArbitroDAO.insertarArbitro(arbitro); 
                 }
 
             } 

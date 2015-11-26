@@ -13,6 +13,7 @@ import Modelo.DAO.PartidoJugadoDAO;
 import Vistas.VistaOrganizacionOK;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -27,11 +28,11 @@ public class ControladorResultados {
 
     public ControladorResultados(VistaOrganizacionOK miVista) {
         this.miVista = miVista;
-        campoTabla = miVista.getTablaResultados();
+        /*campoTabla = miVista.getTablaResultados();
         modelo = (DefaultTableModel) campoTabla.getModel();
 
 
-        listarPartidosJornada = PartidoDAO.listarPartidosJornada(PartidoDAO.obtenerJornadaActual()); //compruebo si estoy en liga-->jornada 0 determina que se trata de una liga
+        /*listarPartidosJornada = PartidoDAO.listarPartidosJornada(PartidoDAO.obtenerJornadaActual()); //compruebo si estoy en liga-->jornada 0 determina que se trata de una liga
         //if (listarPartidosJornada.size() == 0) { //no hay liga
 
         //} else { //hay liga
@@ -45,7 +46,7 @@ public class ControladorResultados {
                 modelo.addRow(new Object[]{EquipoDAO.obtenerNombreEquipo(equipoA), EquipoDAO.obtenerNombreEquipo(equipoB), p.getResultado()});
             }
 
-        //}
+        //}*/
 
     }
 
@@ -83,6 +84,36 @@ public class ControladorResultados {
 
         }
 
+    }
+    
+    
+    public void listarUltimaJornada () {
+        campoTabla = miVista.getTablaResultados();
+        modelo = (DefaultTableModel) campoTabla.getModel();
+        
+        while (modelo.getRowCount()>0){
+            modelo.removeRow(0);
+        } 
+            
+        /*TableColumnModel modCol = campoTabla.getColumnModel();
+        while () */
+        
+        listarPartidosJornada = PartidoDAO.listarPartidosJornada(PartidoDAO.obtenerJornadaActual()); //compruebo si estoy en liga-->jornada 0 determina que se trata de una liga
+        //if (listarPartidosJornada.size() == 0) { //no hay liga
+
+        //} else { //hay liga
+
+            for (Partido p : listarPartidosJornada) {
+                List<PartidoJugado> listarEquiposporPartido = PartidoJugadoDAO.listarEquiposporPartido(p.getIdPartido());
+                
+                int equipoA = listarEquiposporPartido.get(0).getIdEquipo();
+                int equipoB = listarEquiposporPartido.get(1).getIdEquipo();
+
+                modelo.addRow(new Object[]{EquipoDAO.obtenerNombreEquipo(equipoA), EquipoDAO.obtenerNombreEquipo(equipoB), p.getResultado()});
+            }
+
+        //}
+        
     }
 
 }

@@ -68,15 +68,12 @@ public class Jugador extends Persona{
         this.idEquipo = idEquipo;
     }
 
-    /*public Jugador(double altura, int dorsal, int idEquipo) {
+    public Jugador(double altura, int dorsal, int idEquipo) {
         this.altura = altura;
         this.dorsal = dorsal;
         this.idEquipo = idEquipo;
     }
     
-    public Jugador(){
-        
-    }*/
 
     /**
      * 

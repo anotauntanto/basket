@@ -20,7 +20,7 @@ public class VistaArbitro extends javax.swing.JFrame {
      */
     public VistaArbitro(Persona persona) {
         initComponents();
-        this.arbitro = ArbitroDAO.obtenerEntrenadorPorID(persona);
+        this.arbitro = ArbitroDAO.obtenerArbitroPorID(persona);
     }
 
     /**

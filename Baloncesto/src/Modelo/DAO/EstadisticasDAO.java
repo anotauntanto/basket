@@ -92,6 +92,25 @@ public class EstadisticasDAO {
         return listaEstadisticas;
     }
     
+    public static Estadisticas obtenerTodasEstadisticasJugadorPartido(int id, int id_partido){
+        con = Conexion.conectar();
+        Estadisticas estadisticas=null;
+        try{
+            PreparedStatement ps = con.prepareStatement("select * from jugador_partido where id_jugador=? and id_partido=?");
+            ps.setInt(1, id);
+            ps.setInt(2, id_partido);
+            ResultSet rs = ps.executeQuery();
+            
+            //ResultSetMetaData rsmd = rs.getMetaData();
+            while (rs.next()) {
+                estadisticas = new Estadisticas(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return estadisticas;
+    }
     //si tenemos tiempo hacer un obtener estadisticas de un equipo.
     
 }

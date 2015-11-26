@@ -102,7 +102,7 @@ public class ArbitroDAO {
         return arbitro;
     }
     
-    public static Arbitro obtenerEntrenadorPorID (Persona persona) {
+    public static Arbitro obtenerArbitroPorID (Persona persona) {
         con = Conexion.conectar();
       
         Arbitro arbitro = null;

@@ -26,10 +26,10 @@ public class ControladorEquipo {
 
     public ControladorEquipo(VistaOrganizacionOK miVista) {
         this.miVista = miVista;
-        
+
     }
 
-    public void insertarEquipo(Equipo equipo) {
+    public void insertarEquipo() {
 
         boolean ok = true;
         boolean actualizar = false;
@@ -39,24 +39,14 @@ public class ControladorEquipo {
 
         //Nombre del equipo
         insequipo = miVista.getCampoNombreEquipo();
-        
+
         try {
-            EquipoDAO.comprobarEquipo(insequipo.getText());
+            EquipoDAO.comprobarEquipov2(insequipo.getText());
             equipo.setNombre(insequipo.getText());
         } catch (EquipoException ex) {
-            ok=false;
+            ok = false;
             miVista.getCampoErrorNombreEquipo().setVisible(true);
         }
-        //equipo.setNombre(insequipo.getText());
-        /**
-        try {
-            EquipoDAO.comprobarEquipo(insequipo.getText());
-            
-            
-        } catch (EquipoException ex) {
-            Logger.getLogger(ControladorEquipo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        * */
 
         //Provincia del equipo
         insequipo = miVista.getCampoProvinciaEquipo();
@@ -64,21 +54,22 @@ public class ControladorEquipo {
 
         //Categoria del equipo
         insequipo = miVista.getCampoCategoriaEquipo();
-        int categoria = Integer.parseInt(insequipo.getText());
-        equipo.setCategoria(categoria);
+        try {
+            int categoria = Integer.parseInt(insequipo.getText());
+            equipo.setCategoria(categoria);
+
+        } catch (NumberFormatException e) {
+            ok = false;
+            miVista.getCampoErrorCategoria().setVisible(true);
+
+        }
 
         //INSERCIONES
         if (ok) {
             miVista.getCampoExitoEquipo().setVisible(true);
-            if (actualizar) {
-                EquipoDAO.modificarEquipo(equipo);
-            } else {
-                EquipoDAO.insertarEquipo(equipo);
-            }
+
+            EquipoDAO.insertarEquipo(equipo);
+
         }
-
-        System.out.println(equipo);
-
-
-}
+    }
 }
