@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  *
- * @author inftel07
+ * @author grupo_baloncesto
  */
 
 

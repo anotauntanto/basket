@@ -8,31 +8,28 @@ package Modelo.DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author inftel08
+ * Clase Conexion con la Base de Datos
+ * @author grupo_baloncesto
  */
 public class Conexion {
  
     private static String url = "jdbc:oracle:thin:INFTEL15_3/INFTEL@olimpia.lcc.uma.es:1521:edgar";
-    //private static String url = "jdbc:oracle:thin:INFTEL15_2/INFTEL@olimpia.lcc.uma.es:1521:edgar";
-
+ 
+    /**
+     * Constructor de la clase Conexion
+     */
     public Conexion() {
-        /*try {
-
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            con = DriverManager.getConnection("jdbc:oracle:thin:INFTEL15_3/INFTEL@olimpia.lcc.uma.es:1521:edgar", null);
-            
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+      
     }
     
-
+    /**
+     * Metodo que conecta con la Base de Datos  
+     * @return Connection conexion a devolver 
+     */
     public static Connection conectar() {
         Connection con = null;
         
@@ -43,8 +40,7 @@ public class Conexion {
                 Class.forName("oracle.jdbc.driver.OracleDriver");
                 
                 con = DriverManager.getConnection(url,null);
-                //if (con!=null)
-                    //System.out.println("Conexión con la base de datos establecida");
+               
             }
             catch (SQLException ex){
                 System.out.println("Problema al conectar con la base de datos");
@@ -57,6 +53,10 @@ public class Conexion {
         return con;
     }
     
+    /**
+     * Metodo que desconecta con la Base de Datos
+     * @param con Connection conexion a cerrar
+     */
     public static void desconexion (Connection con) {
         
         try {

@@ -18,13 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author inftel05
+ * Clase EstadisticasDAO
+ * @author grupo_baloncesto
  */
 public class EstadisticasDAO {
      private static List <Estadisticas> listaEstadisticas=null;
     private static Connection con;
     
+    /**
+     * Metodo para insertar Estadisticas de un Jugador
+     * @param es Estadisticas a insertar
+     */
     public static void insertarEstadisticasJugador (Estadisticas es) {
         
        
@@ -49,13 +53,12 @@ public class EstadisticasDAO {
         }
     }
     
+    /**
+     * Metodo para modificar estadisticas ya existente de un jugador
+     * @param es Estadisticas a modificar
+     */
     public static void modificarEstadisticasJugador (Estadisticas es) {
-        //int id=es.getIdJugador();
-        //int id=PersonaDAO.modificarPersona(es.getIdJugador());
-        //es.setIdPersona(id);
-        
-        
-        //PersonaDAO.modificarPersona();
+      
         con = Conexion.conectar();
         
         try{
@@ -75,7 +78,11 @@ public class EstadisticasDAO {
     }
     
     
-    
+    /**
+     * Metodo para obtener todas las estadisticas de un jugador
+     * @param id int, id del Jugador a buscar   
+     * @return List<Estadisticas>, lista de las estadisticas buscadas
+     */
     public static List<Estadisticas> obtenerTodasEstadisticasJugador(int id){
         con = Conexion.conectar();
         listaEstadisticas= new ArrayList<>();
@@ -83,7 +90,7 @@ public class EstadisticasDAO {
         try{
             Statement st = con.createStatement();
             ResultSet rs  = st.executeQuery("select * from jugador_partido es where es.id_jugador =" + id);
-            //ResultSetMetaData rsmd = rs.getMetaData();
+      
             while (rs.next()) {
                 estadisticas = new Estadisticas(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
                 
@@ -98,6 +105,12 @@ public class EstadisticasDAO {
         return listaEstadisticas;
     }
     
+    /**
+     * Metodo para obtener las estadisticas de un jugador en un partido
+     * @param id int, id jugador a buscar
+     * @param id_partido int, id partido a buscar
+     * @return Estadisticas buscadas
+     */
     public static Estadisticas obtenerTodasEstadisticasJugadorPartido(int id, int id_partido){
         con = Conexion.conectar();
         Estadisticas estadisticas=null;
@@ -107,7 +120,6 @@ public class EstadisticasDAO {
             ps.setInt(2, id_partido);
             ResultSet rs = ps.executeQuery();
             
-            //ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
                 estadisticas = new Estadisticas(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
             }
@@ -119,6 +131,6 @@ public class EstadisticasDAO {
         
         return estadisticas;
     }
-    //si tenemos tiempo hacer un obtener estadisticas de un equipo.
+
     
 }

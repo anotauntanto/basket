@@ -16,14 +16,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author inftel08
+ * Clase ArbitroDAO 
+ * @author grupo_baloncesto
  */
 public class ArbitroDAO {
     
     private static Connection con = null;
     private static List <Arbitro> listaArbitros=null;
     
+    /**
+     * Metodo para insertar un Arbitro en la Base de Datos 
+     * @param ar Arbitro a insertar
+     */
     public static void insertarArbitro (Arbitro ar){
    
         PersonaDAO.insertarPersona(ar);
@@ -37,7 +41,6 @@ public class ArbitroDAO {
             
             ps.setInt(1, per.getIdPersona());
             ps.setString(2, ar.getProvincia());
-            //insertar id_equipo
             ps.executeUpdate();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -53,9 +56,11 @@ public class ArbitroDAO {
         try{
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from Arbitro ar inner join Persona per on ar.id_Persona = per.id_Persona");
-            //ResultSetMetaData rsmd = rs.getMetaData();
+           
             while (rs.next()) {
-                arbitro = new Arbitro(rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11));
+                arbitro = new Arbitro(rs.getString(2), rs.getInt(3), rs.getString(4), 
+                        rs.getString(5), rs.getString(6),rs.getDate(7), rs.getString(8), 
+                        rs.getString(9), rs.getString(10), rs.getInt(11));
                 
                 listaArbitros.add(arbitro);
             }
@@ -66,7 +71,10 @@ public class ArbitroDAO {
         }
         return listaArbitros;
     }
-    
+    /**
+     * Metodo para modificar un arbitro ya existente
+     * @param ar Arbitro a modificar
+     */
     public static void modificarArbitro (Arbitro ar) {
         int id=PersonaDAO.obtenerIdPersona(ar.getDni());
         ar.setIdPersona(id);        
@@ -74,7 +82,6 @@ public class ArbitroDAO {
         PersonaDAO.modificarPersona(ar);
         con = Conexion.conectar();
         
-        //jugador = jug;
         try{
             PreparedStatement ps =  con.prepareStatement("update Arbitro set Provincia=? where id_Persona=?");
             ps.setString(1, ar.getProvincia());
@@ -88,6 +95,11 @@ public class ArbitroDAO {
         }
     }
     
+    /** 
+     * Metodo paara obtener un arbitro por su Dni
+     * @param dni String, dni del arbitro a buscar
+     * @return Arbitro, objeto Arbitro encontrado
+     */
     public static Arbitro obtenerArbitroPorDni (String dni) {
         con = Conexion.conectar();
         Persona p =  PersonaDAO.obtenerPersonaPorDni(dni);
@@ -96,7 +108,7 @@ public class ArbitroDAO {
         
         try{
             PreparedStatement ps = con.prepareStatement("select * from Arbitro ar inner join Persona per on ar.id_Persona = per.id_Persona and ar.id_persona=?");
-            ps.setInt(1, p.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
+            ps.setInt(1, p.getIdPersona());
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 arbitro = new Arbitro(rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11));
@@ -110,13 +122,18 @@ public class ArbitroDAO {
         return arbitro;
     }
     
+    /**
+     * Metodo para recuperar un arbitro a partir de una persona
+     * @param persona que se ha de buscar
+     * @return Arbitro que corresponde a la persona introducida
+     */
     public static Arbitro obtenerArbitroPorID (Persona persona) {
         con = Conexion.conectar();
       
         Arbitro arbitro = null;
         try{
             PreparedStatement ps = con.prepareStatement("select * from Arbitro jug inner join Persona per on jug.id_Persona = per.id_Persona and jug.id_persona=?");
-            ps.setInt(1, persona.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
+            ps.setInt(1, persona.getIdPersona());
             
             ResultSet rs = ps.executeQuery();
             

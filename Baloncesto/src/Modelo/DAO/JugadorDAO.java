@@ -17,25 +17,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author inftel07
+ * Clase JugadorDAO
+ * @author grupo_baloncesto
  */
 public class JugadorDAO {
-    //private static Jugador jugador=null;
+    
     private static List <Jugador> listaJugadores=null;
     static Connection con=null;
     
+    /**
+     * Constructor por defecto
+     */
     public JugadorDAO(){
     }
     
+    /**
+     * Metodo para insertar Jugador
+     * @param jug Jugador a insertar
+     */
     public static void insertarJugador (Jugador jug){
         
-        //Persona per = new Persona(0, jug.getNombre(), jug.getDNI(), jug.getFecha(), jug.getEmail(), jug.getContrasena(), jug.getRol());
+        
         PersonaDAO.insertarPersona(jug);
         
         Persona per = PersonaDAO.obtenerPersonaPorDni(jug.getDni());
         con = Conexion.conectar();
-        //jugador = jug;
         
         try{
             PreparedStatement ps =  con.prepareStatement("insert into Jugador (id_Persona, Dorsal, Altura, id_equipo)"
@@ -53,7 +59,11 @@ public class JugadorDAO {
             Conexion.desconexion(con);
         }
     }    
- 
+    
+    /**
+     * Metodo para obtener todos los jugadores
+     * @return List<Jugador>, lista de los jugadores obtenidos
+     */
     public static List<Jugador> obtenerTodosJugadores(){
         con = Conexion.conectar();
         listaJugadores= new ArrayList<>();
@@ -61,7 +71,7 @@ public class JugadorDAO {
         try{
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from Jugador ju inner join Persona per on ju.id_Persona = per.id_Persona");
-            //ResultSetMetaData rsmd = rs.getMetaData();
+            
             while (rs.next()) {
                 jugador = new Jugador(rs.getDouble(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getDate(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getInt(13));
                 
@@ -76,6 +86,11 @@ public class JugadorDAO {
         return listaJugadores;
     }
     
+    /**
+     * Metodo para obtener la lista de los jugadores por Equipo
+     * @param id_equipo int, id del Equipo a buscar
+     * @return List<Jugador> lista de los jugadores buscados
+     */
     public static List<Jugador> obtenerTodosJugadoresEquipo(int id_equipo){
         
         con = Conexion.conectar();
@@ -101,15 +116,17 @@ public class JugadorDAO {
     }
     
 
-    
+    /**
+     * Metodo para modificar un Jugador ya existente
+     * @param jug Jugador a modificar
+     */
     public static void modificarJugador (Jugador jug) {
         int id=PersonaDAO.obtenerIdPersona(jug.getDni());
         jug.setIdPersona(id);         
         
         PersonaDAO.modificarPersona(jug);
         con = Conexion.conectar();
-        
-        //jugador = jug;
+
         try{
             PreparedStatement ps =  con.prepareStatement("update Jugador set Dorsal=?,Altura=?,id_Equipo=? where id_Persona=?");
             ps.setInt(1, jug.getDorsal());
@@ -124,15 +141,20 @@ public class JugadorDAO {
         }
     }
     
+    /**
+     * Metodo para obtener un Jugador por Dni
+     * @param dni String, dni a buscar
+     * @return Jugador buscado
+     */
     public static Jugador obtenerJugadorPorDni (String dni) {
         con = Conexion.conectar();
         Persona persona = PersonaDAO.obtenerPersonaPorDni(dni);
-        //
+       
         
         Jugador jugador = null;
         try{
             PreparedStatement ps = con.prepareStatement("select * from Jugador jug inner join Persona per on jug.id_Persona = per.id_Persona and jug.id_persona=?");
-            ps.setInt(1, persona.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
+            ps.setInt(1, persona.getIdPersona());
             
             ResultSet rs = ps.executeQuery();
             
@@ -148,15 +170,20 @@ public class JugadorDAO {
         return jugador;
     }
     
+    /**
+     * Metodo para obtener un Jugador por Dorsal y Equipo
+     * @param dorsal int, dorsal del jugador a buscar
+     * @param id_equipo int, id del equipo a buscar
+     * @return Jugador buscado
+     */
     public static Jugador obtenerJugadorPorDorsal (int dorsal, int id_equipo) {
         con = Conexion.conectar();
-        //Persona persona = PersonaDAO.obtenerPersonaPorDni(dni);
         
         
         Jugador jugador = null;
         try{
             PreparedStatement ps = con.prepareStatement("select * from Jugador jug inner join Persona per on jug.id_Persona = per.id_Persona and jug.dorsal=? and jug.id_equipo=?");
-            ps.setInt(1, dorsal);//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
+            ps.setInt(1, dorsal);
             ps.setInt(2, id_equipo);
             
             ResultSet rs = ps.executeQuery();
@@ -174,13 +201,18 @@ public class JugadorDAO {
     }
     
     
+    /**
+     * Metodo para obtener Jugador por Id
+     * @param persona, Persona a buscar
+     * @return Jugador buscado
+     */
     public static Jugador obtenerJugadorPorID (Persona persona) {
         con = Conexion.conectar();
       
         Jugador jugador = null;
         try{
             PreparedStatement ps = con.prepareStatement("select * from Jugador jug inner join Persona per on jug.id_Persona = per.id_Persona and jug.id_persona=?");
-            ps.setInt(1, persona.getIdPersona());//tb se puede hacer por idPersona cambiamos aqui idPersona y arriba tb per.idPersona=?
+            ps.setInt(1, persona.getIdPersona());
             
             ResultSet rs = ps.executeQuery();
             
@@ -196,12 +228,19 @@ public class JugadorDAO {
         return jugador;
     }
     
+    
+    /**
+     * Metodo para comprobar si Existe un dorsal en un Equipo
+     * @param dorsal int, dorsal del jugador a buscar
+     * @param id_equipo int, id Equipo a buscar
+     * @throws DorsalException si el dorsal ya existe en el Equipo
+     */
     public static void comprobarDorsal (int dorsal, int id_equipo) throws DorsalException {
         con = Conexion.conectar();
-        boolean existe = false;
+      
         int cont = 0;
       
-        Jugador jugador = null;
+        
         try{
             PreparedStatement ps = con.prepareStatement("select count(dorsal) from Jugador where dorsal=? and id_equipo = ?");
             ps.setInt(1, dorsal);

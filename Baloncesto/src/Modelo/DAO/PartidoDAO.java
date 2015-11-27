@@ -15,22 +15,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author inftel07
+ * Clase PartidoDAO
+ * @author grupo_baloncesto
  */
 public class PartidoDAO {
 
     private static List<Partido> listaPartidos = null;
     static Connection con = null;
-
+    
+    /**
+     * Metodo para crear un Partido
+     * @param par Partido a crear
+     */
     public static void crearPartido(Partido par) {
         con = Conexion.conectar();
-        //persona = per;
 
         try {
             PreparedStatement ps = con.prepareStatement("insert into Partido (Id_Partido, Resultado, Jornada, Id_Arbitro, Fecha, Localizacion)"
                     + " values (INC_ID_PARTIDO.NextVal,?,?,?,?,?)");
-            //ps.setInt(1, per.getIdPersona());
+            
             ps.setString(1, par.getResultado());
             ps.setInt(2, par.getNumJornada());
             ps.setInt(3, par.getIdArbitro());
@@ -43,10 +46,15 @@ public class PartidoDAO {
         } finally {
             Conexion.desconexion(con);
         }
-        //Conexion.desconexion();
+        
     }
-
-    public static List<Partido> listarPartidosJornada(int num_jornada) { //para emparejamientos
+    
+    /**
+     * Metodo para listar Partidos por jornada
+     * @param num_jornada int, numero de jornada a buscar
+     * @return List<Partido>, lista de Partidos buscados
+     */
+    public static List<Partido> listarPartidosJornada(int num_jornada) { 
         con = Conexion.conectar();
         listaPartidos = new ArrayList<>();
         Partido partido = null;
@@ -54,8 +62,7 @@ public class PartidoDAO {
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from Partido par where par.Jornada = " + num_jornada);
-
-            //ResultSetMetaData rsmd = rs.getMetaData();
+            
             while (rs.next()) {
                 partido = new Partido(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getString(6));
 
@@ -70,7 +77,12 @@ public class PartidoDAO {
         return listaPartidos;
 
     }
-
+    
+    /**
+     * Metodo para obtener los datos de un Partido
+     * @param id_partido int, id del Partido a buscar
+     * @return Partido buscado
+     */
     public static Partido obtenerDatosPartido(int id_partido) {
         con = Conexion.conectar();
         Partido partido = null;
@@ -79,7 +91,6 @@ public class PartidoDAO {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from Partido where Id_Partido = " + id_partido);
 
-            //ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
                 partido = new Partido(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getString(6));
 
@@ -93,22 +104,25 @@ public class PartidoDAO {
         return partido;
 
     }
-
+    
+    /**
+     * Metodo para obtener Jornada Actual
+     * @return int, Jornada Actual
+     */
     public static int obtenerJornadaActual() {
         con = Conexion.conectar();
-        //listaPersonas= new ArrayList<>();
+      
         int jornadaAct = 0;
         try {
             PreparedStatement ps = con.prepareStatement("select max(jornada) from partido");
 
             ResultSet rs = ps.executeQuery();
-            //ResultSetMetaData rsmd = rs.getMetaData();
-            //int number = rsmd.getColumnCount();
+           
             while (rs.next()) {
                 jornadaAct = rs.getInt(1);
             }
         } catch (SQLException ex) {
-            //return 0;
+  
             System.out.println(ex.getMessage());
         } finally {
             Conexion.desconexion(con);
@@ -116,7 +130,11 @@ public class PartidoDAO {
 
         return jornadaAct;
     }
-
+    
+    /**
+     * Metodo para modificar un resultado
+     * @param par Partido que va a modificar su resultado
+     */
     public static void modificarResultado(Partido par) {
         con = Conexion.conectar();
 
@@ -132,24 +150,27 @@ public class PartidoDAO {
         } finally {
             Conexion.desconexion(con);
         }
-        //Conexion.desconexion();
+     
     }
-
+    
+    /**
+     * Metodo para obtener el Id Actual
+     * @return int, retorna el maximo valor del Id de Partido
+     */
     public static int obtenerIdActual() {
         con = Conexion.conectar();
-        //listaPersonas= new ArrayList<>();
+      
         int IdAct = 0;
         try {
             PreparedStatement ps = con.prepareStatement("select max(id_partido) from partido");
 
             ResultSet rs = ps.executeQuery();
-                //ResultSetMetaData rsmd = rs.getMetaData();
-            //int number = rsmd.getColumnCount();
+         
             while (rs.next()) {
                 IdAct = rs.getInt(1);
             }
         } catch (SQLException ex) {
-            //return 0;
+        
             System.out.println(ex.getMessage());
         } finally {
             Conexion.desconexion(con);
