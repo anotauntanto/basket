@@ -22,18 +22,16 @@ import javax.swing.JLabel;
 
 
 /**
- *
- * @author inftel06
+ * Clase ControladorLogin
+ * @author grupo_baloncesto
  */
 
 public class ControladorLogin {
     private String contrasena;
     private String dni;
-    //private PersonaDAO miPersonaDAO;
     private Persona miPersona;
     private VistaLogin miVista;
     private JugadorDAO miJugador;
-    //private I18N bundleName;
     private JLabel error=new JLabel();
     private JButton botonAcceder=new JButton();
     private JButton botonIngles=new JButton();
@@ -41,11 +39,13 @@ public class ControladorLogin {
     private JLabel labelDni=new JLabel();
     private JLabel labelContrasena=new JLabel();
     private JLabel labelSaludo=new JLabel();
-    //private static final String BUNDLE_NAME=I18N.class.getPackage().getName()+".messages";
+    
     
     
    
-    
+    /**
+     * Constructor por defecto
+     */
     public ControladorLogin(){
         error=new JLabel();
         botonAcceder=new JButton();
@@ -54,14 +54,16 @@ public class ControladorLogin {
         labelDni=new JLabel();
         labelContrasena=new JLabel();
         labelSaludo=new JLabel();
-        //bundleName=new I18N();
+       
         
     }
-    
+    /**
+     * Metodo para Internacionalización, fija Idioma Ingles
+     * @param miLogin VistaLogin
+     */
     public void setIngles(VistaLogin miLogin){
         String loc=I18N.getBUNDLE_NAME();
         Locale locale=new Locale("en","GB");
-       // String miSt=getClass().getResourceAsStream("/Users/inftel06/NetBeansProjects/basket/Baloncesto/src/Internacionalizacion").toString();
         ResourceBundle rs=ResourceBundle.getBundle(loc,locale);
         botonAcceder=miLogin.getjButton1();
         labelSaludo=miLogin.getjLabel1();
@@ -77,10 +79,13 @@ public class ControladorLogin {
         
     }
     
+    /**
+     * Metodo para Internacionalizacion, fija Idioma Español
+     * @param miLogin VistaLogin
+     */
     public void setEspañol(VistaLogin miLogin){
-         String loc=I18N.getBUNDLE_NAME();
-         Locale locale=new Locale("es","ES");
-       // String miSt=getClass().getResourceAsStream("/Users/inftel06/NetBeansProjects/basket/Baloncesto/src/Internacionalizacion").toString();
+        String loc=I18N.getBUNDLE_NAME();
+        Locale locale=new Locale("es","ES");
         ResourceBundle rs=ResourceBundle.getBundle(loc,locale);
         botonAcceder=miLogin.getjButton1();
         labelSaludo=miLogin.getjLabel1();
@@ -92,21 +97,19 @@ public class ControladorLogin {
         botonAcceder.setText(rs.getString("entra"));
         error=miLogin.getjLabel4();
         error.setText(rs.getString("noEntra"));
-        //error.setVisible(true);
+        
     }
     
+    /**
+     * Metodo para asegurar que el Uuario existe en la Base de Datos
+     * @param dni String
+     * @param password String
+     * @param miLogin VistaLogin
+     */
     public void confirmarPassword(String dni, String password, VistaLogin miLogin){
-        //miPersonaDAO = new PersonaDAO();
+    
         miPersona=PersonaDAO.obtenerPersonaPorDni(dni);
-        
-        /*JLabel error=new JLabel();
-        JButton botonAcceder=new JButton();
-        JButton botonIngles=new JButton();
-        JButton botonEspañol=new JButton();
-        JLabel labelDni=new JLabel();
-        JLabel labelContrasena=new JLabel();
-        JLabel labelSaludo=new JLabel();*/
-        
+    
         
         
         if (miPersona!=null){
@@ -118,7 +121,7 @@ public class ControladorLogin {
                         VistaJugador nuevaVista=new VistaJugador(miPersona);
                         miLogin.setVisible(false);
                         nuevaVista.setVisible(true);
-                        //System.out.println("holii: "+miPersona.getIdPersona());
+                        
                         break;
                     case 2:
                         VistaEntrenador nuevaVista2=new VistaEntrenador(miPersona);
@@ -136,17 +139,13 @@ public class ControladorLogin {
                         nuevaVist4.setVisible(true);    
                         break;
                 }
-                //System.out.println(miPersona.getRol());
+              
             }
             
             
         }
         else {
-            //final VistaNoEntra nuevaVista=new VistaNoEntra();
-                        //this.setVisible(false);
-                        //nuevaVista.setVisible(true);
-                        //new VistaNoEntra(miLogin,true).setVisible(true);
-                        //error=miLogin.getjLabel4();
+
                         error.setVisible(true);
         }
     }

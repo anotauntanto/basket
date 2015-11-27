@@ -23,8 +23,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author inftel08
+ * Clase ControladorInsertarEstadisticas
+ * @author grupo_baloncesto
  */
 public class ControladorInsertarEstadisticas {
 
@@ -36,11 +36,18 @@ public class ControladorInsertarEstadisticas {
     private int id_equipo;
     private DefaultTableModel modelo;
 
+    /**
+     * Constructor por defecto
+     * @param miVista 
+     */
     public ControladorInsertarEstadisticas(VistaOrganizacion miVista) {
         this.miVista = miVista;
-        //this.GenerarListaEquipos();
+ 
     }
-
+    
+    /**
+     * Metodo para mostrar la Lista de Equipos
+     */
     public void GenerarListaEquipos() {
         nombre_equipos = new Vector<>();
         List<Partido> listarPartidosJornada = PartidoDAO.listarPartidosJornada(PartidoDAO.obtenerJornadaActual());
@@ -48,15 +55,18 @@ public class ControladorInsertarEstadisticas {
             List<PartidoJugado> listarEquiposporPartido = PartidoJugadoDAO.listarEquiposporPartido(p.getIdPartido());
             int equipoA = listarEquiposporPartido.get(0).getIdEquipo();
             int equipoB = listarEquiposporPartido.get(1).getIdEquipo();
-            nombre_equipos.add(EquipoDAO.obtenerNombreEquipo(equipoA) + " contra " + EquipoDAO.obtenerNombreEquipo(equipoB) + " " + listarEquiposporPartido.get(0).getIdPartido());
-            nombre_equipos.add(EquipoDAO.obtenerNombreEquipo(equipoB) + " contra " + EquipoDAO.obtenerNombreEquipo(equipoA) + " " + listarEquiposporPartido.get(1).getIdPartido());
+            nombre_equipos.add(EquipoDAO.obtenerNombreEquipo(equipoA) + " contra " + EquipoDAO.obtenerNombreEquipo(equipoB) + "/Id_partido: " + listarEquiposporPartido.get(0).getIdPartido());
+            nombre_equipos.add(EquipoDAO.obtenerNombreEquipo(equipoB) + " contra " + EquipoDAO.obtenerNombreEquipo(equipoA) + "/Id_partido: " + listarEquiposporPartido.get(1).getIdPartido());
         }
 
         DefaultComboBoxModel model = new DefaultComboBoxModel(nombre_equipos);
         miVista.getComboEquipos().setModel(model);
 
     }
-
+    
+    /**
+     * Metodo para recoger Equipo
+     */
     public void recogerEquipo() {
         
         nombre_equipos = new Vector<>();
@@ -77,11 +87,13 @@ public class ControladorInsertarEstadisticas {
         miVista.getComboJugador().setModel(model);
 
     }
-
+    
+    /**
+     * Metodo para recoger Jugador
+     */
     public void recogerJugador() {
         int num_dorsal = Integer.parseInt(miVista.getComboJugador().getSelectedItem().toString());
-        //System.out.println(nu);
-        //System.out.println(num_dorsal);
+
         Jugador jug = JugadorDAO.obtenerJugadorPorDorsal(num_dorsal, id_equipo);
         this.id_jugador = jug.getIdPersona();
         Estadisticas es = EstadisticasDAO.obtenerTodasEstadisticasJugadorPartido(jug.getIdPersona(), id_partido);
@@ -99,7 +111,10 @@ public class ControladorInsertarEstadisticas {
         }
 
     }
-
+    
+    /**
+     * Metodo para recoger Estadisticas
+     */
     public void recogerEstadisticas() {
         Estadisticas es = new Estadisticas();
 

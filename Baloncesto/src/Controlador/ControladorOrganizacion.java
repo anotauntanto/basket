@@ -26,11 +26,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author inftel08
+ * Clase EntrenadorResultado
+ * @author grupo_baloncesto
  */
 public class ControladorOrganizacion {
-
+    
     private VistaOrganizacion miVista;
     private Jugador jug;
     private Persona persona;
@@ -39,11 +39,19 @@ public class ControladorOrganizacion {
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     boolean ok;
     boolean actualizar;
-
+    
+    /**
+     * Constructor por defecto
+     * @param miVista VistaOrganizacion
+     */
     public ControladorOrganizacion(VistaOrganizacion miVista) {
         this.miVista = miVista;
     }
-
+    
+    /**
+     * Metodo para insertar persona por rol
+     * @param rol int, rol a insertar
+     */
     public void insertarPersona(int rol) {
 
         ok = true;
@@ -170,16 +178,15 @@ public class ControladorOrganizacion {
                 miVista.getCampoExito().setVisible(true);
                 
                 if (actualizar) {
-                    System.out.println ("Jugador " + jug.getIdPersona());
+                    
                     JugadorDAO.modificarJugador(jug);
                 } else {
                     JugadorDAO.insertarJugador(jug);
                 }
-                //vaciar campos
+                
             } 
             
             
-             System.out.println(jug);
             
         } else if (rol == miVista.getRol_arbitro()) {
             this.arbitro = new Arbitro(persona);
@@ -202,7 +209,6 @@ public class ControladorOrganizacion {
 
             } 
             
-            System.out.println(arbitro);
 
         } else if (rol == miVista.getRol_entrenador()) {
             this.entrenador = new Entrenador(persona);
@@ -241,14 +247,14 @@ public class ControladorOrganizacion {
             if (ok) {
                 miVista.getCampoExito().setVisible(true);
                 if (actualizar) {
-                    System.out.println ("Entrenador " + entrenador.getIdPersona());
+                   
                     EntrenadorDAO.modificarEntrenador(entrenador);
                 } else {
                     EntrenadorDAO.insertarEntrenador(entrenador);
                 }  
             } 
             
-            System.out.println(entrenador);
+     
             
         } else {
             
@@ -265,7 +271,6 @@ public class ControladorOrganizacion {
             
         }
 
-        System.out.println(persona);
 
     }
 
