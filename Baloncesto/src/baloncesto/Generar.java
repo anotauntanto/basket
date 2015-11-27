@@ -44,9 +44,11 @@ public class Generar {
     
     public int generarSigJornada(){
         int sigJ=sigJornadaN();
+      
         if (sigJ==-1){ //NO hago nada porque no ha finalizado
             return -1;
         }
+        
         //Si ha terminado
         else if (sigJ==0){ 
             primeraJornada();

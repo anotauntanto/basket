@@ -33,16 +33,16 @@ import javax.swing.text.JTextComponent;
  */
 public class VistaOrganizacion extends javax.swing.JFrame {
 
-    private ControladorOrganizacion miControladorInsercion;
-    private ControladorCampeonato miControladorCampeonato;
-    private ControladorResultados miControladorResultados;
-    private ControladorEquipo miControladorEquipo;
-    private ControladorInsertarEstadisticas miControladorInsertarEstadisticas;
+    private ControladorOrganizacion miControladorInsercion = null;
+    private ControladorCampeonato miControladorCampeonato = null;
+    private ControladorResultados miControladorResultados = null;
+    private ControladorEquipo miControladorEquipo = null;
+    private ControladorInsertarEstadisticas miControladorInsertarEstadisticas = null;
     private String equipo;
     private final int rol_jugador = 1;
     private final int rol_entrenador = 2;
     private final int rol_arbitro = 3;
-    private final ControladorClasificacion miControladorClasificacion;
+    private ControladorClasificacion miControladorClasificacion = null;
 
     /**
      * Creates new form VistaOrganizacionOK
@@ -1421,6 +1421,7 @@ public class VistaOrganizacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        
         try {
             // TODO add your handling code here:
             miControladorClasificacion.generarPDF();
@@ -1638,46 +1639,41 @@ public class VistaOrganizacion extends javax.swing.JFrame {
     public JButton getGenerarPDF() {
         return jButton14;
     }
-    
 
-    /**
-     * @param args the command line arguments
-     */
     //public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        /*
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaOrganizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaOrganizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaOrganizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaOrganizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
+    /*
+     try {
+     for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+     if ("Nimbus".equals(info.getName())) {
+     javax.swing.UIManager.setLookAndFeel(info.getClassName());
+     break;
+     }
+     }
+     } catch (ClassNotFoundException ex) {
+     java.util.logging.Logger.getLogger(VistaOrganizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+     } catch (InstantiationException ex) {
+     java.util.logging.Logger.getLogger(VistaOrganizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+     } catch (IllegalAccessException ex) {
+     java.util.logging.Logger.getLogger(VistaOrganizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+     java.util.logging.Logger.getLogger(VistaOrganizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+     }
+     //</editor-fold>
+     //</editor-fold>
 
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaOrganizacion().setVisible(true);
+     /* Create and display the form */
+    /*java.awt.EventQueue.invokeLater(new Runnable() {
+     public void run() {
+     new VistaOrganizacion().setVisible(true);
 
-            }
-        });
-    }*/
-
+     }
+     });
+     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup grupo_botones;

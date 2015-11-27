@@ -22,6 +22,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -34,7 +35,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *Clase ControladorClasificación
+ * Clase ControladorClasificación
+ *
  * @author grupo_baloncesto
  */
 public class ControladorClasificacion {
@@ -44,26 +46,29 @@ public class ControladorClasificacion {
     DefaultTableModel modelo;
     private JTable campoTabla1;
     private DefaultTableModel modelito;
-    
+
     /**
-     * Constructor ControladorClasificación que controla la clasificación del campeonato
+     * Constructor ControladorClasificación que controla la clasificación del
+     * campeonato
+     *
      * @param miVista VistaOrganizacion
      */
-
     public ControladorClasificacion(VistaOrganizacion miVista) {
         this.miVista = miVista;
         listarClasificacion();
     }
-    /**
-     * Método listarClasificación que lee de fichero el campeonato en el que se encuentra y te lista la clasificación actual del campeonato en una tabla
-     */
 
+    /**
+     * Método listarClasificación que lee de fichero el campeonato en el que se
+     * encuentra y te lista la clasificación actual del campeonato en una tabla
+     */
     public void listarClasificacion() {
 
         String tipo_competicion = FicherosTipo.leerFichero();
+        //String tipo_competicion = "Copa";
 
-        if (tipo_competicion.equals("Copa")) {
-
+        if (tipo_competicion.contains("Copa")) {
+            System.out.println("guacamoleI");
             miVista.getjScrollCopa().setVisible(true);
             miVista.getjScrollLiga().setVisible(false);
             campoTabla = miVista.getTablaClasificacionCopa();
@@ -88,8 +93,9 @@ public class ControladorClasificacion {
                 }
             }
 
-        } else if (tipo_competicion.equals("Liga")) {
+        } else if (tipo_competicion.contains("Liga")) {
 
+            System.out.println("guacamoleII");
             miVista.getjScrollLiga().setVisible(true);
             miVista.getjScrollCopa().setVisible(false);
 
@@ -99,7 +105,7 @@ public class ControladorClasificacion {
             while (modelo.getRowCount() > 0) {
                 modelo.removeRow(0);
             }
-            
+
             List<Equipo> obtenerTodosEquipos = EquipoDAO.obtenerTodosEquipos();
             Collections.sort(obtenerTodosEquipos);
             System.out.println(obtenerTodosEquipos);
@@ -152,7 +158,9 @@ public class ControladorClasificacion {
     }
 
     /**
-     * Método generarPDF que genera el PDF con la clasificación al pulsar el botón generar PDF
+     * Método generarPDF que genera el PDF con la clasificación al pulsar el
+     * botón generar PDF
+     *
      * @throws FileNotFoundException salta la excepcion
      * @throws DocumentException salta la excepcion
      * @throws IOException salta la excepcion
@@ -163,7 +171,7 @@ public class ControladorClasificacion {
         String time = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(cal.getTime());
 
         File file = new File("Clasificacion.pdf");
-        FileOutputStream fileout = new FileOutputStream(file);
+        FileOutputStream fileout = new FileOutputStream(file.getAbsolutePath());
         Document document = new Document();
         PdfWriter.getInstance(document, fileout);
 
@@ -179,28 +187,31 @@ public class ControladorClasificacion {
         fuente3.setStyle(Font.BOLD | Font.ITALIC);
         fuente3.setSize(16);
         fuente3.setColor(255, 153, 0);
-        
+
         document.open();
 
-        Paragraph pa = new Paragraph("Fecha y hora: " + time); 
-        
+        Paragraph pa = new Paragraph("Fecha y hora: " + time);
+
         pa.setAlignment(Element.ALIGN_RIGHT);
         document.add(pa);
-        
-        String url = "src/files/imagenPDF.jpg";
-        Image imagen = Image.getInstance(url);  
-       
+
+        /*String url = "imagenPDF.jpg";
+        File file2 = new File(url);
+        FileInputStream filein = new FileInputStream(file2.getAbsolutePath());
+        //String url = "./imagenPDF.jpg";
+        Image imagen = Image.getInstance(filein.getFD());  
+        //System.out.println(file2.getAbsolutePath());
         imagen.scalePercent(20);
-        document.add(imagen);
+        document.add(imagen);*/
         document.add(new Paragraph("\n"));
         Paragraph p3 = new Paragraph("GESTOR DE CAMPEONATO DE BALONCESTO", fuente1);
         p3.setAlignment(Element.ALIGN_CENTER);
         document.add(p3);
-        
+
         document.add(new Paragraph("\n"));
         String tipo_competicion = FicherosTipo.leerFichero();
 
-        if (tipo_competicion.equals("Copa")) {
+        if (tipo_competicion.contains("Copa")) {
             Paragraph pa1 = new Paragraph("COPA", fuente3);
             pa1.setAlignment(Element.ALIGN_CENTER);
             document.add(pa1);
@@ -224,7 +235,7 @@ public class ControladorClasificacion {
 
             }
 
-        } else if (tipo_competicion.equals("Liga")) {
+        } else if (tipo_competicion.contains("Liga")) {
             Paragraph pa1 = new Paragraph("LIGA", fuente3);
             pa1.setAlignment(Element.ALIGN_LEFT);
             document.add(pa1);
@@ -234,15 +245,14 @@ public class ControladorClasificacion {
             Collections.sort(obtenerTodosEquipos);
             System.out.println(obtenerTodosEquipos);
             for (Equipo p : obtenerTodosEquipos) {
-                Paragraph pa2 = new Paragraph(p.getNombre(),fuente2);
+                Paragraph pa2 = new Paragraph(p.getNombre(), fuente2);
                 pa2.setAlignment(Element.ALIGN_LEFT);
                 document.add(pa2);
             }
-            
+
         }
         document.close();
         File myfile = new File("Clasificacion.pdf");
         Desktop.getDesktop().open(myfile);
-
     }
 }
