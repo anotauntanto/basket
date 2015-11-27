@@ -34,8 +34,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author inftel08
+ *Clase ControladorClasificación
+ * @author grupo_baloncesto
  */
 public class ControladorClasificacion {
 
@@ -44,11 +44,19 @@ public class ControladorClasificacion {
     DefaultTableModel modelo;
     private JTable campoTabla1;
     private DefaultTableModel modelito;
+    
+    /**
+     * Constructor ControladorClasificación que controla la clasificación del campeonato
+     * @param miVista VistaOrganizacion
+     */
 
     public ControladorClasificacion(VistaOrganizacion miVista) {
         this.miVista = miVista;
         listarClasificacion();
     }
+    /**
+     * Método listarClasificación que lee de fichero el campeonato en el que se encuentra y te lista la clasificación actual del campeonato en una tabla
+     */
 
     public void listarClasificacion() {
 
@@ -91,7 +99,7 @@ public class ControladorClasificacion {
             while (modelo.getRowCount() > 0) {
                 modelo.removeRow(0);
             }
-            //List<Partido> listarPartidosJornada = PartidoDAO.listarPartidosJornada(0);
+            
             List<Equipo> obtenerTodosEquipos = EquipoDAO.obtenerTodosEquipos();
             Collections.sort(obtenerTodosEquipos);
             System.out.println(obtenerTodosEquipos);
@@ -143,6 +151,12 @@ public class ControladorClasificacion {
 
     }
 
+    /**
+     * Método generarPDF que genera el PDF con la clasificación al pulsar el botón generar PDF
+     * @throws FileNotFoundException salta la excepcion
+     * @throws DocumentException salta la excepcion
+     * @throws IOException salta la excepcion
+     */
     public void generarPDF() throws FileNotFoundException, DocumentException, IOException {
 
         Calendar cal = Calendar.getInstance();
@@ -216,7 +230,6 @@ public class ControladorClasificacion {
             document.add(pa1);
             document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
             document.add(new Paragraph("\n"));
-            //List<Partido> listarPartidosJornada = PartidoDAO.listarPartidosJornada(0);
             List<Equipo> obtenerTodosEquipos = EquipoDAO.obtenerTodosEquipos();
             Collections.sort(obtenerTodosEquipos);
             System.out.println(obtenerTodosEquipos);

@@ -9,12 +9,16 @@ import Modelo.Clases.Persona;
 import Vistas.VistaDatosPersonales;
 
 /**
- *
- * @author inftel08
+ *Clase ControladorDatosPersonales
+ * @author grupo_baloncesto
  */
 public class ControladorDatosPersonales {
-    //private Persona persona;
     
+    /**
+     * Constructor ControladorDatosPersonales que almacena los datos personales de las personas
+     * @param persona persona
+     * @param vista VistaDatosPersonales
+     */
     public ControladorDatosPersonales(Persona persona, VistaDatosPersonales vista) {
         //this.persona = persona;
        javax.swing.JTextField campo = vista.getCampoNombre();

@@ -27,12 +27,12 @@ public class EntrenadorDAO {
     }
     
     /**
-     * Metodo para insertar un etrenador en la Base de Datos
+     * Metodo para insertar un entrenador en la Base de Datos
      * @param ent Entrenador a insertar
      */
     public static void insertarEntrenador (Entrenador ent){
         
-        System.out.println("otroo" + ent.getIdPersona());
+        
         PersonaDAO.insertarPersona(ent);
         
         Persona per = PersonaDAO.obtenerPersonaPorDni(ent.getDni());

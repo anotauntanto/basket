@@ -23,10 +23,13 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author inftel08
+ *Clase ControladorCampeonato
+ * @author grupo_baloncesto
  */
 public class ControladorCampeonato {
+    /**
+     * Atributos de la clase ControladorCampeonato
+     */
 
     private VistaOrganizacion miVista;
     private Vector<String> num_equipos;
@@ -37,11 +40,14 @@ public class ControladorCampeonato {
     private javax.swing.ButtonGroup grupo_botones;
     private javax.swing.JComboBox numPlayoff;
 
+    
+    /**
+     * Constructor GenerarLista para generar una lista con los equipos para poder generar el campeonato
+     */
     public void GenerarLista() {
 
         //contar equipos de la bbdd
         int contador_equipos = EquipoDAO.contarEquipos();
-        System.out.println("Numero de equipos " + contador_equipos);
         num_equipos = new Vector<>();
 
         int exp = 1;
@@ -56,6 +62,11 @@ public class ControladorCampeonato {
         //System.out.println(num_equipos);
         //generar array
     }
+    
+    /**
+     * Método ControladorCampeonato para escribir en una tabla los equipos obtenidos anteriormente
+     * @param miVista Vista organizacion
+     */
 
     public ControladorCampeonato(VistaOrganizacion miVista) {
         this.miVista = miVista;
@@ -65,6 +76,12 @@ public class ControladorCampeonato {
 
     }
 
+    /**
+     * Método tipoCampeonato que me devuelve el tipo de campeonato que quiero generar y lo genera
+     * @param miVista VistaOrganizacion
+     * @return int que indica el tipo de campeonato que queremos generar
+     * @throws IOException se lanza si
+     */
     public int tipoCampeonato(VistaOrganizacion miVista) throws IOException {
         javax.swing.JTable miTabla = miVista.getTablaGenerar();
         Generar miGen = new Generar();
@@ -82,7 +99,7 @@ public class ControladorCampeonato {
         int campeonatoVacio = PartidoDAO.obtenerIdActual();
         if (campeonatoVacio != 0) {
             miVista.getCampoErrorGenerar().setVisible(true);
-            //System.out.println("TOY AQUI: "+campeonatoVacio );
+            
             return -1;
         }
         if (tipoLiga.isSelected()) {
@@ -108,8 +125,7 @@ public class ControladorCampeonato {
         List<Partido> listaPartidos;
         listaPartidos = PartidoDAO.listarPartidosJornada(miJornada);
 
-        //ArrayList<Partido> listaPartidos=(ArrayList<Partido>) PartidoDAO.listarPartidosJornada(miJornada);
-        //System.out.println(numEquipo+3);
+        
         String nombreJ = "Liga";
         //String nombreB;
 
@@ -122,11 +138,16 @@ public class ControladorCampeonato {
             }
             modelo.addRow(new Object[]{nombreJ, EquipoDAO.obtenerNombreEquipo(equipoA), EquipoDAO.obtenerNombreEquipo(equipoB)});
 
-            //EquipoDAO.obtenerNombreEquipo(miJornada);
+            
         }
         return tipoCompeticion;
     }
 
+    /**
+     * Método generarSigJornada que me generará la siguiente jornada del campeonato seleccionado
+     * @param miVista VistaOrganización
+     * @return la siguiente jornada almacenada en una tabla
+     */
     public int generarSigJornada(VistaOrganizacion miVista) {
         
         Generar miGen = new Generar();
@@ -135,7 +156,7 @@ public class ControladorCampeonato {
         DefaultTableModel modelo = (DefaultTableModel) miTabla.getModel();
 
            
-        System.out.println("SigJornadaN: " + jornadaActual);
+        
 
         List<Partido> listaPartidos;
         listaPartidos = PartidoDAO.listarPartidosJornada(jornadaActual);
@@ -144,16 +165,14 @@ public class ControladorCampeonato {
         String tipoCompeticion = FicherosTipo.leerFichero();
         //Si Liga no hace nada
         if (tipoCompeticion.equals("Liga")) {
-            //if (jornadaActual==0 && listaPartidos.size()>0){
-            System.out.println("EN liga");
+            
 
         } //Si Copa
         else if (tipoCompeticion.equals("Copa") && jornadaActual!=0) {
-            //else if (jornadaActual>0){
+            
             jornadaActual = jornadaActual + 1;
             miGen.generarSigJornada();
-            System.out.println("Entrnado en gen SIg Jorn");
-            //List<Partido> listaPartidos;
+            
             listaPartidos = PartidoDAO.listarPartidosJornada(jornadaActual);
             
             for (Partido e : listaPartidos) {
@@ -163,19 +182,16 @@ public class ControladorCampeonato {
 
                 modelo.addRow(new Object[]{jornadaActual, EquipoDAO.obtenerNombreEquipo(equipoA), EquipoDAO.obtenerNombreEquipo(equipoB)});
 
-                //EquipoDAO.obtenerNombreEquipo(miJornada);
+                
             }
 
         } else {
 
-            //String[] num = tipoCompeticion.split(":");
-            //int numEq=Integer.parseInt(num[1]);
-            //boolean mixto=false;
-            //if (mixto){
+            
             if (jornadaActual > 0) {
                 miGen.generarJornadaPlayoffN(jornadaActual);
                 jornadaActual = jornadaActual + 1;
-                //miGen.generarSigJornada();
+                
                 
             } else if (jornadaActual == 0){
                 jornadaActual = jornadaActual + 1;
@@ -184,9 +200,9 @@ public class ControladorCampeonato {
                 miGen.generarPlayoff(numEq);
             }
 
-            //}
+            
         }
-        //Comprobar si rula!!!
+        
         listaPartidos = PartidoDAO.listarPartidosJornada(jornadaActual);
         if (listaPartidos.size() == 0) {
             miVista.getEtiquetaFinCampeonato().setVisible(true);
@@ -203,7 +219,7 @@ public class ControladorCampeonato {
             int equipoB = listaPJ.get(1).getIdEquipo();
             modelo.addRow(new Object[]{jornadaActual, EquipoDAO.obtenerNombreEquipo(equipoA), EquipoDAO.obtenerNombreEquipo(equipoB)});
 
-            //EquipoDAO.obtenerNombreEquipo(miJornada);
+            
         }
         
         
