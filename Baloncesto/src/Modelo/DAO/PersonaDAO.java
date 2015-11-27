@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Modelo.DAO;
 
 import Modelo.Clases.Persona;
@@ -9,38 +14,35 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+ * Clase PersonaDAO
  * @author grupo_baloncesto
  */
 
 
 public class PersonaDAO {
-    //private static Persona persona=null;
+    
     private static Connection con= null;
     private static List <Persona> listaPersonas=null;
+    
     /**
-     * Constructor por edef
+     * Constructor por defecto
      */
     public PersonaDAO() {
     }
     
+    /**
+     * Metodo para insertar Persona
+     * @param per Persona a insertar
+     */
     public static void insertarPersona(Persona per) {
         con = Conexion.conectar();
-        //persona = per;
+
         
         try{
             PreparedStatement ps =  con.prepareStatement("insert into Persona (Id_Persona,Nombre,Apellidos,DNI,Fecha_Nac,Email,Contrasena,Telefono,Rol)"
                     + " values (INC_ID_PERSONA.NextVal,?,?,?,?,?,?,?,?)");
-            //ps.setInt(1, per.getIdPersona());
+        
             ps.setString(1, per.getNombre());
             ps.setString(2, per.getApellidos());
             ps.setString(3, per.getDni());
@@ -57,9 +59,13 @@ public class PersonaDAO {
         }finally {
             Conexion.desconexion(con);
         }
-        //
+   
     }
     
+    /**
+     * Metodo para obtener todas las Personas
+     * @return List<Persona> lista de todas las personas
+     */
     public static List<Persona> obtenerTodasPersonas(){
         Persona persona=null;
         con=Conexion.conectar();
@@ -85,16 +91,20 @@ public class PersonaDAO {
 
     }
     
+    /**
+     * Metodo para obtener una Persona por Dni
+     * @param dni String, dni de la Persona a buscar
+     * @return Persona buscada
+     */
     public static Persona obtenerPersonaPorDni(String dni) {
         con=Conexion.conectar();
-        //listaPersonas= new ArrayList<>();
+     
         Persona persona=null;
         try{
             PreparedStatement ps = con.prepareStatement("select * from persona where DNI=?");
             ps.setString(1, dni);
             ResultSet rs = ps.executeQuery();
-            //ResultSetMetaData rsmd = rs.getMetaData();
-            //int number = rsmd.getColumnCount();
+           
             while (rs.next()) {
                 persona = new Persona(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9));               
             }
@@ -107,12 +117,14 @@ public class PersonaDAO {
         return persona;
     }
     
-
-     public static void modificarPersona(Persona per) {
-        //int id=PersonaDAO.obtenerIdPersona(per.getDni());
-        //per.setIdPersona(id);
+    /**
+     * Metodo para modificar Persona
+     * @param per Persona a modificar
+     */
+    public static void modificarPersona(Persona per) {
+    
          con = Conexion.conectar();
-        //Persona persona = per;
+    
         try{
             PreparedStatement ps =  con.prepareStatement("update Persona set Nombre=?,Apellidos=?,DNI=?,Fecha_Nac=?,Email=?,Contrasena=?,Telefono=?,Rol=? where id_Persona=?");
             System.out.println("Id persona" + per.getIdPersona());
@@ -132,7 +144,12 @@ public class PersonaDAO {
             Conexion.desconexion(con);
         }
     }
-     
+    
+    /**
+     * Metodo para obtener Id Persona por Dni
+     * @param dni String, dni a buscar
+     * @return int, id de la Persona buscada
+     */
     public static int obtenerIdPersona(String dni){
         int id=0;
         
@@ -142,8 +159,7 @@ public class PersonaDAO {
             PreparedStatement ps = con.prepareStatement("select id_persona from Persona where dni=?");
             ps.setString(1, dni);
             ResultSet rs = ps.executeQuery();
-            //ResultSetMetaData rsmd = rs.getMetaData();
-            //int number = rsmd.getColumnCount();
+
             while (rs.next()) {
                 
                 id=rs.getInt(1);

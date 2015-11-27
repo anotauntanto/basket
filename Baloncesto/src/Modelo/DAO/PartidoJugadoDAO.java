@@ -152,9 +152,9 @@ public class PartidoJugadoDAO {
      
     //Numero de partidos ganados
     /**
-     * 
-     * @param equipo
-     * @return 
+     * Metodo para calcular el numero de partidos ganados por un Equipo
+     * @param equipo Equipo a buscar
+     * @return int, numero de victorias del Equipo buscado
      */
      public static int numeroPartidosGanados(Equipo equipo){
          con = Conexion.conectar();
