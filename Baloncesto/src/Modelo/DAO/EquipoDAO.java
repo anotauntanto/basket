@@ -258,7 +258,7 @@ public class EquipoDAO {
             ResultSet rs = ps.executeQuery();
            
             while (rs.next()) {
-                System.out.println("Entero"+rs.getInt(8));
+                
                 equipo = new Equipo(rs.getInt(8), "", "", 1);  //Insertamos solo el id_equipo porque no necesitamos nada mas
 
                 listaEquipos.add(equipo);

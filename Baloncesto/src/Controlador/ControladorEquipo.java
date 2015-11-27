@@ -13,20 +13,27 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author inftel08
+ *Clse ControladorEquipo
+ * @author grupo_baloncesto
  */
 public class ControladorEquipo {
 
     private VistaOrganizacion miVista;
-
     private Equipo equipo;
 
+    
+    /**
+     * Constructor controladorEquipo
+     * @param miVista VistaOrganización
+     */
     public ControladorEquipo(VistaOrganizacion miVista) {
         this.miVista = miVista;
 
     }
 
+    /**
+     * Método insertarEquipo que inserta un nuevo equipo en la base de datos del campeonato
+     */
     public void insertarEquipo() {
 
         boolean ok = true;

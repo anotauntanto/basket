@@ -23,11 +23,16 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 /**
- *
- * @author inftel08
+ *Clase ControladorEstadísticas
+ * @author grupo_baloncesto
  */
 public class ControladorEstadisticas {
 
+    /**
+     * Constructor ControladorEstadísticas
+     * @param jugador jugador
+     * @param vista VistaEstadisticas
+     */
     public ControladorEstadisticas(Jugador jugador, VistaEstadisticas vista) {
 
         //llamadas a los DAO
