@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo.Clases;
+package baloncesto;
 
+import Modelo.Clases.Arbitro;
+import Modelo.Clases.Equipo;
+import Modelo.Clases.Partido;
+import Modelo.Clases.PartidoJugado;
 import Modelo.DAO.ArbitroDAO;
 import Modelo.DAO.EquipoDAO;
 import Modelo.DAO.PartidoDAO;

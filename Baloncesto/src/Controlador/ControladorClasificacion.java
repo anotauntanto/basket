@@ -6,7 +6,7 @@
 package Controlador;
 
 import Modelo.Clases.Equipo;
-import Modelo.Clases.FicherosTipo;
+import baloncesto.FicherosTipo;
 import Modelo.Clases.Partido;
 import Modelo.Clases.PartidoJugado;
 import Modelo.DAO.EquipoDAO;

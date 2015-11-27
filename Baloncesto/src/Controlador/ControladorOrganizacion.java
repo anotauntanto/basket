@@ -8,7 +8,7 @@ package Controlador;
 import Excepciones.DorsalException;
 import Excepciones.EquipoException;
 import Modelo.Clases.Arbitro;
-import Modelo.Clases.Comprobaciones;
+import baloncesto.Comprobaciones;
 import Modelo.Clases.Entrenador;
 import Modelo.Clases.Jugador;
 import Modelo.Clases.Persona;

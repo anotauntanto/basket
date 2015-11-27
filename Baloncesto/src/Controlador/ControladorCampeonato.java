@@ -5,8 +5,8 @@
  */
 package Controlador;
 
-import Modelo.Clases.FicherosTipo;
-import Modelo.Clases.Generar;
+import baloncesto.FicherosTipo;
+import baloncesto.Generar;
 import Modelo.Clases.Partido;
 import Modelo.Clases.PartidoJugado;
 import Modelo.DAO.EquipoDAO;
