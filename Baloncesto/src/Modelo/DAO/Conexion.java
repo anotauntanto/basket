@@ -61,7 +61,6 @@ public class Conexion {
         
         try {
             con.close();
-            //System.out.println("Desconexión de la base de datos");
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }

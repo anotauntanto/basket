@@ -67,13 +67,12 @@ public class PersonaDAO {
         try{
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from persona");
-            //ResultSetMetaData rsmd = rs.getMetaData();
-            //int number = rsmd.getColumnCount();
-            
-            //hacer un switch cmo el q hizo la profe para distinguir q tipo de datos hay en la bbdd todo esto dentro de un for de number
 
             while (rs.next()) {
-                persona = new Persona(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9));
+                persona = new Persona(rs.getInt(1), rs.getString(2), 
+                        rs.getString(3), rs.getString(4), rs.getDate(5), 
+                        rs.getString(6), rs.getString(7), rs.getString(8), 
+                        rs.getInt(9));
                 listaPersonas.add(persona);
             }
         }catch(SQLException ex){
