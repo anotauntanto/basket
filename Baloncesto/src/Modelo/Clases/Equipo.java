@@ -121,6 +121,11 @@ public class Equipo implements Comparable<Equipo> {
         return hash;
     }
 
+    /**
+     * Comprueba si dos métodos son iguales
+     * @param obj método
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -146,6 +151,11 @@ public class Equipo implements Comparable<Equipo> {
     }
     
    
+    /**
+     * Compara equipos para ver cuál tiene más victorias
+     * @param otroEquipo equipo
+     * @return int, que me especifica cúal tiene más victorias para ordenarlos en la clasificación
+     */
     @Override
     public int compareTo(Equipo otroEquipo){
         int victoriasOtro=PartidoJugadoDAO.numeroPartidosGanados(otroEquipo);

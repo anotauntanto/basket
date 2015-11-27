@@ -45,12 +45,20 @@ public class Arbitro extends Persona{
     public Arbitro(String Provincia) {
         this.provincia = Provincia;
     }
-    
+    /**
+     * Contructor de la clase árbitro
+     * @param per persona
+     * @param provincia String provincia a la que pertenece el árbitro
+     */
     public Arbitro (Persona per, String provincia) {
         super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
         this.provincia= provincia;
         
     }
+    /**
+     * Constructor de la clase árbitro 
+     * @param per persona
+     */
     public Arbitro (Persona per) {
         super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
         this.provincia= "";

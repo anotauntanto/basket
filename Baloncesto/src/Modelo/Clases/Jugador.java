@@ -39,6 +39,11 @@ public class Jugador extends Persona{
         this.dorsal = dorsal;
         this.idEquipo = idEquipo;
     }
+    
+    /**
+     * Contructor de la clase jugador
+     * @param per persona
+     */
         public Jugador(Persona per) {
         super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
         this.altura = 0;
@@ -67,6 +72,13 @@ public class Jugador extends Persona{
         this.dorsal = dorsal;
         this.idEquipo = idEquipo;
     }
+    
+    /**
+     * Constructor de la clase jugador
+     * @param altura double altura del jugador
+     * @param dorsal int dorsal del jugador
+     * @param idEquipo int identificador del equipo al que pertenece el jugador
+     */
 
     public Jugador(double altura, int dorsal, int idEquipo) {
         this.altura = altura;
