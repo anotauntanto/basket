@@ -93,11 +93,11 @@ public class VistaEstadisticas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Jornada", "Fecha", "Resultado", "Puntos", "Rebotes", "Asistencias"
+                "Jornada", "Resultado", "Puntos", "Rebotes", "Asistencias"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

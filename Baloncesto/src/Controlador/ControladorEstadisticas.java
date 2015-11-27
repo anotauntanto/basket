@@ -60,7 +60,7 @@ public class ControladorEstadisticas {
                 Partido par = PartidoDAO.obtenerDatosPartido(p.getIdPartido());
                 
                 if (p.getIdPartido() == e.getIdPartido()) {
-                    modelo.addRow(new Object[]{par.getNumJornada(), par.getFecha(), par.getResultado(), e.getPuntos(), e.getRebotes(), e.getAsistencias()});
+                    modelo.addRow(new Object[]{par.getNumJornada(), par.getResultado(), e.getPuntos(), e.getRebotes(), e.getAsistencias()});
                    
                 }
 

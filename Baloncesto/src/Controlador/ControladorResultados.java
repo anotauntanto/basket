@@ -84,7 +84,7 @@ public class ControladorResultados {
             int equipoB = listarEquiposporPartido.get(1).getIdEquipo();*/
 
         }
-
+        miVista.getjLabelExistoActualizarResultado().setVisible(true);
     }
     
     

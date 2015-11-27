@@ -17,7 +17,7 @@ public class Arbitro extends Persona{
     /**
      * Atributo provincia para la entidad Arbitro
      */
-    private String Provincia;
+    private String provincia;
 
     /**
      * Constructor de la clase árbitro
@@ -35,7 +35,7 @@ public class Arbitro extends Persona{
      */
     public Arbitro(String Provincia, int idPersona,String nombre, String apellidos, String dni, Date fechaN, String email, String contrasena, String tlf, int rol) {
         super(idPersona, nombre, apellidos, dni, fechaN, email, contrasena, tlf, rol);
-        this.Provincia = Provincia;
+        this.provincia = Provincia;
     }
 
     /**
@@ -43,17 +43,17 @@ public class Arbitro extends Persona{
      * @param Provincia String Provincia del árbitro
      */
     public Arbitro(String Provincia) {
-        this.Provincia = Provincia;
+        this.provincia = Provincia;
     }
     
     public Arbitro (Persona per, String provincia) {
         super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
-        this.Provincia= provincia;
+        this.provincia= provincia;
         
     }
     public Arbitro (Persona per) {
         super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
-        this.Provincia= "";
+        this.provincia= "";
         
     }
     
@@ -70,7 +70,7 @@ public class Arbitro extends Persona{
      * @return provincia, devuelve la provincia 
      */
     public String getProvincia() {
-        return Provincia;
+        return provincia;
     }
 
     /**
@@ -78,7 +78,7 @@ public class Arbitro extends Persona{
      * @param Provincia String Provincia
      */
     public void setProvincia(String Provincia) {
-        this.Provincia = Provincia;
+        this.provincia = Provincia;
     }
 
 
@@ -88,7 +88,7 @@ public class Arbitro extends Persona{
      */
     @Override
     public String toString() {
-        return "Arbitro{" + "Provincia=" + Provincia + '}';
+        return "Arbitro{" + "Provincia=" + provincia + '}';
     }
     
     

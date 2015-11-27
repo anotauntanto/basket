@@ -143,7 +143,7 @@ public class ControladorCampeonato {
         //Leo de Ficheros para saber tipo
         String tipoCompeticion = FicherosTipo.leerFichero();
         //Si Liga no hace nada
-        if (tipoCompeticion.equals("Liga)")) {
+        if (tipoCompeticion.equals("Liga")) {
             //if (jornadaActual==0 && listaPartidos.size()>0){
             System.out.println("EN liga");
 
