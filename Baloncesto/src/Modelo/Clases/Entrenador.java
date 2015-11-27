@@ -38,12 +38,22 @@ public class Entrenador extends Persona{
         this.nivel = nivel;
         this.idEquipo = idEquipo;
     }
+    /**
+     * Contructor de la clase entrenador
+     * @param per persona
+     * @param nivel int nivel que tiene el entrenador para entrenar
+     * @param idEquipo int identificador de equipo al que pertence el entrenador
+     */
     
     public Entrenador (Persona per, int nivel, int idEquipo) {
         super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
         this.nivel= nivel;
         this.idEquipo = idEquipo;
     }
+    /**
+     * Contructor de la clase entrenador
+     * @param per persona
+     */
     
     public Entrenador (Persona per) {
         super(per.getIdPersona(), per.getNombre(), per.getApellidos(), per.getDni(), per.getFechaN(), per.getEmail(), per.getContrasena(), per.getTlf(), per.getRol());
