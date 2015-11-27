@@ -52,7 +52,7 @@ public class PartidoDAO {
     /**
      * Metodo para listar Partidos por jornada
      * @param num_jornada int, numero de jornada a buscar
-     * @return List<Partido>, lista de Partidos buscados
+     * @return List Partido , lista de Partidos buscados
      */
     public static List<Partido> listarPartidosJornada(int num_jornada) { 
         con = Conexion.conectar();

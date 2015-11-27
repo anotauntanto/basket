@@ -50,7 +50,7 @@ public class PartidoJugadoDAO {
     /**
      * Metodo para listar los Partidos Jugados por Equipo
      * @param id_equipo int, id del Equipo a buscar
-     * @return List<PartidoJugado>, lista de los Partidos Buscados 
+     * @return List PartidoJugado, lista de los Partidos Buscados 
      */ 
     public static List<PartidoJugado> listarPartidosJugadosEquipo (int id_equipo) { 
         con = Conexion.conectar();
@@ -79,7 +79,7 @@ public class PartidoJugadoDAO {
     /**
      * Metodo para listar los Equipos por Partido
      * @param id_partido int, id del Partido a buscar
-     * @return List<PartidoJugado>, lista de los Partidos Jugados buscados
+     * @return List PartidoJugado, lista de los Partidos Jugados buscados
      */
     public static List<PartidoJugado> listarEquiposporPartido (int id_partido) {
         con = Conexion.conectar();
@@ -106,7 +106,7 @@ public class PartidoJugadoDAO {
     
     /**
      * Metodo para obtener todos los Partidos Jugados
-     * @return List<PartidoJugado>, lista de çpartidos Jugados buscados
+     * @return List PartidoJugado, lista de çpartidos Jugados buscados
      */
     public static List<PartidoJugado> obtenerTodosPartidosJugados(){
          PartidoJugado partidoJug=null;

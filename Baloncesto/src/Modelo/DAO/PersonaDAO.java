@@ -64,7 +64,7 @@ public class PersonaDAO {
     
     /**
      * Metodo para obtener todas las Personas
-     * @return List<Persona> lista de todas las personas
+     * @return List Persona lista de todas las personas
      */
     public static List<Persona> obtenerTodasPersonas(){
         Persona persona=null;

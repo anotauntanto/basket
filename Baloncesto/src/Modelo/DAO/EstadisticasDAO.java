@@ -81,7 +81,7 @@ public class EstadisticasDAO {
     /**
      * Metodo para obtener todas las estadisticas de un jugador
      * @param id int, id del Jugador a buscar   
-     * @return List<Estadisticas>, lista de las estadisticas buscadas
+     * @return List Estadisticas, lista de las estadisticas buscadas
      */
     public static List<Estadisticas> obtenerTodasEstadisticasJugador(int id){
         con = Conexion.conectar();

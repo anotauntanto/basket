@@ -62,7 +62,7 @@ public class JugadorDAO {
     
     /**
      * Metodo para obtener todos los jugadores
-     * @return List<Jugador>, lista de los jugadores obtenidos
+     * @return List Jugado, lista de los jugadores obtenidos
      */
     public static List<Jugador> obtenerTodosJugadores(){
         con = Conexion.conectar();
@@ -89,7 +89,7 @@ public class JugadorDAO {
     /**
      * Metodo para obtener la lista de los jugadores por Equipo
      * @param id_equipo int, id del Equipo a buscar
-     * @return List<Jugador> lista de los jugadores buscados
+     * @return List Jugado lista de los jugadores buscados
      */
     public static List<Jugador> obtenerTodosJugadoresEquipo(int id_equipo){
         

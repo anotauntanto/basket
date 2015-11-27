@@ -48,7 +48,10 @@ public class ArbitroDAO {
             Conexion.desconexion(con);
         }
     } 
-    
+    /**
+     * Metodo para obtener todos los arbitros
+     * @return List Arbitros 
+     */
     public static List<Arbitro> obtenerTodosArbitros(){
         con = Conexion.conectar();
         listaArbitros= new ArrayList<>();

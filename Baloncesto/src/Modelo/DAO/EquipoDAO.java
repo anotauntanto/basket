@@ -78,7 +78,7 @@ public class EquipoDAO {
     
     /**
      * Metodo para obtener todos los equipos
-     * @return List<Equipo> 
+     * @return List Equipo de todos los Equipos
      */
     public static List<Equipo> obtenerTodosEquipos(){
         Equipo equipo=null;
@@ -243,7 +243,7 @@ public class EquipoDAO {
     /**
      * Metodo para listar los Equipos ganadores en una jornada
      * @param num_jornada int, jornada a buscar
-     * @return List<Equipo>, lista de Equipos buscados
+     * @return List Equipo, lista de Equipos buscados
      */
     public static List<Equipo> listarEquiposGanadoresJornadaN(int num_jornada) { 
         con = Conexion.conectar();
@@ -276,7 +276,7 @@ public class EquipoDAO {
     /**
      * Metodo para listar los Equipos perdedores en una jornada
      * @param num_jornada int, jornada a buscar
-     * @return List<Equipo>, lista de Equipos buscados 
+     * @return List Equipo, lista de Equipos buscados 
      */
     public static List<Equipo> listarEquiposPerdidosJornadaN(int num_jornada) { 
         con = Conexion.conectar();
