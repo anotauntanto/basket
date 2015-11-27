@@ -5,9 +5,6 @@
  */
 package Internacionalizacion;
 
-import java.util.Locale;
-import java.util.ResourceBundle;
-
 /**
  *
  * @author inftel06

@@ -13,8 +13,7 @@ import Modelo.DAO.PersonaDAO;
 import Vistas.VistaArbitro;
 import Vistas.VistaEntrenador;
 import Vistas.VistaJugador;
-import Vistas.VistaNoEntra;
-import Vistas.VistaOrganizacionOK;
+import Vistas.VistaOrganizacion;
 import java.io.InputStream;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -42,7 +41,7 @@ public class ControladorLogin {
     private JLabel labelDni=new JLabel();
     private JLabel labelContrasena=new JLabel();
     private JLabel labelSaludo=new JLabel();
-    private static final String BUNDLE_NAME=I18N.class.getPackage().getName()+".messages";
+    //private static final String BUNDLE_NAME=I18N.class.getPackage().getName()+".messages";
     
     
    
@@ -63,7 +62,7 @@ public class ControladorLogin {
         String loc=I18N.getBUNDLE_NAME();
         Locale locale=new Locale("en","GB");
        // String miSt=getClass().getResourceAsStream("/Users/inftel06/NetBeansProjects/basket/Baloncesto/src/Internacionalizacion").toString();
-        ResourceBundle rs=ResourceBundle.getBundle(BUNDLE_NAME,locale);
+        ResourceBundle rs=ResourceBundle.getBundle(loc,locale);
         botonAcceder=miLogin.getjButton1();
         labelSaludo=miLogin.getjLabel1();
         labelContrasena=miLogin.getjLabel3();
@@ -72,14 +71,17 @@ public class ControladorLogin {
         labelSaludo.setText(rs.getString("saludo"));
         labelContrasena.setText(rs.getString("contrasena"));
         botonAcceder.setText(rs.getString("entra"));
+        error=miLogin.getjLabel4();
+        error.setText(rs.getString("noEntra"));
         
         
     }
     
     public void setEspañol(VistaLogin miLogin){
+         String loc=I18N.getBUNDLE_NAME();
          Locale locale=new Locale("es","ES");
        // String miSt=getClass().getResourceAsStream("/Users/inftel06/NetBeansProjects/basket/Baloncesto/src/Internacionalizacion").toString();
-        ResourceBundle rs=ResourceBundle.getBundle(BUNDLE_NAME,locale);
+        ResourceBundle rs=ResourceBundle.getBundle(loc,locale);
         botonAcceder=miLogin.getjButton1();
         labelSaludo=miLogin.getjLabel1();
         labelContrasena=miLogin.getjLabel3();
@@ -88,6 +90,9 @@ public class ControladorLogin {
         labelSaludo.setText(rs.getString("saludo"));
         labelContrasena.setText(rs.getString("contrasena"));
         botonAcceder.setText(rs.getString("entra"));
+        error=miLogin.getjLabel4();
+        error.setText(rs.getString("noEntra"));
+        //error.setVisible(true);
     }
     
     public void confirmarPassword(String dni, String password, VistaLogin miLogin){
@@ -126,7 +131,7 @@ public class ControladorLogin {
                         nuevaVist3.setVisible(true);
                         break;
                     case 0:
-                        VistaOrganizacionOK nuevaVist4=new VistaOrganizacionOK();
+                        VistaOrganizacion nuevaVist4=new VistaOrganizacion();
                         miLogin.setVisible(false);
                         nuevaVist4.setVisible(true);    
                         break;
@@ -141,7 +146,7 @@ public class ControladorLogin {
                         //this.setVisible(false);
                         //nuevaVista.setVisible(true);
                         //new VistaNoEntra(miLogin,true).setVisible(true);
-                        error=miLogin.getjLabel4();
+                        //error=miLogin.getjLabel4();
                         error.setVisible(true);
         }
     }

@@ -12,7 +12,7 @@ import Modelo.Clases.PartidoJugado;
 import Modelo.DAO.EquipoDAO;
 import Modelo.DAO.PartidoDAO;
 import Modelo.DAO.PartidoJugadoDAO;
-import Vistas.VistaOrganizacionOK;
+import Vistas.VistaOrganizacion;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -39,13 +39,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ControladorClasificacion {
 
-    private VistaOrganizacionOK miVista;
+    private VistaOrganizacion miVista;
     javax.swing.JTable campoTabla;
     DefaultTableModel modelo;
     private JTable campoTabla1;
     private DefaultTableModel modelito;
 
-    public ControladorClasificacion(VistaOrganizacionOK miVista) {
+    public ControladorClasificacion(VistaOrganizacion miVista) {
         this.miVista = miVista;
         listarClasificacion();
     }

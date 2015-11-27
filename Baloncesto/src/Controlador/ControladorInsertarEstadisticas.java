@@ -14,7 +14,7 @@ import Modelo.DAO.EstadisticasDAO;
 import Modelo.DAO.JugadorDAO;
 import Modelo.DAO.PartidoDAO;
 import Modelo.DAO.PartidoJugadoDAO;
-import Vistas.VistaOrganizacionOK;
+import Vistas.VistaOrganizacion;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ControladorInsertarEstadisticas {
 
-    private VistaOrganizacionOK miVista;
+    private VistaOrganizacion miVista;
     private Vector<String> nombre_equipos;
     private Vector<String> nombre_jugadores;
     private int id_partido;
@@ -36,7 +36,7 @@ public class ControladorInsertarEstadisticas {
     private int id_equipo;
     private DefaultTableModel modelo;
 
-    public ControladorInsertarEstadisticas(VistaOrganizacionOK miVista) {
+    public ControladorInsertarEstadisticas(VistaOrganizacion miVista) {
         this.miVista = miVista;
         //this.GenerarListaEquipos();
     }

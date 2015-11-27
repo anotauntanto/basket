@@ -8,7 +8,7 @@ package Controlador;
 import Excepciones.EquipoException;
 import Modelo.Clases.Equipo;
 import Modelo.DAO.EquipoDAO;
-import Vistas.VistaOrganizacionOK;
+import Vistas.VistaOrganizacion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,11 +18,11 @@ import java.util.logging.Logger;
  */
 public class ControladorEquipo {
 
-    private VistaOrganizacionOK miVista;
+    private VistaOrganizacion miVista;
 
     private Equipo equipo;
 
-    public ControladorEquipo(VistaOrganizacionOK miVista) {
+    public ControladorEquipo(VistaOrganizacion miVista) {
         this.miVista = miVista;
 
     }

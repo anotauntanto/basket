@@ -17,7 +17,7 @@ import Modelo.DAO.EntrenadorDAO;
 import Modelo.DAO.EquipoDAO;
 import Modelo.DAO.JugadorDAO;
 import Modelo.DAO.PersonaDAO;
-import Vistas.VistaOrganizacionOK;
+import Vistas.VistaOrganizacion;
 import static java.lang.System.exit;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,7 +31,7 @@ import java.util.logging.Logger;
  */
 public class ControladorOrganizacion {
 
-    private VistaOrganizacionOK miVista;
+    private VistaOrganizacion miVista;
     private Jugador jug;
     private Persona persona;
     private Arbitro arbitro;
@@ -40,7 +40,7 @@ public class ControladorOrganizacion {
     boolean ok;
     boolean actualizar;
 
-    public ControladorOrganizacion(VistaOrganizacionOK miVista) {
+    public ControladorOrganizacion(VistaOrganizacion miVista) {
         this.miVista = miVista;
     }
 

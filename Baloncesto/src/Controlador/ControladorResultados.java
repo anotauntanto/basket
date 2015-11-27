@@ -10,7 +10,7 @@ import Modelo.Clases.PartidoJugado;
 import Modelo.DAO.EquipoDAO;
 import Modelo.DAO.PartidoDAO;
 import Modelo.DAO.PartidoJugadoDAO;
-import Vistas.VistaOrganizacionOK;
+import Vistas.VistaOrganizacion;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -21,12 +21,12 @@ import javax.swing.table.TableColumnModel;
  */
 public class ControladorResultados {
 
-    private VistaOrganizacionOK miVista;
+    private VistaOrganizacion miVista;
     private List<Partido> listarPartidosJornada;
     javax.swing.JTable campoTabla;
     DefaultTableModel modelo;
 
-    public ControladorResultados(VistaOrganizacionOK miVista) {
+    public ControladorResultados(VistaOrganizacion miVista) {
         this.miVista = miVista;
         this.listarUltimaJornada();
         /*campoTabla = miVista.getTablaResultados();

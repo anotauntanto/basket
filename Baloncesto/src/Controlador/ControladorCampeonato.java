@@ -14,7 +14,7 @@ import Modelo.DAO.PartidoDAO;
 import static Modelo.DAO.PartidoDAO.listarPartidosJornada;
 import Modelo.DAO.PartidoJugadoDAO;
 import static Modelo.DAO.PartidoJugadoDAO.listarEquiposporPartido;
-import Vistas.VistaOrganizacionOK;
+import Vistas.VistaOrganizacion;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ControladorCampeonato {
 
-    private VistaOrganizacionOK miVista;
+    private VistaOrganizacion miVista;
     private Vector<String> num_equipos;
     private javax.swing.JRadioButton tipoLiga;
     private javax.swing.JRadioButton tipoMixto;
@@ -57,7 +57,7 @@ public class ControladorCampeonato {
         //generar array
     }
 
-    public ControladorCampeonato(VistaOrganizacionOK miVista) {
+    public ControladorCampeonato(VistaOrganizacion miVista) {
         this.miVista = miVista;
         this.GenerarLista();
         DefaultComboBoxModel model = new DefaultComboBoxModel(num_equipos);
@@ -65,7 +65,7 @@ public class ControladorCampeonato {
 
     }
 
-    public int tipoCampeonato(VistaOrganizacionOK miVista) throws IOException {
+    public int tipoCampeonato(VistaOrganizacion miVista) throws IOException {
         javax.swing.JTable miTabla = miVista.getTablaGenerar();
         Generar miGen = new Generar();
         int miJornada = 0; //Valor para ver la primera jornada generada
@@ -127,7 +127,7 @@ public class ControladorCampeonato {
         return tipoCompeticion;
     }
 
-    public int generarSigJornada(VistaOrganizacionOK miVista) {
+    public int generarSigJornada(VistaOrganizacion miVista) {
         
         Generar miGen = new Generar();
         int jornadaActual = miGen.sigJornadaN();
