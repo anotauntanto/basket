@@ -24,28 +24,35 @@ import java.util.List;
  * @author inftel06
  */
 public class Generar {
-    //private ArrayList miArray;  
-    //private int[] arrayUno,arrayDos;
     private int i,j;
+    /**
+     * Constructor generico de la clase Generar
+     * 
+     */
     public Generar(){
         
     }
+    
+    
     //Entro conCategoria a true si hay mismo numero de equipos con categoria, false si no 
+    /**
+     * Genera y guarda en la BBDD la siguiente jornada teniendo en cuenta si los equipos se distinguen por categorias. 
+     * @param miArray Lista de equipos que jugarán la siguiente jornada
+     * @param conCategoria Si true, los equipos se emparejan por categorias
+     */
     public void sigJornada(ArrayList miArray,boolean conCategoria){
-        //miArray=(ArrayList) EquipoDAO.obtenerTodosEquipos();
+        
         i=0;j=0;
         List<Integer> arrayUno=new ArrayList<>();
         List<Integer> arrayDos=new ArrayList<>();
-        //int[] arrayUno=new int[3];
-        //int[] arrayDos=null;
-        //Collections.shuffle(miArray);
+        
         for (Iterator it = miArray.iterator(); it.hasNext();) {
             Equipo elem = (Equipo) it.next();
             if (conCategoria){
                 if (elem.getCategoria()==1){
-                    System.out.println(elem.getIdEquipo());
+        
                     i=(Integer) elem.getIdEquipo();
-                    //arrayUno.add(elem.getIdEquipo());
+        
                     arrayUno.add(i);
                     
                     //i++;
@@ -346,7 +353,7 @@ public class Generar {
         }
     
     
-        public List<Equipo> clasificacionLiga(){
+        /*public List<Equipo> clasificacionLiga(){
         ArrayList todosEquipos=(ArrayList) EquipoDAO.obtenerTodosEquipos();
         Collections.sort(todosEquipos);
         //PAra ver
@@ -370,8 +377,8 @@ public class Generar {
         //Generar playoff
        
         sigJornada(equiposClasificados,false);*/
-        return todosEquipos;
-    }
+      //  return todosEquipos;
+    //}
     //FIN CUIDADIDDODODDODO
     //Darme una lista con los equipos que han ganado la jornadaN
     
