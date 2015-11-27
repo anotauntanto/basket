@@ -1100,7 +1100,7 @@ public class VistaOrganizacionOK extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre equipo"
+                "Clasificación general"
             }
         ));
         jScrollPane6.setViewportView(jTable6);

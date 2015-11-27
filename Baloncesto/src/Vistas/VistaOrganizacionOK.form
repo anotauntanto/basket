@@ -1629,7 +1629,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="1" rowCount="0">
-                                <Column editable="true" title="Nombre equipo" type="java.lang.Object"/>
+                                <Column editable="true" title="Clasificaci&#xf3;n general" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

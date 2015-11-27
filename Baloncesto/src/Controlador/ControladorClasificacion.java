@@ -17,8 +17,10 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -146,34 +148,50 @@ public class ControladorClasificacion {
         Calendar cal = Calendar.getInstance();
         String time = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(cal.getTime());
 
-        File file = new File("Campeonato.pdf");
+        File file = new File("Clasificacion.pdf");
         FileOutputStream fileout = new FileOutputStream(file);
         Document document = new Document();
         PdfWriter.getInstance(document, fileout);
 
         Font fuente1 = new Font();
         Font fuente2 = new Font();
-        fuente1.setStyle(Font.BOLD | Font.ITALIC);
-        fuente2.setStyle(Font.UNDERLINE);
-        fuente2.setSize(12);
+        Font fuente3 = new Font();
+        fuente1.setStyle(Font.BOLD | Font.ITALIC | Font.UNDERLINE);
+        fuente1.setSize(18);
+        fuente1.setColor(0, 51, 204);
+        fuente2.setStyle(Font.BOLD | Font.ITALIC);
+        fuente2.setColor(0, 51, 204);
+        fuente2.setSize(13);
+        fuente3.setStyle(Font.BOLD | Font.ITALIC);
+        fuente3.setSize(16);
+        fuente3.setColor(255, 153, 0);
         
         document.open();
-        document.add(new Paragraph("\n "));
+
         Paragraph pa = new Paragraph("Fecha y hora: " + time); 
+        
         pa.setAlignment(Element.ALIGN_RIGHT);
         document.add(pa);
-        document.add(new Paragraph("GESTOR DE CAMPEONATO DE BALONCESTO", fuente1));
-        //document.add(new Paragraph("                                                                                                     hora: " + time));
-        document.add(new Paragraph("-------------------------------------------------------------------------------------------------------------------------------"));
-      //String imageUrl = "src/files/dibujo.png";
-//      Image imagen = Image.getInstance(imageUrl);  
-        //    imagen.setAbsolutePosition(100, 50);
-        //  document.add(imagen);
-
+        
+        String url = "src/files/imagenPDF.jpg";
+        Image imagen = Image.getInstance(url);  
+       
+        imagen.scalePercent(20);
+        document.add(imagen);
+        document.add(new Paragraph("\n"));
+        Paragraph p3 = new Paragraph("GESTOR DE CAMPEONATO DE BALONCESTO", fuente1);
+        p3.setAlignment(Element.ALIGN_CENTER);
+        document.add(p3);
+        
+        document.add(new Paragraph("\n"));
         String tipo_competicion = FicherosTipo.leerFichero();
 
         if (tipo_competicion.equals("Copa")) {
-            document.add(new Paragraph("COPA", fuente1));
+            Paragraph pa1 = new Paragraph("COPA", fuente3);
+            pa1.setAlignment(Element.ALIGN_CENTER);
+            document.add(pa1);
+            document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
+            document.add(new Paragraph("\n"));
             int jornada_maxima = PartidoDAO.obtenerJornadaActual();
 
             for (int i = jornada_maxima; i > 0; i--) {
@@ -185,34 +203,33 @@ public class ControladorClasificacion {
                     int equipoA = listarEquiposporPartido.get(0).getIdEquipo();
                     int equipoB = listarEquiposporPartido.get(1).getIdEquipo();
 
-                    
-                    document.add(new Paragraph("Equipo A: " + EquipoDAO.obtenerNombreEquipo(equipoA) + " Equipo B: " + EquipoDAO.obtenerNombreEquipo(equipoB) + " Resultado: " + p.getResultado(), fuente1));
+                    Paragraph p2 = new Paragraph("Equipo A: " + EquipoDAO.obtenerNombreEquipo(equipoA) + " - Equipo B: " + EquipoDAO.obtenerNombreEquipo(equipoB) + " - Resultado: " + p.getResultado(), fuente2);
+                    p2.setAlignment(Element.ALIGN_LEFT);
+                    document.add(p2);
                 }
 
             }
 
         } else if (tipo_competicion.equals("Liga")) {
-
-            miVista.getjScrollLiga().setVisible(true);
-            miVista.getjScrollCopa().setVisible(false);
-
-            campoTabla = miVista.getTablaClasificacionLiga();
-            modelo = (DefaultTableModel) campoTabla.getModel();
-
-            while (modelo.getRowCount() > 0) {
-                modelo.removeRow(0);
-            }
+            Paragraph pa1 = new Paragraph("LIGA", fuente3);
+            pa1.setAlignment(Element.ALIGN_LEFT);
+            document.add(pa1);
+            document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
+            document.add(new Paragraph("\n"));
             //List<Partido> listarPartidosJornada = PartidoDAO.listarPartidosJornada(0);
             List<Equipo> obtenerTodosEquipos = EquipoDAO.obtenerTodosEquipos();
             Collections.sort(obtenerTodosEquipos);
             System.out.println(obtenerTodosEquipos);
             for (Equipo p : obtenerTodosEquipos) {
-                modelo.addRow(new Object[]{p.getNombre()});
-
+                Paragraph pa2 = new Paragraph(p.getNombre(),fuente2);
+                pa2.setAlignment(Element.ALIGN_LEFT);
+                document.add(pa2);
             }
             
         }
         document.close();
+        File myfile = new File("Clasificacion.pdf");
+        Desktop.getDesktop().open(myfile);
 
     }
 }
